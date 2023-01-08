@@ -1,5 +1,41 @@
 using DrWatson
 @quickactivate "Vortex"
 
+using XLSX, DataFramesMeta, TOML
+
 # Here you may include files from the source directory
-include(srcdir("prana.jl"))
+includet(srcdir("PIV", "prana.jl"))
+includet(srcdir("imageutils.jl"))
+includet(srcdir("pathutils.jl"))
+
+## Load run metadata
+runlist = DataFrame(XLSX.readtable(datadir("meta.xlsx"), "Sheet1"))
+runlist.outdir = [datadir("PIV", "runs", runname(runmeta)) for runmeta in eachrow(runlist)]
+runlist.TSI_LA_path = [TSIname(runmeta.TSI_ID, runmeta.TSI_idx, 'A') for runmeta in eachrow(runlist)]
+runlist.validpaths = [validatepaths(runmeta) for runmeta in eachrow(runlist)]
+runmeta = first(runlist)
+
+## Run PIV
+PIVlist = filter(runlist) do m
+    # if PIV.toml file exists in output directory, only run if m.PIV_rerun is true.
+    runjob = ispath(joinpath(m.outdir, "PIV.toml")) ? m.PIV_rerun : true
+    runjob &= !ismissing(m.TSI_idx) # only run if TSI data isn't missing
+    runjob &= m.validpaths # only run if all paths are valid
+    return runjob
+end
+
+foreach(eachrow(PIVlist)) do runmeta
+    if runmeta.PIV_rerun
+        cfg_m = setupprana(runmeta, toml2config(joinpath(outdir, "PIV_rerun.toml")))
+    else
+        cfg_m = setupprana(runmeta)
+    end
+    try
+        runprana(runmeta, cfg_m)
+    catch 
+        e
+    end
+end
+# cfg_path = setupprana(runmeta)
+# runprana(runmeta, cfg_path)
+##
