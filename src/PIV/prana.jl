@@ -1,4 +1,4 @@
-using MAT, MATLAB, TOML, ImageIO, TiffImages, ImageCore, ImageTransformations, Statistics, Printf
+using MAT, MATLAB, TOML, ImageIO, TiffImages, ImageCore, ImageTransformations, Statistics, Printf, Interpolations
 
 """
     config2toml(config::Dict, tomlpath)
@@ -98,7 +98,7 @@ function setupprana(runmeta, settings=Dict{String,Any}();
     # Load raw images and background-subtract
     LA_path = rawdatadir(runmeta.Date, runmeta.ID, runmeta.TSI_LA_path)
     LB_path = replace(LA_path, "LA" => "LB")
-    BGA_path = datadir("PIV", "bg", runmeta.TSI_bg_path)
+    BGA_path = datadir("PIV", "bg", string(runmeta.TSI_bg_path))
     BGB_path = replace(BGA_path, "LA" => "LB")
     LA, LB = load.((LA_path, LB_path))
     if isfile(BGA_path) && isfile(BGB_path)
@@ -177,4 +177,75 @@ function runprana(runmeta, prana_cfg_path,
             mv(joinpath(prana_cfg_dir, f), joinpath(outdir, f), force=true)
         end
     end
+end
+
+function loadprana(runmeta)
+    outdir = runmeta.outdir
+    # Load PIV pass files
+    pivpass_files = filter(f -> startswith(f, "PIVpass") && endswith(f, ".mat"), readdir(outdir))
+    map(pivpass_files) do f
+        MAT.matopen(joinpath(outdir, f)) do PIV
+            X = transpose(read(PIV, "X"))[:,1]
+            Y = transpose(read(PIV, "Y"))[1,:]
+            U = transpose.(eachslice(read(PIV, "U"), dims=3))
+            V = transpose.(eachslice(read(PIV, "V"), dims=3))
+            Eval = transpose.(eachslice(read(PIV, "Eval"), dims=3))
+            Corr = transpose.(eachslice(read(PIV, "C"), dims=3))
+
+            # U_itp = linear_interpolation((X[:,1], Y[1,:]), U)
+            # V_itp = linear_interpolation((X[:,1], Y[1,:]), V)
+            (; X, Y, U, V, Eval, Corr)
+        end
+    end
+end
+
+function curl(U_itp, V_itp, x, y)
+    du_dy = Interpolations.gradient(U_itp, x, y)[2]
+    dv_dx = Interpolations.gradient(V_itp, x, y)[1]
+    dv_dx - du_dy
+end
+
+function pranasummaryplot(runmeta)
+    plotpath = plotsdir("PIV_summary", runname(runmeta)*".png")
+    isfile(plotpath) && return nothing
+
+    PIV = loadprana(runmeta)[end]
+    @unpack X, Y, U, V, Corr = PIV
+    X ./= 1e4 # convert to cm
+    Y ./= 1e4
+
+    U_itp = linear_interpolation((X, Y), U[1])
+	V_itp = linear_interpolation((X, Y), V[1])
+    BAD = imfilter(Corr[1], KernelFactors.gaussian((1.5, 1.5))) .< 0.024
+    GOOD = .!BAD
+
+    f = Figure(resolution=(1000,880))
+    Label(f[0, 1:2], fontsize = 20, text=string(runname(runmeta), " - ", runmeta.MST_gas, " at ", runmeta.MST_psig, "psig"))
+	ax1 = GLMakie.Axis(f[2, 1], xlabel="x [cm]", ylabel="z [cm]",
+		xminorticksvisible=true, yminorticksvisible=true, xminorticks=IntervalsBetween(5), yminorticks=IntervalsBetween(5),
+		aspect=DataAspect())
+	Ū = hypot.(U[1], V[1])
+	Ū[BAD] .= NaN
+	hm1 = heatmap!(ax1, X, Y, Ū, colorrange=(0, quantile(Ū[GOOD], 0.99)))
+	Û, V̂ = median.((U[1], V[1]))
+	u(x, y) = Point2(U_itp(x, y) - Û, V_itp(x, y) - V̂)
+	sp = streamplot!(ax1, u, X, Y, stepsize=0.005)#, colorrange=(0,50))
+	Colorbar(f[1,1], hm1, vertical=false, label="Velocity [m/s]",
+		minorticksvisible=true)
+
+    ax2 = GLMakie.Axis(f[2, 2], xlabel="x [cm]",
+		xminorticksvisible=true, yminorticksvisible=true,
+		xminorticks=IntervalsBetween(5), yminorticks=IntervalsBetween(5),
+		yaxisposition=:right, yticklabelsvisible=false,
+		aspect=DataAspect())
+	ω = imfilter(curl.(Ref(U_itp), Ref(V_itp), X, Y'),
+		KernelFactors.gaussian((1, 1)))
+	ωmax = maximum(abs, quantile(ω[.!BAD], (0.01, 0.99)))
+	@. ω[BAD] = NaN
+	hm2 = heatmap!(ax2, X, Y, ω, 
+		colorrange=(-ωmax, ωmax), colormap=:RdBu, interpolate=false)
+	Colorbar(f[1,2], hm2, vertical=false, label="Vorticity [1/s]",
+		minorticksvisible=true)
+    save(plotpath, f)
+    nothing
 end

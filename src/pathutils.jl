@@ -4,10 +4,17 @@ function rawdatadir(date, args...)
     return joinpath(basepath, date..., args...)
 end
 
-TSIname(basename, i, AB) = i == "missing" ? missing : basename * lpad(i, 6, '0') * ".T000.D000.P000.H000.L$AB.TIF"
+function TSIname(basename, i, AB)
+    if ismissing(i) || (i == "missing")
+        missing
+    else
+        basename * lpad(i, 6, '0') * ".T000.D000.P000.H000.L$AB.TIF"
+    end
+end
 
 runname(runmeta) = string(runmeta.Date, '_', runmeta.ID)
 
+cinepath(runmeta) = rawdatadir(runmeta.Date, runmeta.ID, runmeta.cine_ID*".cine")
 
 """
     validatepaths(runmeta)
@@ -36,6 +43,8 @@ function validatepaths(runmeta)
             return false
         end
     end
-    isfile(datadir("PIV", "bg", runmeta.TSI_bg_path)) || (@warn("Background image $(runmeta.TSI_bg_path) does not exist") && return false)
+    if !ismissing(runmeta.TSI_bg_path)
+        isfile(datadir("PIV", "bg", runmeta.TSI_bg_path)) || (@warn("Background image $(runmeta.TSI_bg_path) does not exist") && return false)
+    end
     return true
 end
