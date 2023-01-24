@@ -240,7 +240,8 @@ function pranasummaryplot(runmeta)
 		aspect=DataAspect())
 	ω = imfilter(curl.(Ref(U_itp), Ref(V_itp), X, Y'),
 		KernelFactors.gaussian((1, 1)))
-	ωmax = maximum(abs, quantile(ω[.!BAD], (0.01, 0.99)))
+	# ωmax = maximum(abs, quantile(ω[.!BAD], (0.01, 0.99)))
+    ωmax = 300.0
 	@. ω[BAD] = NaN
 	hm2 = heatmap!(ax2, X, Y, ω, 
 		colorrange=(-ωmax, ωmax), colormap=:RdBu, interpolate=false)

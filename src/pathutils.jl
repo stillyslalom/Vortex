@@ -1,3 +1,5 @@
+export rawdatadir, TSIname, runname, cinepath, validatepaths
+
 function rawdatadir(date, args...)
     basepath = raw"S:\users\shocktube\runs"
     date = split(string(date), '-')

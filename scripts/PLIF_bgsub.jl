@@ -18,6 +18,8 @@ end
 
 ## Write summary plot
 foreach(eachrow(PLIFlist)) do PLIFmeta
+    plotpath = plotsdir("mean_spanwise_PLIF", runname(PLIFmeta)*".png")
+    isfile(plotpath) && return nothing
     timings = read_timings(PLIFmeta)
     # time between trigger (if any) and rupture laser pulse
     rupture_lag = (timings[:Rupture1].Shock + timings[:Rupture1].Delay)
@@ -32,7 +34,7 @@ foreach(eachrow(PLIFlist)) do PLIFmeta
     f = Figure()
     ax1 = Axis(f[1, 1], title=runname(PLIFmeta), xlabel="t [ms]", ylabel="z [mm]")
     hm = heatmap!(ax1, t_Phantom, z_Phantom, rotr90(I_avg))
-    savefigs && save(plotsdir("mean_spanwise_PLIF", runname(PLIFmeta)*".png"), f)
+    savefigs && save(plotpath, f)
     f
 end
 
