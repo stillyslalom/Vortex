@@ -1,5 +1,7 @@
 using CSV, DataFramesMeta
 
+export read_timings, load_xt
+
 function read_timings(meta)
     timings = CSV.read(rawdatadir(meta.Date,meta.ID, meta.timings_path), DataFrame, 
         normalizenames=true)
@@ -10,4 +12,8 @@ function read_timings(meta)
         [only(r) for r in _]
         Dict(r.Channel => NamedTuple(r[Not(:Channel)]) for r in _)
     end
+end
+
+function load_xt(runmeta)
+    CSV.read(datadir("timing", "xt", runname(runmeta) * "_xt.csv"), DataFrame)
 end
