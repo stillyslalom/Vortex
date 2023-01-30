@@ -1,10 +1,8 @@
 using DrWatson
 @quickactivate "Vortex"
-using XLSX, DataFramesMeta, GLMakie
+using XLSX, DataFramesMeta, GLMakie, Vortex
 
 includet(srcdir("imageutils.jl"))
-includet(srcdir("pathutils.jl"))
-includet(srcdir("timing.jl"))
 
 savefigs = true
 
