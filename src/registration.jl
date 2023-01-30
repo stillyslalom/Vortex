@@ -2,19 +2,28 @@ using ImageIO, TiffImages, MATLAB, ImageCore, Statistics, GLMakie, Unitful
 
 include(srcdir("imageutils.jl"))
 
-function load_targets(tgtdata)
-    TSI = rotl90(load(rawdatadir(tgtdata.Date, tgtdata.TSI_tgt_path)))
-    Phantom = Gray.(rotl90(load(rawdatadir(tgtdata.Date, tgtdata.Phantom_tgt_path))))
+function load_targets(tgtdata, tgtdir)
+    TSIpath = joinpath(tgtdir, "TSI.png")
+    Phantompath = joinpath(tgtdir, "Phantom.png")
+    if !isfile(TSIpath)
+        TSI = imadjust(rotl90(load(rawdatadir(tgtdata.Date, tgtdata.TSI_tgt_path))))
+        save(TSIpath, imadjust(TSI))
+    else
+        TSI = load(TSIpath)
+    end
+    if !isfile(Phantompath)
+        Phantom = imadjust(Gray.(rotl90(load(rawdatadir(tgtdata.Date, tgtdata.Phantom_tgt_path)))))
+        save(Phantompath, imadjust(Phantom))
+    else
+        Phantom = load(Phantompath)
+    end
     return (; TSI, Phantom)
 end
 
-function run_cpselect(targets, wd=mktempdir())
+function run_cpselect(targets, tgtdir)
     cd(wd) do
-        TSIpath = joinpath(wd, "TSI.png")
-        Phantompath = joinpath(wd, "Phantom.png")
-
-        save(TSIpath, imadjust(targets.TSI))
-        save(Phantompath, imadjust(targets.Phantom))
+        TSIpath = joinpath(tgtdir, "TSI.png")
+        Phantompath = joinpath(tgtdir, "Phantom.png")
 
         mat"Phantom = imread($Phantompath)"
         mat"TSI = imread($TSIpath)"
@@ -33,7 +42,7 @@ dist2d(x) = dist2d(x...)
 ## Measure origin, pixel scale, and rotation of Phantom target image
 # Select two points along ruler edge of Phantom target image
 # and set the distance between them in inches
-function phantomscalepoints(phantom)
+function selectphantomscale(phantom)
     # Display image with image-standard coordinate axes (origin at top left)
     f, ax, img = image(phantom'; axis=(aspect=DataAspect(), yreversed=true))
     p = select_point(ax, marker='●')
