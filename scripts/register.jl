@@ -99,13 +99,13 @@ targetlist = DataFrame(XLSX.readtable(datadir("targets.xlsx"), "Sheet1"))
 calibration_dicts = map(eachrow(targetlist)) do targetdata
     data, path = produce_or_load(targetdata, datadir("calibrations");
                      filename=runname, tag=false) do targetdata
-        targets = load_targets(targetdata)
-        calibration_plotdir = datadir("calibrations", runname(targetdata))
+        calibration_datadir = datadir("calibrations", runname(targetdata))
         # remove & re-make calibration plot directory if it already exists
-        isdir(calibration_plotdir)  && rm(calibration_plotdir; recursive=true)
-        mkdir(calibration_plotdir) 
+        isdir(calibration_datadir)  && rm(calibration_datadir; recursive=true)
+        mkdir(calibration_datadir)
+        targets = load_targets(targetdata, calibration_datadir)
 
-        tf = run_cpselect(targets, calibration_plotdir)
+        tf = run_cpselect(targets, calibration_datadir)
 
         phantomscalepoints = selectphantomscale(targets.Phantom)
         phantomscale = calcphantomscale(phantomscalepoints...)
@@ -128,10 +128,10 @@ foreach(eachrow(calibrations)) do calib
     TSI_warp = warp(targets.TSI, itform, axes(targets.Phantom))
     tgts = overlapimages(targets.Phantom, TSI_warp)
 
-    f = Figure(resolution=(950, 1200))
+    f = Figure(resolution=(500, 600))
     ax = Axis(f[1, 1], aspect=DataAspect(), yreversed=true, 
             xlabel="jᵗʰ Phantom pixel", ylabel="iᵗʰ Phantom pixel",
-            title = "Phantom and TSI images (warped to Phantom coordinates) for $(runname(calib))")
+            title = "Phantom and TSI images (warped to Phantom coordinates)\n for $(runname(calib))")
     img = image!(ax, collect(tgts'))
     # list corners of TSI
     corners = [SVector(1, 1), SVector(size(targets.TSI, 1), 1), SVector(size(targets.TSI, 1), size(targets.TSI, 2)), SVector(1, size(targets.TSI, 2))]
