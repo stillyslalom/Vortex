@@ -28,11 +28,12 @@ end
 ## Launch jobs asychronously on a worker process
 
 foreach(eachrow(PIVlist)) do runmeta
-    if runmeta.PIV_rerun
-        cfg_m = setupprana(runmeta, toml2config(joinpath(outdir, "PIV_rerun.toml")))
+    if runmeta.PIV_rerun && ("PIV_rerun.toml" in readdir(runmeta.outdir))
+        cfg_m = setupprana(runmeta, toml2config(joinpath(runmeta.outdir, "PIV_rerun.toml")))
     else
         cfg_m = setupprana(runmeta)
     end
+
     try
         runprana(runmeta, cfg_m)
     catch 

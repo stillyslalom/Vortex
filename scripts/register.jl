@@ -29,7 +29,7 @@ function load_targets(tgtdata, tgtdir)
 end
 
 function run_cpselect(targets, tgtdir)
-    cd(wd) do
+    cd(tgtdir) do
         TSIpath = joinpath(tgtdir, "TSI.png")
         Phantompath = joinpath(tgtdir, "Phantom.png")
 

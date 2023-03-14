@@ -6,6 +6,5 @@ dist2d(x) = dist2d(x...)
 function add_registrations!(runlist)
     calibrations = collect_results(datadir("calibrations"), verbose=false)
     calibrations.path = basename.(calibrations.path)
-    rename!(calibrations, :path => :registration_path)
-    leftjoin!(runlist, calibrations, on=:registration_path, matchmissing=:equal)
+    leftjoin!(runlist, calibrations, on=:registration_path => :path, matchmissing=:equal)
 end

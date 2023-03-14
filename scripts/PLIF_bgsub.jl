@@ -18,8 +18,8 @@ end
 add_registrations!(PLIFlist)
 
 ## Write summary plot
-let PLIFmeta = PLIFmeta
-# foreach(eachrow(PLIFlist)) do PLIFmeta
+# let PLIFmeta = PLIFmeta
+foreach(eachrow(PLIFlist)) do PLIFmeta
     plotpath = plotsdir("mean_spanwise_PLIF", runname(PLIFmeta)*".png")
     # isfile(plotpath) && return nothing
     timings = read_timings(PLIFmeta)
@@ -36,7 +36,7 @@ let PLIFmeta = PLIFmeta
 
     f = Figure()
     ax1 = Axis(f[1, 1], title=runname(PLIFmeta), xlabel="t [ms]", ylabel="z [mm]")
-    hm = heatmap!(ax1, t_Phantom, z_Phantom, rotr90(I_avg))
+    hm = heatmap!(ax1, t_Phantom, z_Phantom, rotr90(I_avg), colormap=:dense)
     savefigs && save(plotpath, f)
     f
 end
@@ -44,7 +44,7 @@ end
 ## Compare shock location between x-t and PLIF
 function PLIF_trajectory(PLIFmeta; savefigs=false)
     plotpath = plotsdir("trajectory_PLIF", runname(PLIFmeta)*".png")
-    # isfile(plotpath) && return nothing
+    isfile(plotpath) && return nothing
 
     # Load x-t data
     xt = load_xt(PLIFmeta)

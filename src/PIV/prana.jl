@@ -89,10 +89,23 @@ function setupprana(runmeta, settings=Dict{String,Any}();
     processingdir=mktempdir(),
     templatepath=srcdir("PIV", "PIV.toml"),
     )
-    # Create output and processing directories if they don't exist
     outdir = runmeta.outdir
-    !isdir(outdir) && mkpath(outdir)
+    # If output directory already exists, copy contents to old{date} subdirectory
+    if isdir(outdir)
+        olddate = match(r"[0-9]*-[A-z]*-[0-9]*", only(glob("ExpSummary*", outdir))).match
+        olddir = joinpath(outdir, "old_$olddate")
+        !ispath(olddir) && mkpath(olddir)
+        # Move all files in output directory  to subdirectory
+        for f in readdir(outdir)
+            f_full = joinpath(outdir, f)
+            isfile(f_full) && mv(f_full, joinpath(outdir, olddir, f), force=true)
+        end
+    else
+        mkpath(outdir)
+    end
     runmeta.outdir = outdir
+    # Create output and processing directories if they don't exist
+    
     !isdir(processingdir) && mkpath(processingdir)
 
     # Load raw images and background-subtract
@@ -103,11 +116,21 @@ function setupprana(runmeta, settings=Dict{String,Any}();
     LA, LB = load.((LA_path, LB_path))
     if isfile(BGA_path) && isfile(BGB_path)
         BGA, BGB = load.((BGA_path, BGB_path))
+
+        # Remove high-intensity background pixels from raw images
+        BGA_bad = BGA .> 0.3
+        BGB_bad = BGB .> 0.3
+        LA[BGA_bad] .= 0
+        LB[BGB_bad] .= 0
         clamp01!(Gray{Float32}.(LA) .- BGA)
         clamp01!(Gray{Float32}.(LB) .- BGB)
     else
         @warn("No background images found for run $(runname(runmeta)).")
     end
+
+    # Remove maximum-intensity pixels
+    LA[LA .> 0.999] .= 0
+    LB[LB .> 0.999] .= 0
 
     # Save intensity-adjusted summary image
     summaryimg = overlapimages(imadjust(LA, qmax=0.999), imadjust(LB, qmax=0.999)) |> restrict |> rotl90
