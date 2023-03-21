@@ -1,11 +1,22 @@
 module Vortex
 
-using DrWatson, XLSX, DataFramesMeta, Dates
+using DrWatson, Reexport
+@reexport using DataFramesMeta
+@reexport using Statistics
+@reexport using ImageCore
+using XLSX
+using Dates
+using CSV
+using ImageFiltering, MAT, JLD2
 
 include("pathutils.jl")
 include("timing.jl")
+include("PIV/post.jl")
 
 export loadmeta, along, select_run
+
+export MedianMagnitude, MedianComponents
+export MedianFilter, NormalizedMedianFilter, NeighborDifference, GlobalHistogram, DynamicMean
 
 function loadmeta(f=(_ -> true))
     filter!(f, DataFrame(XLSX.readtable(datadir("meta.xlsx"), "Sheet1")))

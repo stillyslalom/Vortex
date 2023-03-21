@@ -2,7 +2,7 @@
 
 julia_version = "1.9.0-rc1"
 manifest_format = "2.0"
-project_hash = "9047a58bbfeeeb664bb9b97602e07767f61ada87"
+project_hash = "830d8fc2ce56cbe8e2ad57b42a00472995e11cbe"
 
 [[deps.AMD]]
 deps = ["Libdl", "LinearAlgebra", "SparseArrays", "Test"]
@@ -102,6 +102,12 @@ version = "0.4.6"
 
 [[deps.Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
+
+[[deps.BasicInterpolators]]
+deps = ["LinearAlgebra", "Memoize", "Random"]
+git-tree-sha1 = "3f7be532673fc4a22825e7884e9e0e876236b12a"
+uuid = "26cce99e-4866-4b6d-ab74-862489e035e0"
+version = "0.7.1"
 
 [[deps.BenchmarkTools]]
 deps = ["JSON", "Logging", "Printf", "Profile", "Statistics", "UUIDs"]
@@ -1163,6 +1169,12 @@ deps = ["Calculus", "LinearAlgebra", "Printf", "RecipesBase", "Requires"]
 git-tree-sha1 = "12950d646ce04fb2e89ba5bd890205882c3592d7"
 uuid = "eff96d63-e80a-5855-80a2-b1b0885c5ab7"
 version = "2.8.0"
+
+[[deps.Memoize]]
+deps = ["MacroTools"]
+git-tree-sha1 = "2b1dfcba103de714d31c033b5dacc2e4a12c7caa"
+uuid = "c03570c3-d221-55d1-a50c-7939bbd78826"
+version = "0.4.4"
 
 [[deps.MeshIO]]
 deps = ["ColorTypes", "FileIO", "GeometryBasics", "Printf"]

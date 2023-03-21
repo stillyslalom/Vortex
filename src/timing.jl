@@ -1,5 +1,3 @@
-using CSV, DataFramesMeta
-
 export read_timings, load_xt
 
 function read_timings(meta)
