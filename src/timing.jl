@@ -1,7 +1,7 @@
 export read_timings, load_xt
 
 function read_timings(meta)
-    timings = CSV.read(rawdatadir(meta.Date,meta.ID, meta.timings_path), DataFrame, 
+    timings = CSV.read(rawdatadir(meta.Date, meta.ID, meta.timings_path), DataFrame, 
         normalizenames=true)
     timings.Channel = @. Symbol(replace(strip(timings.Channel), isspace => '_'))
     @chain timings begin

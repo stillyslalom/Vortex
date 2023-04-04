@@ -33,18 +33,14 @@ foreach(eachrow(PIVlist)) do runmeta
     else
         cfg_m = setupprana(runmeta)
     end
-
+    println("Running PIV in $(runmeta.outdir)")
     try
         runprana(runmeta, cfg_m)
     catch 
         e
     end
-end
 
-##
-
-foreach(eachrow(runlist)) do m
-    runjob = !ismissing(m.TSI_idx) # only run if TSI data isn't missing
-    runjob &= m.validpaths # only run if all paths are valid
-    runjob && pranasummaryplot(m)
+    runjob = !ismissing(runmeta.TSI_idx) # only run if TSI data isn't missing
+    runjob &= runmeta.validpaths # only run if all paths are valid
+    runjob && pranasummaryplot(runmeta)
 end

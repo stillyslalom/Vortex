@@ -4,7 +4,7 @@ using Vortex
 using GLMakie
 using OrderedCollections
 using BasicInterpolators
-includet(srcdir("PLIF", "tracking.jl"))
+# includet(srcdir("PLIF", "tracking.jl"))
 includet(srcdir("imageutils.jl"))
 
 PLIFlist = loadmeta() do m
@@ -12,9 +12,9 @@ PLIFlist = loadmeta() do m
     valid &= !ismissing(m.timings_path)
 end
 ##
-meta = first(PLIFlist)
+meta = select_run(PLIFlist, "2023-01-23_run3")
 
-begin
+let
     f = Figure(resolution=(1100,1300))
     ax = Axis(f[1, 1], aspect=DataAspect())
     PLIF = eachslice(phantom_bgsub(meta), dims=3)
@@ -53,7 +53,7 @@ begin
     # Interpolated track plotting
     lines!(ax, @lift(collect(values($lcores))), color=:green, markersize=10)
     lines!(ax, @lift(collect(values($rcores))), color=:red, markersize=10)
-    
+
 
     p = select_point(ax, marker='+', markersize=36)
 

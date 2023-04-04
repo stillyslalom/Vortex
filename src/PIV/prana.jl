@@ -1,4 +1,4 @@
-using MAT, MATLAB, TOML, ImageIO, TiffImages, ImageCore, ImageTransformations, Statistics, Printf, Interpolations
+using MAT, MATLAB, TOML, ImageIO, TiffImages, ImageCore, ImageTransformations, Statistics, Printf, Interpolations, Glob
 
 """
     config2toml(config::Dict, tomlpath)
@@ -92,7 +92,11 @@ function setupprana(runmeta, settings=Dict{String,Any}();
     outdir = runmeta.outdir
     # If output directory already exists, copy contents to old{date} subdirectory
     if isdir(outdir)
-        olddate = match(r"[0-9]*-[A-z]*-[0-9]*", only(glob("ExpSummary*", outdir))).match
+        olddate = try
+            match(r"[0-9]*-[A-z]*-[0-9]*", only(glob("ExpSummary*", outdir))).match
+        catch
+            String(rand('a':'z', 6))
+        end
         olddir = joinpath(outdir, "old_$olddate")
         !ispath(olddir) && mkpath(olddir)
         # Move all files in output directory  to subdirectory
@@ -133,11 +137,12 @@ function setupprana(runmeta, settings=Dict{String,Any}();
     LB[LB .> 0.999] .= 0
 
     # Save intensity-adjusted summary image
-    summaryimg = overlapimages(imadjust(LA, qmax=0.999), imadjust(LB, qmax=0.999)) |> restrict |> rotl90
+    LA_ceil, LB_ceil = imadjust(LA, qmax=0.999), imadjust(LB, qmax=0.999)
+    summaryimg = overlapimages(LA_ceil, LB_ceil) |> restrict |> rotl90
     save(joinpath(outdir, "particles.png"), summaryimg)
 
     # Save background-subtracted images to processing folder
-    for (path, img) in zip(joinpath.(Ref(processingdir), ("LA000001.tif", "LA000002.tif")), (LA, LB))
+    for (path, img) in zip(joinpath.(Ref(processingdir), ("LA000001.tif", "LA000002.tif")), (LA_ceil, LB_ceil))
         isfile(path) && rm(path)
         save(path, rotl90(Gray{N0f16}.(img)))
     end
@@ -228,8 +233,8 @@ function curl(U_itp, V_itp, x, y)
     dv_dx - du_dy
 end
 
-function pranasummaryplot(runmeta)
-    plotpath = plotsdir("PIV_summary", runname(runmeta)*".png")
+function pranasummaryplot(runmeta, 
+        plotpath = plotsdir("PIV_summary", runname(runmeta)*".png"))
     isfile(plotpath) && return nothing
 
     PIV = loadprana(runmeta)[end]

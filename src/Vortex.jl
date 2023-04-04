@@ -8,15 +8,22 @@ using XLSX
 using Dates
 using CSV
 using ImageFiltering, MAT, JLD2
+using ImageTransformations, StaticArrays, CoordinateTransformations
+using CineFiles
 
 include("pathutils.jl")
+include("imageutils.jl")
 include("timing.jl")
 include("PIV/post.jl")
+include("registration.jl")
 
 export loadmeta, along, select_run
+export imadjust, phantom_bgsub, overlapimages
 
 export MedianMagnitude, MedianComponents
 export MedianFilter, NormalizedMedianFilter, NeighborDifference, GlobalHistogram, DynamicMean
+export PranaData, PranaPass
+export push1
 
 function loadmeta(f=(_ -> true))
     filter!(f, DataFrame(XLSX.readtable(datadir("meta.xlsx"), "Sheet1")))
@@ -27,7 +34,14 @@ function along(f::F, A; dims) where {F}
 end
 
 select_run(runlist, date, ID) = only(filter(r -> r.Date == date && r.ID == ID, runlist))
-function select_run(runlist, date_ID)
+
+"""
+    select_run(runlist, date_ID::String)
+
+Select a run from `runlist` by its date and ID, given as a string in the format
+"YYYY-mm-dd_ID".
+"""
+function select_run(runlist, date_ID::String)
     date_str, ID = split(date_ID, '_', limit=2)
     select_run(runlist, Date(date_str), ID)
 end

@@ -1,4 +1,3 @@
-using JLD2
 "Distance between two points"
 dist2d(x, y) = sqrt(sum((x .- y).^2))
 dist2d(x) = dist2d(x...)
@@ -8,3 +7,8 @@ function add_registrations!(runlist)
     calibrations.path = basename.(calibrations.path)
     leftjoin!(runlist, calibrations, on=:registration_path => :path, matchmissing=:equal)
 end
+
+push1(x) = CoordinateTransformations.push(x, 1)
+transform(M) = PerspectiveMap() ∘ M ∘ push1
+invtransform(M) = PerspectiveMap() ∘ inv(M) ∘ push1
+
