@@ -2,6 +2,7 @@ using DrWatson
 @quickactivate "Vortex"
 using Vortex, StaticArrays, CoordinateTransformations, Interpolations, ImageTransformations
 using GLMakie
+using Interpolations: Line
 
 # Load runs with both PLIF & PIV data
 runlist = loadmeta() do meta
@@ -21,8 +22,8 @@ corners = [SVector(PIV_pixgrid[1][1], PIV_pixgrid[2][1]),
            SVector(PIV_pixgrid[1][end], PIV_pixgrid[2][1])]
 
 M = LinearMap(SMatrix{3,3,Float32}(runmeta.transform'))
-tf = transform(M)
-invtf = Vortex.invtransform(M)
+tf = Vortex.TSI2Phantom(M)
+invtf = Vortex.Phantom2TSI(M)
 PIV_corners = map(reverse ∘ tf ∘ reverse, corners)
 # bounding box of PIV data in Phantom pixel coordinates
 jmin, jmax = extrema(getindex.(PIV_corners, 1))
@@ -69,10 +70,10 @@ u_itp = linear_interpolation(PIV_pixgrid, pranaraw[end].u, extrapolation_bc=NaN)
 heatmap(warp(u_itp, itf, (1:size(cine_PIV, 1), 1:size(cine_PIV, 2))) |> parent; axis=(; aspect=DataAspect()))
 
 ##
-savefigs=false
+savefigs=true
 # foreach(eachrow(runlist)) do runmeta
-# let runmeta = rand(eachrow(runlist))
-begin
+let runmeta = select_run(runlist, "2023-01-23_run1")
+
     pranaraw = PranaData(datadir("PIV", "runs", runname(runmeta)))
     GOOD = Vortex.MedianFilter(3, 10, Vortex.MedianComponents())(pranaraw[3])
     u′ = copy(pranaraw[end].u)
@@ -90,11 +91,37 @@ begin
     t_err, cine_PIV_idx = findmin(t -> abs(t - t_TSI), t_Phantom)
     cine_PIV = cine[:,:,cine_PIV_idx]
 
-    cine2prana(M) = PerspectiveMap() ∘ inv(M) ∘ push1
-    itf = cine2prana(M)
+    tf = Vortex.TSI2Phantom(M)
+    itf = Vortex.Phantom2TSI(M)
 
-    u_itp = linear_interpolation(reverse(PIV_pixgrid), reverse(u′, dims=2)', extrapolation_bc=NaN)
-    v_itp = linear_interpolation(reverse(PIV_pixgrid), reverse(v′, dims=2)', extrapolation_bc=NaN)
+    # Find warped dimensions of TSI pixels in Phantom space
+    PLIFx = range(0, length=size(cine_PIV, 2), step=runmeta.phantomscale.mm_per_px)
+    PLIFz = range(start=runmeta.phantomscale.origin_mm, length=size(cine_PIV, 1), step=-runmeta.phantomscale.mm_per_px)
+    PLIFx_itp = linear_interpolation(axes(PLIFx), PLIFx, extrapolation_bc=Line())
+    PLIFz_itp = linear_interpolation(axes(PLIFz), PLIFz, extrapolation_bc=Line())
+    PLIFxz(i, j) = Point2(PLIFx_itp(j), PLIFz_itp(i))
+    PLIFxz(p::Point2) = Point2(PLIFx_itp(p[2]), PLIFz_itp(p[1]))
+    jj, ii = (pranaraw[end].x, pranaraw[end].y) ./ runmeta.dx
+    Δxz(i, j, δi, δj) = PLIFxz(tf(Point2(i + δi, j + δj))) - PLIFxz(tf(Point2(i, j)))
+    u = Array{Float64}(undef, length(ii), length(jj))
+    v = Array{Float64}(undef, length(ii), length(jj))
+    u_scale = [Δxz(i, j, 0, 1) for i in ii, j in jj]
+    v_scale = [Δxz(i, j, -1, 0) for i in ii, j in jj]
+    u = map(CartesianIndices(u′)) do idx
+        i_prana, j_prana = idx.I
+        j = i_prana
+        i = size(u′, 2) - j_prana + 1
+        (u′[i_prana, j_prana] * u_scale[i, j][1] + v′[i_prana, j_prana] * v_scale[i, j][1]) * 1000 / runmeta.dx
+    end
+    v = map(CartesianIndices(v′)) do idx
+        i_prana, j_prana = idx.I
+        j = i_prana
+        i = size(v′, 2) - j_prana + 1
+        (u′[i_prana, j_prana] * u_scale[i, j][2] + v′[i_prana, j_prana] * v_scale[i, j][2]) * 1000 / runmeta.dx
+    end
+
+    u_itp = linear_interpolation(reverse(PIV_pixgrid), reverse(u, dims=2)', extrapolation_bc=NaN)
+    v_itp = linear_interpolation(reverse(PIV_pixgrid), reverse(v, dims=2)', extrapolation_bc=NaN)
     uw = collect(warp(u_itp, itf, axes(cine_PIV))')
     vw = collect(warp(v_itp, itf, axes(cine_PIV))')
     U = hypot.(uw, vw)
@@ -107,13 +134,41 @@ begin
     u_phantom = linear_interpolation(axes(uw), uw, extrapolation_bc=NaN)
     v_phantom = linear_interpolation(axes(vw), vw, extrapolation_bc=NaN)
     u(x, y) = Point2(u_phantom(x, y), -v_phantom(x, y) + V̄)# - Ū_itp(y))
-    f, ax, hm = image(imadjust(cine_PIV', qmax=0.9995), axis=(aspect=DataAspect(), yreversed=true))
+    f = Figure(resolution=(800, 1000))
+    ax = Axis(f[1, 1]; aspect=DataAspect(), yreversed=true)
+    hm = image!(ax, imadjust(cine_PIV', qmax=0.9995))
     # heatmap!(ax, collect(warp(v_itp, itf, axes(cine_PIV))'), colormap=[RGBA(0,0,1,0), RGBA(1,0,0,1)])
     # heatmap!(ax, U, colormap=[RGBA(0,0,0,0), RGBA(1,0,0,0.3)], colorrange=quantile(filter(!isnan, U), (0.01, 0.99)))
-    streamplot!(ax, u, jrange, irange, stepsize=5, colormap=[RGBA(0,0.2,1,0.5), RGBA(1, 1, 0, 1)], linewidth=1,
-        colorrange=(0, 30), arrow_size=5, gridsize=(64, 64, 64))
+    streamplot!(ax, u, jrange, irange, stepsize=5, colormap=[RGBA(0,0.2,1,1), RGBA(1, 1, 0, 1)], linewidth=1,
+    colorrange=quantile(filter(!isnan, U), (0.01, 0.99)), arrow_size=5, gridsize=(64, 64, 64))
     # arrows!(ax, axes(uw)..., uw, -vw, color=:red, lengthscale=0.01, arrowsize=3)
+
+    # hidexdecorations!(ax)
+    # hideydecorations!(ax)
+    # ax2 = Axis(f[1, 1], aspect=DataAspect(), xlabel="x (mm)", ylabel="z (mm)",
+    #     title = string(runname(runmeta), " - ", runmeta.MST_gas, " at ", runmeta.MST_psig, "psig"))
+    # @unpack origin_mm, mm_per_px = runmeta.phantomscale
+    # z_Phantom = range(stop=origin_mm, step=mm_per_px, length=size(U, 2))
+    # x_Phantom = range(0, step=mm_per_px, length=size(U, 1))
+    # heatmap!(ax2, x_Phantom, z_Phantom, fill(NaN, size(U)))
+
     savefigs && save(plotsdir("PLIF_PIV", runname(runmeta) * ".png"), f)
     f
 end
 
+## PIV skew correction scratch space
+runmeta = select_run(runlist, "2023-01-19_Ar_IC1")
+pranaraw = PranaData(datadir("PIV", "runs", runname(runmeta)))
+M = LinearMap(SMatrix{3,3,Float32}(runmeta.transform'))
+tf = Vortex.TSI2Phantom(M)
+itf = Vortex.Phantom2TSI(M)
+PLIFx = range(0, length=size(cine_PIV, 2), step=runmeta.phantomscale.mm_per_px)
+PLIFz = range(start=runmeta.phantomscale.origin_mm, length=size(cine_PIV, 1), step=-runmeta.phantomscale.mm_per_px)
+PLIFx_itp = linear_interpolation(axes(PLIFx), PLIFx, extrapolation_bc=Line())
+PLIFz_itp = linear_interpolation(axes(PLIFz), PLIFz, extrapolation_bc=Line())
+PLIFxz(i, j) = Point2(PLIFx_itp(j), PLIFz_itp(i))
+PLIFxz(p::Point2) = Point2(PLIFx_itp(p[2]), PLIFz_itp(p[1]))
+jj, ii = (pranaraw[end].x, pranaraw[end].y) ./ runmeta.dx
+Δxz(i, j, δi, δj) = PLIFxz(tf(Point2(i + δi, j + δj))) - PLIFxz(tf(Point2(i, j)))
+u_scale = [Δxz(i, j, 0, 1) for i in ii, j in jj]
+v_scale = [Δxz(i, j, -1, 0) for i in ii, j in jj]

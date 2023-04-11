@@ -40,7 +40,8 @@ end
     PranaData(dir::String)
 
 Read all Prana pass files (.mat) in a directory and return a `PranaData` object containing
-a vector of `PranaPass` objects.
+a vector of `PranaPass` objects corresponding to each pass. For convenience, the fields of the final pass can
+be accessed directly as properties of the `PranaData` object, e.g. `p.x`, `p.y`, `p.u`, `p.v`, `p.aux`.
 """
 function PranaData(dir::String)
     pass = PranaPass[]
@@ -52,11 +53,13 @@ function PranaData(dir::String)
     PranaData(pass)
 end
 
-Base.firstindex(p::PranaData) = firstindex(p.pass)
-Base.lastindex(p::PranaData) = lastindex(p.pass)
-Base.getindex(p::PranaData, i::Int) = p.pass[i]
-Base.length(p::PranaData) = length(p.pass)
+pass(p::PranaData) = getfield(p, :pass)
+Base.firstindex(p::PranaData) = firstindex(pass(p))
+Base.lastindex(p::PranaData) = lastindex(pass(p))
+Base.getindex(p::PranaData, i::Int) = pass(p)[i]
+Base.length(p::PranaData) = length(pass(p))
 Base.iterate(p::PranaData, state=1) = state > length(p) ? nothing : (p[state], state + 1)
+Base.getproperty(p::PranaData, f::Symbol) = getproperty(last(pass(p)), f)
 
 ## Spurious vector detection ========================================================
 
@@ -90,6 +93,12 @@ struct MedianFilter{MM <: VMM} <: SpuriousVectorDetector
     MedianFilter(δ, ϵ, mm::VMM=MedianComponents()) where {VMM <: VectorMedianMeasure} = new{typeof(mm)}(δ, Float64(ϵ), mm)
 end
 
+function (f::MedianFilter)(u, v)
+    m = f.mm(u, v, f.δ)
+    hypot.(u .- m.u, v .- m.v) .< f.ϵ
+end
+
+
 function (f::MedianFilter)(p::PranaPass)
     m = f.mm(p.u, p.v, f.δ)
     map(m.u, m.v, p.u, p.v) do um, vm, u, v
@@ -114,7 +123,7 @@ function (f::NormalizedMedianFilter)(p::PranaPass)
     end
     r_med = mapwindow(median, r, (f.δ, f.δ))
     map(m.u, m.v, p.u, p.v, r_med) do um, vm, u, v, r_med
-        hypot(u - um, v - vm) / (r_med + f.ϵ₀) #< f.ϵ
+        hypot(u - um, v - vm) / (r_med + f.ϵ₀) < f.ϵ
     end
 end
 
@@ -131,4 +140,39 @@ struct DynamicMean <: SpuriousVectorDetector
     δ::Int
     C₁::Float64
     C₂::Float64
+end
+
+## Vector replacement ===============================================================
+function vector_replacement(u₀, v₀, BAD, r::Int)
+    BAD = BAD .& .!Vortex.MedianFilter(r, 10)(u₀, v₀)
+    u′ = copy(u₀)
+    v′ = copy(v₀)
+    @. u′[BAD] = NaN
+    @. v′[BAD] = NaN
+    r₂ = r ÷ 2
+    u_clean = mapwindow(u′, (r, r)) do w
+        w′ = filter(!isnan, w)
+        length(w′) > (r₂) ? median!(w′) : NaN
+    end
+    # u_clean = imfilter(u_clean, KernelFactors.gaussian((1, 1), (3, 3)))
+
+    v_clean = mapwindow(v′, (r, r)) do w
+        w′ = filter(!isnan, w)
+        length(w′) > (r₂) ? median!(w′) : NaN
+    end
+    # v_clean = imfilter(v_clean, KernelFactors.gaussian((1, 1), (3, 3)))
+
+    @. u′[BAD] = u_clean[BAD]
+    @. v′[BAD] = v_clean[BAD]
+    u′, v′
+end
+
+function vector_replacement(u₀, v₀, BAD, r)
+    u_init, v_init = copy(u₀), copy(v₀)
+    for rᵢ in r
+        u₀, v₀ = vector_replacement(u₀, v₀, BAD, rᵢ)
+    end
+    u₀[isnan.(u₀)] .= u_init[isnan.(u₀)]
+    v₀[isnan.(v₀)] .= v_init[isnan.(v₀)]
+    u₀, v₀
 end

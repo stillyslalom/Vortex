@@ -9,6 +9,6 @@ function add_registrations!(runlist)
 end
 
 push1(x) = CoordinateTransformations.push(x, 1)
-transform(M) = PerspectiveMap() ∘ M ∘ push1
-invtransform(M) = PerspectiveMap() ∘ inv(M) ∘ push1
+TSI2Phantom(M) = PerspectiveMap() ∘ M ∘ push1
+Phantom2TSI(M) = PerspectiveMap() ∘ inv(M) ∘ push1
 
