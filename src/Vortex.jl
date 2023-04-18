@@ -16,13 +16,15 @@ include("imageutils.jl")
 include("timing.jl")
 include("PIV/post.jl")
 include("registration.jl")
+include("painting.jl")
 
 export loadmeta, along, select_run
 export imadjust, phantom_bgsub, overlapimages
 
 export MedianMagnitude, MedianComponents
 export MedianFilter, NormalizedMedianFilter, NeighborDifference, GlobalHistogram, DynamicMean
-export PranaData, PranaPass
+export PranaData, PranaPass, vector_replacement, VectorStatus
+export PEAK1, PEAK2, INTERP, FAILED # vector status enum
 export push1
 
 function loadmeta(f=(_ -> true))

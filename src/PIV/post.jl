@@ -143,8 +143,8 @@ struct DynamicMean <: SpuriousVectorDetector
 end
 
 ## Vector replacement ===============================================================
-function vector_replacement(u₀, v₀, BAD, r::Int)
-    BAD = BAD .& .!Vortex.MedianFilter(r, 10)(u₀, v₀)
+function vector_replacement(u₀, v₀, BAD, r::Int, thresh=10)
+    BAD = BAD .& .!Vortex.MedianFilter(r, thresh)(u₀, v₀)
     u′ = copy(u₀)
     v′ = copy(v₀)
     @. u′[BAD] = NaN
@@ -154,25 +154,45 @@ function vector_replacement(u₀, v₀, BAD, r::Int)
         w′ = filter(!isnan, w)
         length(w′) > (r₂) ? median!(w′) : NaN
     end
-    # u_clean = imfilter(u_clean, KernelFactors.gaussian((1, 1), (3, 3)))
 
     v_clean = mapwindow(v′, (r, r)) do w
         w′ = filter(!isnan, w)
         length(w′) > (r₂) ? median!(w′) : NaN
     end
-    # v_clean = imfilter(v_clean, KernelFactors.gaussian((1, 1), (3, 3)))
 
     @. u′[BAD] = u_clean[BAD]
     @. v′[BAD] = v_clean[BAD]
     u′, v′
 end
 
-function vector_replacement(u₀, v₀, BAD, r)
+@enum VectorStatus PEAK1 PEAK2 INTERP FAILED=-1
+
+function vector_replacement(pranaraw, BAD, r; thresh=10)
+    u₀, v₀ = pranaraw.u, pranaraw.v
     u_init, v_init = copy(u₀), copy(v₀)
+    status = Array{VectorStatus}(undef, size(u₀))
+
     for rᵢ in r
-        u₀, v₀ = vector_replacement(u₀, v₀, BAD, rᵢ)
+        u₀, v₀ = vector_replacement(u₀, v₀, BAD, rᵢ, thresh)
     end
+
     u₀[isnan.(u₀)] .= u_init[isnan.(u₀)]
     v₀[isnan.(v₀)] .= v_init[isnan.(v₀)]
-    u₀, v₀
+
+    Eval = pranaraw.aux["Eval"][:,:,1]'
+    for i in CartesianIndices(u₀)
+        if isnan(u₀[i])
+            status[i] = FAILED
+        elseif u₀[i] != u_init[i]
+            status[i] = INTERP
+        elseif Eval[i] == 0
+            status[i] = PEAK1
+        elseif Eval[i] == 1
+            status[i] = PEAK2
+        else # Eval[i] == 2
+            status[i] = FAILED
+        end
+    end
+    u₀, v₀, status
 end
+

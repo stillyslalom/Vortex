@@ -1165,7 +1165,7 @@ version = "0.6.3"
 
 [[deps.MakieDraw]]
 deps = ["GeometryBasics", "Makie"]
-git-tree-sha1 = "ce95dd9ee87d61f107adce207ccfcf219c18c30e"
+git-tree-sha1 = "99f1164b4a29cc230761f8435a5918c6a40c41da"
 repo-rev = "main"
 repo-url = "https://github.com/MakieOrg/MakieDraw.jl"
 uuid = "8315f7d3-d5d2-4d16-bebe-3aa4ef51e4f8"

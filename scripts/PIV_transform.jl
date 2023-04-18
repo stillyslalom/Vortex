@@ -70,16 +70,17 @@ u_itp = linear_interpolation(PIV_pixgrid, pranaraw[end].u, extrapolation_bc=NaN)
 heatmap(warp(u_itp, itf, (1:size(cine_PIV, 1), 1:size(cine_PIV, 2))) |> parent; axis=(; aspect=DataAspect()))
 
 ##
-savefigs=true
+savefigs=false
 # foreach(eachrow(runlist)) do runmeta
-let runmeta = select_run(runlist, "2023-01-23_run1")
+let runmeta = select_run(runlist, "2022-11-16_run7")
 
     pranaraw = PranaData(datadir("PIV", "runs", runname(runmeta)))
-    GOOD = Vortex.MedianFilter(3, 10, Vortex.MedianComponents())(pranaraw[3])
-    u′ = copy(pranaraw[end].u)
-    v′ = copy(pranaraw[end].v)
-    @. u′[!GOOD] = NaN
-    @. v′[!GOOD] = NaN
+    u′, v′, status = vector_replacement(pranaraw, pranaraw.aux["C"][:,:,2]' .< 0.03, (3, 3, 3, 5, 5, 7))
+    # GOOD = Vortex.MedianFilter(3, 10, Vortex.MedianComponents())(pranaraw[3])
+    # u′ = copy(pranaraw[end].u)
+    # v′ = copy(pranaraw[end].v)
+    # @. u′[!GOOD] = NaN
+    # @. v′[!GOOD] = NaN
 
     M = LinearMap(SMatrix{3,3,Float32}(runmeta.transform'))
 
@@ -120,6 +121,7 @@ let runmeta = select_run(runlist, "2023-01-23_run1")
         (u′[i_prana, j_prana] * u_scale[i, j][2] + v′[i_prana, j_prana] * v_scale[i, j][2]) * 1000 / runmeta.dx
     end
 
+    PIV_pixgrid = (pranaraw[end].x, pranaraw[end].y) ./ runmeta.dx
     u_itp = linear_interpolation(reverse(PIV_pixgrid), reverse(u, dims=2)', extrapolation_bc=NaN)
     v_itp = linear_interpolation(reverse(PIV_pixgrid), reverse(v, dims=2)', extrapolation_bc=NaN)
     uw = collect(warp(u_itp, itf, axes(cine_PIV))')
@@ -134,7 +136,7 @@ let runmeta = select_run(runlist, "2023-01-23_run1")
     u_phantom = linear_interpolation(axes(uw), uw, extrapolation_bc=NaN)
     v_phantom = linear_interpolation(axes(vw), vw, extrapolation_bc=NaN)
     u(x, y) = Point2(u_phantom(x, y), -v_phantom(x, y) + V̄)# - Ū_itp(y))
-    f = Figure(resolution=(800, 1000))
+    f = Figure(resolution=(500, 600))
     ax = Axis(f[1, 1]; aspect=DataAspect(), yreversed=true)
     hm = image!(ax, imadjust(cine_PIV', qmax=0.9995))
     # heatmap!(ax, collect(warp(v_itp, itf, axes(cine_PIV))'), colormap=[RGBA(0,0,1,0), RGBA(1,0,0,1)])
@@ -143,14 +145,14 @@ let runmeta = select_run(runlist, "2023-01-23_run1")
     colorrange=quantile(filter(!isnan, U), (0.01, 0.99)), arrow_size=5, gridsize=(64, 64, 64))
     # arrows!(ax, axes(uw)..., uw, -vw, color=:red, lengthscale=0.01, arrowsize=3)
 
-    # hidexdecorations!(ax)
-    # hideydecorations!(ax)
-    # ax2 = Axis(f[1, 1], aspect=DataAspect(), xlabel="x (mm)", ylabel="z (mm)",
-    #     title = string(runname(runmeta), " - ", runmeta.MST_gas, " at ", runmeta.MST_psig, "psig"))
-    # @unpack origin_mm, mm_per_px = runmeta.phantomscale
-    # z_Phantom = range(stop=origin_mm, step=mm_per_px, length=size(U, 2))
-    # x_Phantom = range(0, step=mm_per_px, length=size(U, 1))
-    # heatmap!(ax2, x_Phantom, z_Phantom, fill(NaN, size(U)))
+    hidexdecorations!(ax)
+    hideydecorations!(ax)
+    ax2 = Axis(f[1, 1], aspect=DataAspect(), xlabel="x (mm)", ylabel="z (mm)",
+        title = string(runname(runmeta), " - ", runmeta.MST_gas, " at ", runmeta.MST_psig, "psig"))
+    @unpack origin_mm, mm_per_px = runmeta.phantomscale
+    z_Phantom = range(stop=origin_mm, step=mm_per_px, length=size(U, 2))
+    x_Phantom = range(0, step=mm_per_px, length=size(U, 1))
+    heatmap!(ax2, x_Phantom, z_Phantom, fill(NaN, size(U)))
 
     savefigs && save(plotsdir("PLIF_PIV", runname(runmeta) * ".png"), f)
     f

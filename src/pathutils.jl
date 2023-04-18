@@ -14,6 +14,8 @@ function TSIname(basename, i, AB)
     end
 end
 
+TSI_LA_path(runmeta) = TSIname(runmeta.TSI_ID, runmeta.TSI_idx, 'A')
+
 runname(runmeta) = string(runmeta.Date, '_', runmeta.ID)
 
 cinepath(runmeta) = rawdatadir(runmeta.Date, runmeta.ID, runmeta.cine_ID*".cine")

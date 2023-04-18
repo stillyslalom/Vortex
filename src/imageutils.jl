@@ -79,4 +79,35 @@ function overlapimages(img1::Array{T}, img2::Array{T}) where {T}
     green = XYZ(Lab(100, -100, 100))
     @. RGB((Float32(img1) * pink) + (Float32(img2) * green))
 end
-    
+
+function enhance_TSI(runmeta)
+    # Load raw images and background-subtract
+
+    LA_path = rawdatadir(runmeta.Date, runmeta.ID, Vortex.TSI_LA_path(runmeta))
+    LB_path = replace(LA_path, "LA" => "LB")
+    BGA_path = datadir("PIV", "bg", string(runmeta.TSI_bg_path))
+    BGB_path = replace(BGA_path, "LA" => "LB")
+    LA, LB = load.((LA_path, LB_path))
+    if isfile(BGA_path) && isfile(BGB_path)
+        BGA, BGB = load.((BGA_path, BGB_path))
+
+        # Remove high-intensity background pixels from raw images
+        BGA_bad = BGA .> 0.3
+        BGB_bad = BGB .> 0.3
+        LA[BGA_bad] .= 0
+        LB[BGB_bad] .= 0
+        clamp01!(Gray{Float32}.(LA) .- BGA)
+        clamp01!(Gray{Float32}.(LB) .- BGB)
+    else
+        @warn("No background images found for run $(runname(runmeta)).")
+    end
+
+    # Remove maximum-intensity pixels
+    LA[LA .> 0.999] .= 0
+    LB[LB .> 0.999] .= 0
+
+    # Save intensity-adjusted summary image
+    # LA_ceil, LB_ceil = imadjust(LA, qmax=0.999), imadjust(LB, qmax=0.999)
+    LA, LB
+end
+

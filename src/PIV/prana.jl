@@ -149,7 +149,7 @@ function setupprana(runmeta, settings=Dict{String,Any}();
 
     # calculate camera FOV size
     pixel_size = runmeta.dx
-    fov_size_μm = size(LA) .* pixel_size
+    fov_size_μm = size(LA_ceil) .* pixel_size
     fov_size_m = fov_size_μm ./ 1e6
     pulse_separation = runmeta.dt
 
