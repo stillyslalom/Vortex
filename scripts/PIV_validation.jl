@@ -10,6 +10,21 @@ using StructArrays
 
 repeatedly(f, n) = ∘(ntuple(_ -> f, n)...)
 
+function Base.peek(v::AbstractMatrix)
+    f, ax, hm = heatmap(v; axis=(; aspect=DataAspect()))
+    Colorbar(f[1,2], hm)
+    f
+end
+
+function vorticity(u, v, BAD)
+    g₁, g₂ = parent.(Kernel.bickley())
+    ImageFiltering.mapwindow(StructArray(; u, v, BAD), (3, 3)) do w
+        mapreduce(+, eachindex(w)) do i
+            w[i].v * g₁[i] * !w[i].BAD - w[i].u * g₂[i] * !w[i].BAD
+        end
+    end
+end
+
 # Load runs with PIV data
 runlist = loadmeta() do meta
     !ismissing(meta.TSI_ID)
@@ -18,11 +33,6 @@ end
 ## Select & load a random run
 runmeta = rand(eachrow(runlist))
 pranaraw = PranaData(datadir("PIV", "runs", runname(runmeta)))
-function Base.peek(v::AbstractMatrix)
-    f, ax, hm = heatmap(v; axis=(; aspect=DataAspect()))
-    Colorbar(f[1,2], hm)
-    f
-end
 
 BAD = pranaraw[end].aux["C"][:,:,2]' .< 0.025
 BAD .&= .!Vortex.MedianFilter(5, 10)(pranaraw[3])
@@ -113,8 +123,8 @@ BAD = mapwindow(BAD, (9, 9), border="reflect") do w
     count(w .< 0.025) > 30
 end
 
-f = Figure(resolution=(900, 1200))
-ax = Axis(f[1, 1], aspect=DataAspect(), height=1100)
+f = Figure(resolution=(1600, 1200))
+ax = Axis(f[1, 1:2], aspect=DataAspect(), width=700)
 sg = SliderGrid(f[2, 1], (label = "Brush size", range=1:30, startvalue=1))
 cursorsize = Observable(1)
 quality = Menu(f[2, 2], options = zip(["Good", "Okay", "Bad"], 2:-1:0), width=90, tellwidth=true)
@@ -125,6 +135,71 @@ end
 
 hm = heatmap!(ax, imadjust(hypot.(pranaraw.u, pranaraw.v)))
 # bads = heatmap!(ax, BAD, colormap=[RGBA(0,0,0,0), RGBA(1,0,0,0.5)], colorrange=(0,1))
-Vortex.PaintingCanvas(BAD, fig=f, axis=ax, cursorsize=cursorsize, 
+pc = Vortex.PaintingCanvas(BAD, fig=f, axis=ax, cursorsize=cursorsize, 
     colormap=[RGBA(0,0,0,0), RGBA(1,0,0,0.2)], colorrange=(0,1))
+
+
+
+ω = Observable(vorticity(pranaraw.u, pranaraw.v, BAD))
+ωmax = @lift maximum(abs, quantile($(ω)[.!BAD], (0.015, 0.995)))
+ωrange = @lift (-$(ωmax), $(ωmax))
+on(pc.data) do BAD
+    ω[] = vorticity(pranaraw.u, pranaraw.v, BAD)
+end
+
+ax2 = Axis(f[1, 3], aspect=DataAspect(), width=700)
+heatmap!(ax2, ω,
+    colorrange = ωrange, colormap=:RdBu)
+linkxaxes!(ax, ax2)
+linkyaxes!(ax, ax2)
 f
+
+##
+PIVlist = loadmeta() do meta
+    !ismissing(meta.TSI_ID)
+end 
+mask_dicts = map(eachrow(PIVlist)) do runmeta
+    data, path = produce_or_load(runmeta, datadir("PIV", "masks");
+                     filename=runname, tag=false) do runmeta
+        pranaraw = PranaData(datadir("PIV", "runs", runname(runmeta)))
+        BAD = mapwindow(pranaraw.aux["C"][:,:,2]', (9, 9), border="reflect") do w
+            median!(w)
+        end
+        BAD = mapwindow(BAD, (9, 9), border="reflect") do w
+            count(w .< 0.025) > 30
+        end
+        
+        f = Figure(resolution=(1600, 1200))
+        ax = Axis(f[1, 1:2], aspect=DataAspect(), width=700)
+        sg = SliderGrid(f[2, 1], (label = "Brush size", range=1:30, startvalue=1))
+        cursorsize = Observable(1)
+        quality = Menu(f[2, 2], options = zip(["Good", "Okay", "Bad"], 2:-1:0), width=90, tellwidth=true)
+        
+        on(sg.sliders[1].value) do v
+            cursorsize[] = v[]#parse(Int, v[])
+        end
+        
+        hm = heatmap!(ax, imadjust(hypot.(pranaraw.u, pranaraw.v)))
+        # bads = heatmap!(ax, BAD, colormap=[RGBA(0,0,0,0), RGBA(1,0,0,0.5)], colorrange=(0,1))
+        pc = Vortex.PaintingCanvas(BAD, fig=f, axis=ax, cursorsize=cursorsize, 
+            colormap=[RGBA(0,0,0,0), RGBA(1,0,0,0.2)], colorrange=(0,1))
+
+        ω = Observable(vorticity(pranaraw.u, pranaraw.v, BAD))
+        ωmax = @lift maximum(abs, quantile($(ω)[.!BAD], (0.015, 0.995)))
+        ωrange = @lift (-$(ωmax), $(ωmax))
+        on(pc.data) do BAD
+            ω[] = vorticity(pranaraw.u, pranaraw.v, BAD)
+        end
+
+        ax2 = Axis(f[1, 3], aspect=DataAspect(), width=700)
+        heatmap!(ax2, ω,
+            colorrange = ωrange, colormap=:RdBu)
+        linkxaxes!(ax, ax2)
+        linkyaxes!(ax, ax2)
+        wait(GLMakie.Screen(f.scene)) # wait for plot to close
+
+        Dict("mask"=> .!BAD, "quality"=>quality.selection[])
+    end
+    data["maskpath"] = path
+    data
+end
