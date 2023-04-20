@@ -10,6 +10,7 @@ using CSV
 using ImageFiltering, MAT, JLD2
 using ImageTransformations, StaticArrays, CoordinateTransformations
 using CineFiles
+using PythonCall
 
 include("pathutils.jl")
 include("imageutils.jl")
@@ -23,7 +24,7 @@ export imadjust, phantom_bgsub, overlapimages
 
 export MedianMagnitude, MedianComponents
 export MedianFilter, NormalizedMedianFilter, NeighborDifference, GlobalHistogram, DynamicMean
-export PranaData, PranaPass, vector_replacement, VectorStatus
+export PranaData, PranaPass, vector_replacement, VectorStatus, vector_infill
 export PEAK1, PEAK2, INTERP, FAILED # vector status enum
 export push1
 

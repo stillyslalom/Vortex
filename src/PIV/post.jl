@@ -143,8 +143,14 @@ struct DynamicMean <: SpuriousVectorDetector
 end
 
 ## Vector replacement ===============================================================
+"""
+    vector_replacement(u₀, v₀, BAD, r::Int, thresh=10)
+
+Replace spurious vectors in `u₀` and `v₀` with the median of the surrounding `r`×`r` neighborhood.
+
+"""
 function vector_replacement(u₀, v₀, BAD, r::Int, thresh=10)
-    BAD = BAD .& .!Vortex.MedianFilter(r, thresh)(u₀, v₀)
+    BAD = BAD .| .!Vortex.MedianFilter(r, thresh)(u₀, v₀)
     u′ = copy(u₀)
     v′ = copy(v₀)
     @. u′[BAD] = NaN
@@ -196,3 +202,35 @@ function vector_replacement(pranaraw, BAD, r; thresh=10)
     u₀, v₀, status
 end
 
+const sp_itp = PythonCall.pyimport("scipy.interpolate")
+
+function vector_infill(pranaraw, BAD, r; thresh=50)
+    BAD .|= .!(Vortex.MedianFilter(r, thresh)(pranaraw.u, pranaraw.v))
+
+    xy_good = collect(reinterpret(reshape, Float64, [Float64.(i.I) for i in findall(.!BAD)])')
+    xy_bad = collect(reinterpret(reshape, Float64,  [Float64.(i.I) for i in findall(BAD)])')
+    u_spl = sp_itp.LinearNDInterpolator(xy_good, pranaraw.u[.!BAD])
+    v_spl = sp_itp.LinearNDInterpolator(xy_good, pranaraw.v[.!BAD])
+    u_itp = copy(pranaraw.u)
+    v_itp = copy(pranaraw.v)
+    u_itp[BAD] .= pyconvert(Vector{Float64}, u_spl(xy_bad))
+    v_itp[BAD] .= pyconvert(Vector{Float64}, v_spl(xy_bad))
+
+    status = Array{VectorStatus}(undef, size(u_itp))
+
+    Eval = pranaraw.aux["Eval"][:,:,1]'
+    for i in CartesianIndices(u_itp)
+        if isnan(u_itp[i])
+            status[i] = FAILED
+        elseif u_itp[i] != pranaraw.u[i]
+            status[i] = INTERP
+        elseif Eval[i] == 0
+            status[i] = PEAK1
+        elseif Eval[i] == 1
+            status[i] = PEAK2
+        else # Eval[i] == 2
+            status[i] = FAILED
+        end
+    end
+    (; u=u_itp, v=v_itp, status)
+end
