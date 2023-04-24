@@ -3,6 +3,7 @@ using DrWatson
 using Vortex, StaticArrays, CoordinateTransformations, Interpolations, ImageTransformations
 using GLMakie
 using Interpolations: Line
+using ImageFiltering
 
 # Load runs with both PLIF & PIV data
 runlist = loadmeta() do meta
@@ -10,6 +11,16 @@ runlist = loadmeta() do meta
 end
 
 Vortex.add_registrations!(runlist)
+
+##
+function vorticity(u, v)
+    g₁, g₂ = parent.(Kernel.bickley())
+    ImageFiltering.mapwindow(StructArray(; u, v), (3, 3)) do w
+        mapreduce(+, eachindex(w)) do i
+            -w[i].v * g₁[i] - w[i].u * g₂[i]
+        end
+    end
+end
 
 ##
 # Load & transform data for a random run
@@ -72,10 +83,12 @@ heatmap(warp(u_itp, itf, (1:size(cine_PIV, 1), 1:size(cine_PIV, 2))) |> parent; 
 ##
 savefigs=false
 # foreach(eachrow(runlist)) do runmeta
-let runmeta = select_run(runlist, "2022-11-16_run7")
+let runmeta = select_run(runlist, "2023-01-19_run9")
 
     pranaraw = PranaData(datadir("PIV", "runs", runname(runmeta)))
-    u′, v′, status = vector_replacement(pranaraw, pranaraw.aux["C"][:,:,2]' .< 0.03, (3, 3, 3, 5, 5, 7))
+    # u′, v′, status = vector_replacement(pranaraw, pranaraw.aux["C"][:,:,2]' .< 0.03, (3, 3, 3, 5, 5, 7))
+    u′, v′, status = Vortex.load_infilled_PIV(runmeta)
+
     # GOOD = Vortex.MedianFilter(3, 10, Vortex.MedianComponents())(pranaraw[3])
     # u′ = copy(pranaraw[end].u)
     # v′ = copy(pranaraw[end].v)
@@ -127,34 +140,43 @@ let runmeta = select_run(runlist, "2022-11-16_run7")
     uw = collect(warp(u_itp, itf, axes(cine_PIV))')
     vw = collect(warp(v_itp, itf, axes(cine_PIV))')
     U = hypot.(uw, vw)
-    Ū = map(eachcol(U)) do u
-        u_filt = filter(!isnan, u)
-        length(u_filt) == 0 ? NaN : median(u_filt)
-    end
-    V̄ = median(filter(!isnan, vw))
-    Ū_itp = linear_interpolation(axes(Ū), Ū)
-    u_phantom = linear_interpolation(axes(uw), uw, extrapolation_bc=NaN)
-    v_phantom = linear_interpolation(axes(vw), vw, extrapolation_bc=NaN)
-    u(x, y) = Point2(u_phantom(x, y), -v_phantom(x, y) + V̄)# - Ū_itp(y))
+    ω = vorticity(uw, vw)
+    ωmax = maximum(abs, quantile(filter(!isnan, ω), (0.001, 0.9995)))
+
+    PLIF = imfilter(imadjust(cine_PIV', qmax=0.9995), KernelFactors.gaussian((0, 0)))#(0.5, 0.5)))
+    ω[PLIF .< 0.1] .= 0
+
+    # Ū = map(eachcol(U)) do u
+    #     u_filt = filter(!isnan, u)
+    #     length(u_filt) == 0 ? NaN : median(u_filt)
+    # end
+    # V̄ = median(filter(!isnan, vw))
+    # Ū_itp = linear_interpolation(axes(Ū), Ū)
+    # u_phantom = linear_interpolation(axes(uw), uw, extrapolation_bc=NaN)
+    # v_phantom = linear_interpolation(axes(vw), vw, extrapolation_bc=NaN)
+    # u(x, y) = Point2(u_phantom(x, y), -v_phantom(x, y) + V̄)# - Ū_itp(y))
     f = Figure(resolution=(500, 600))
     ax = Axis(f[1, 1]; aspect=DataAspect(), yreversed=true)
-    hm = image!(ax, imadjust(cine_PIV', qmax=0.9995))
+    hm = image!(ax, 1 .- PLIF; fxaa=false)
     # heatmap!(ax, collect(warp(v_itp, itf, axes(cine_PIV))'), colormap=[RGBA(0,0,1,0), RGBA(1,0,0,1)])
-    # heatmap!(ax, U, colormap=[RGBA(0,0,0,0), RGBA(1,0,0,0.3)], colorrange=quantile(filter(!isnan, U), (0.01, 0.99)))
-    streamplot!(ax, u, jrange, irange, stepsize=5, colormap=[RGBA(0,0.2,1,1), RGBA(1, 1, 0, 1)], linewidth=1,
-    colorrange=quantile(filter(!isnan, U), (0.01, 0.99)), arrow_size=5, gridsize=(64, 64, 64))
+    # heatmap!(ax, U, colormap=[RGBA(0,0,1,0.3), RGBA(1,0,0,0.3)], colorrange=quantile(filter(!isnan, U), (0.01, 0.99)))
+    # heatmap!(ax, ω, 
+    #     colormap=[RGBA(1,0.2,0.2,1), RGBA(0,0,0,0), RGBA(0.2,0.2,1,1)], 
+    #     colorrange=(-ωmax, ωmax))
+    # streamplot!(ax, u, jrange, irange, stepsize=5, colormap=[RGBA(0,0.2,1,1), RGBA(1, 1, 0, 1)], linewidth=1,
+    # colorrange=quantile(filter(!isnan, U), (0.01, 0.99)), arrow_size=5, gridsize=(64, 64, 64))
     # arrows!(ax, axes(uw)..., uw, -vw, color=:red, lengthscale=0.01, arrowsize=3)
 
-    hidexdecorations!(ax)
-    hideydecorations!(ax)
-    ax2 = Axis(f[1, 1], aspect=DataAspect(), xlabel="x (mm)", ylabel="z (mm)",
-        title = string(runname(runmeta), " - ", runmeta.MST_gas, " at ", runmeta.MST_psig, "psig"))
-    @unpack origin_mm, mm_per_px = runmeta.phantomscale
-    z_Phantom = range(stop=origin_mm, step=mm_per_px, length=size(U, 2))
-    x_Phantom = range(0, step=mm_per_px, length=size(U, 1))
-    heatmap!(ax2, x_Phantom, z_Phantom, fill(NaN, size(U)))
+    # hidexdecorations!(ax)
+    # hideydecorations!(ax)
+    # ax2 = Axis(f[1, 1], aspect=DataAspect(), xlabel="x (mm)", ylabel="z (mm)",
+    #     title = string(runname(runmeta), " - ", runmeta.MST_gas, " at ", runmeta.MST_psig, "psig"))
+    # @unpack origin_mm, mm_per_px = runmeta.phantomscale
+    # z_Phantom = range(stop=origin_mm, step=mm_per_px, length=size(U, 2))
+    # x_Phantom = range(0, step=mm_per_px, length=size(U, 1))
+    # heatmap!(ax2, x_Phantom, z_Phantom, fill(NaN, size(U)))
 
-    savefigs && save(plotsdir("PLIF_PIV", runname(runmeta) * ".png"), f)
+    savefigs && save(plotsdir("PLIF_vorticity", runname(runmeta) * ".png"), f)
     f
 end
 

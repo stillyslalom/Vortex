@@ -8,7 +8,8 @@ using XLSX
 using Dates
 using CSV
 using ImageFiltering, MAT, JLD2
-using ImageTransformations, StaticArrays, CoordinateTransformations
+using ImageTransformations, StaticArrays, CoordinateTransformations, Interpolations
+using StructArrays
 using CineFiles
 using PythonCall
 

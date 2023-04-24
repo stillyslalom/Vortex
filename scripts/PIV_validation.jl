@@ -5,6 +5,7 @@ using Interpolations, BasicInterpolators
 using GLMakie
 using ImageMorphology
 using ImageFiltering
+using ImageSegmentation
 using StructArrays
 using PythonCall
 
@@ -133,6 +134,53 @@ mask_dicts = map(eachrow(runlist)) do runmeta
                      filename=runname, tag=false)
     data["runname"] = runname(runmeta)
     data
+end
+# delete old masks from DataFrame
+select!(runlist, Not([:mask, :quality]))
+leftjoin!(runlist, DataFrame(mask_dicts), on=:runname)
+
+## Mask finalization =========================================================
+# runmeta = rand(eachrow(runlist))
+function final_infill(runmeta)
+    ni, nj = size(runmeta.mask)
+    center_good = component_centroids(Int.(runmeta.mask))[2]
+    srg = seeded_region_growing(Gray{N0f8}.(opening(runmeta.mask)), 
+        [(CartesianIndex(1, 1), 1),
+        (CartesianIndex(round.(Int, center_good)), 2), 
+        (CartesianIndex(ni, nj), 1)]).image_indexmap
+    unlit = srg .== 1
+    uv = vector_infill(PranaData(datadir("PIV", "runs", runname(runmeta))), 
+        .!(runmeta.mask), 5; unlit)
+    Dict{String, Any}("u"=>uv.u, "v"=>uv.v, "status" => uv.status)
+end
+
+map(eachrow(runlist)) do runmeta
+    data, path = produce_or_load(final_infill, runmeta, datadir("PIV", "infilled");
+                     filename=runname, tag=false)
+    data["runname"] = runname(runmeta)
+    data
+end
+
+##
+
+savefigs = false
+foreach(eachrow(runlist)) do runmeta
+    ni, nj = size(runmeta.mask)
+    center_good = component_centroids(Int.(runmeta.mask))[2]
+    srg = seeded_region_growing(Gray{N0f8}.(opening(runmeta.mask)), 
+        [(CartesianIndex(1, 1), 1),
+        (CartesianIndex(round.(Int, center_good)), 2), 
+        (CartesianIndex(ni, nj), 1)]).image_indexmap
+    unlit = srg .== 1
+
+    f = Figure(resolution=(1600, 1200))
+    ax1 = Axis(f[1, 1:2], aspect=DataAspect(), width=700)
+    uv = vector_infill(PranaData(datadir("PIV", "runs", runname(runmeta))), 
+        .!(runmeta.mask), 5; unlit)
+    heatmap!(ax1, hypot.(uv.u, uv.v))
+    ax2 = Axis(f[1, 3], aspect=DataAspect(), width=700)
+    heatmap!(ax2, unlit)
+    savefigs && save(plotsdir("PIV_masked_magnitude", runname(runmeta)*".png"), f)
 end
 
 ## Old scratch space ========================================================

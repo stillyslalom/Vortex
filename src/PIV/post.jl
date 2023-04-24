@@ -204,7 +204,7 @@ end
 
 const sp_itp = PythonCall.pyimport("scipy.interpolate")
 
-function vector_infill(pranaraw, BAD, r; thresh=50)
+function vector_infill(pranaraw, BAD, r; thresh=50, unlit=falses(size(BAD)))
     BAD .|= .!(Vortex.MedianFilter(r, thresh)(pranaraw.u, pranaraw.v))
 
     xy_good = collect(reinterpret(reshape, Float64, [Float64.(i.I) for i in findall(.!BAD)])')
@@ -215,6 +215,8 @@ function vector_infill(pranaraw, BAD, r; thresh=50)
     v_itp = copy(pranaraw.v)
     u_itp[BAD] .= pyconvert(Vector{Float64}, u_spl(xy_bad))
     v_itp[BAD] .= pyconvert(Vector{Float64}, v_spl(xy_bad))
+    u_itp[unlit] .= NaN
+    v_itp[unlit] .= NaN
 
     status = Array{VectorStatus}(undef, size(u_itp))
 
@@ -233,4 +235,9 @@ function vector_infill(pranaraw, BAD, r; thresh=50)
         end
     end
     (; u=u_itp, v=v_itp, status)
+end
+
+function load_infilled_PIV(runmeta)
+    d = load(datadir("PIV", "infilled", runname(runmeta)*".jld2"))
+    u, v, status = d["u"], d["v"], d["status"]
 end
