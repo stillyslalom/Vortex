@@ -23,6 +23,24 @@ function vorticity(u, v)
 end
 
 ##
+runmeta = rand(eachrow(runlist))
+
+timings = read_timings(runmeta)
+t_TSI = (timings[:PIV_trig].Delay + runmeta.PIV_delay) / 1e6
+t0_Phantom = timings[:Death_Star].Delay + 50
+cine = phantom_bgsub(runmeta)
+t_Phantom = range(t0_Phantom, length=size(cine, 3), step=50) / 1e6
+t_err, cine_PIV_idx = findmin(t -> abs(t - t_TSI), t_Phantom)
+cine_PIV = cine[:,:,cine_PIV_idx]
+
+uw = Vortex.transform_prana(runmeta, axes(cine_PIV))
+f = Figure()
+ax = Axis(f[1, 1], aspect=DataAspect(), yreversed=true)
+image!(ax, imadjust(cine_PIV, qmax=0.9995)')
+heatmap!(ax, hypot.(uw.u, uw.v), colormap=[RGBA(0,0,0,0), RGBA(0,0,1,1)])
+f
+heatmap(rotr90(hypot.(uw.u, uw.v)'), axis=(; aspect=DataAspect()))
+##
 # Load & transform data for a random run
 runmeta = rand(eachrow(runlist))
 pranaraw = PranaData(datadir("PIV", "runs", runname(runmeta)))
@@ -150,11 +168,11 @@ let runmeta = select_run(runlist, "2023-01-19_run9")
     #     u_filt = filter(!isnan, u)
     #     length(u_filt) == 0 ? NaN : median(u_filt)
     # end
-    # V̄ = median(filter(!isnan, vw))
+    V̄ = median(filter(!isnan, vw))
     # Ū_itp = linear_interpolation(axes(Ū), Ū)
-    # u_phantom = linear_interpolation(axes(uw), uw, extrapolation_bc=NaN)
-    # v_phantom = linear_interpolation(axes(vw), vw, extrapolation_bc=NaN)
-    # u(x, y) = Point2(u_phantom(x, y), -v_phantom(x, y) + V̄)# - Ū_itp(y))
+    u_phantom = linear_interpolation(axes(uw), uw, extrapolation_bc=NaN)
+    v_phantom = linear_interpolation(axes(vw), vw, extrapolation_bc=NaN)
+    u(x, y) = Point2(u_phantom(x, y), -v_phantom(x, y) + V̄)# - Ū_itp(y))
     f = Figure(resolution=(500, 600))
     ax = Axis(f[1, 1]; aspect=DataAspect(), yreversed=true)
     hm = image!(ax, 1 .- PLIF; fxaa=false)
@@ -163,8 +181,8 @@ let runmeta = select_run(runlist, "2023-01-19_run9")
     # heatmap!(ax, ω, 
     #     colormap=[RGBA(1,0.2,0.2,1), RGBA(0,0,0,0), RGBA(0.2,0.2,1,1)], 
     #     colorrange=(-ωmax, ωmax))
-    # streamplot!(ax, u, jrange, irange, stepsize=5, colormap=[RGBA(0,0.2,1,1), RGBA(1, 1, 0, 1)], linewidth=1,
-    # colorrange=quantile(filter(!isnan, U), (0.01, 0.99)), arrow_size=5, gridsize=(64, 64, 64))
+    streamplot!(ax, u, jrange, irange, stepsize=5, colormap=[RGBA(0,0.2,1,1), RGBA(1, 1, 0, 1)], linewidth=1,
+    colorrange=quantile(filter(!isnan, U), (0.01, 0.99)), arrow_size=5, gridsize=(64, 64, 64))
     # arrows!(ax, axes(uw)..., uw, -vw, color=:red, lengthscale=0.01, arrowsize=3)
 
     # hidexdecorations!(ax)

@@ -9,8 +9,8 @@ function add_registrations!(runlist)
 end
 
 push1(x) = CoordinateTransformations.push(x, 1)
-TSI2Phantom(M) = PerspectiveMap() ∘ M ∘ push1
-Phantom2TSI(M) = PerspectiveMap() ∘ inv(M) ∘ push1
+TSI2Phantom(M, tx=0, ty=0) = PerspectiveMap() ∘ Translation(ty, tx, 0) ∘ M ∘ push1
+Phantom2TSI(M, tx=0, ty=0) = PerspectiveMap() ∘ inv(M) ∘ Translation(-ty, -tx, 0) ∘ push1
 
 PLIFxz(itps, i, j) = Point2(itps.x(j), itps.z(i))
 PLIFxz(itps, p::Point2) = Point2(itps.x(p[2]), itps.z(p[1]))
@@ -39,12 +39,12 @@ end
 
 Transforms the PIV displacements from the TSI coordinate system to the Phantom coordinate system.
 """
-function transform_prana(runmeta, cine_axes)
+function transform_prana(runmeta, cine_axes; tx=0, ty=0)
     pranaraw = PranaData(datadir("PIV", "runs", runname(runmeta)))
     u′, v′, status = Vortex.load_infilled_PIV(runmeta)
     M = LinearMap(SMatrix{3,3,Float32}(runmeta.transform'))
-    tf = Vortex.TSI2Phantom(M)
-    itf = Vortex.Phantom2TSI(M)
+    tf = Vortex.TSI2Phantom(M, tx, ty)
+    itf = Vortex.Phantom2TSI(M, tx, ty)
     phantomscale = runmeta.phantomscale
 
     # Find warped dimensions of TSI pixels in Phantom space
