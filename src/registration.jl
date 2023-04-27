@@ -62,5 +62,17 @@ function transform_prana(runmeta, cine_axes; tx=0, ty=0)
     v_itp = linear_interpolation(reverse(PIV_pixgrid), reverse(uv.v, dims=2)', extrapolation_bc=NaN)
     uw = collect(warp(u_itp, itf, cine_axes)')
     vw = collect(warp(v_itp, itf, cine_axes)')
-    return StructArray(u = uw, v = vw)
+
+    σu = pranaraw.aux["uncertainty2D"]["Upprx"]'
+    σv = pranaraw.aux["uncertainty2D"]["Uppry"]'
+    σu_itp = linear_interpolation(reverse(PIV_pixgrid), reverse(σu, dims=2)', extrapolation_bc=NaN)
+    σv_itp = linear_interpolation(reverse(PIV_pixgrid), reverse(σv, dims=2)', extrapolation_bc=NaN)
+    σuw = collect(warp(σu_itp, itf, cine_axes)')
+    σvw = collect(warp(σv_itp, itf, cine_axes)')
+
+    status_itp = extrapolate(interpolate(reverse(PIV_pixgrid), reverse(Int.(status), dims=2)', 
+        Gridded(Constant())), -1)
+    statusw = collect(warp(status_itp, itf, cine_axes)')
+
+    return StructArray(u = uw, v = vw, σu = σuw, σv = σvw, status = statusw)
 end

@@ -12,6 +12,8 @@ using ImageTransformations, StaticArrays, CoordinateTransformations, Interpolati
 using StructArrays
 using CineFiles
 using PythonCall
+using GLMakie
+update_theme!(Theme(fonts = (; regular = "New Roman", bold = "New Roman Bold")))
 
 include("pathutils.jl")
 include("imageutils.jl")

@@ -1,6 +1,10 @@
 using DrWatson
 @quickactivate "Vortex"
+using Vortex
 using GLMakie, JLD2, ImageFiltering, Unitful
+using StructArrays
+
+update_theme!(Theme(fonts = (; regular = "New Roman", bold = "New Roman Bold")))
 
 # Load PIV runs
 runlist = loadmeta(m -> !ismissing(m.TSI_ID) && !ismissing(m.registration_path))
@@ -53,12 +57,13 @@ foreach(eachrow(runlist)) do runmeta
 
     ∫ᵣ = vortex_integrals(ωᵥ[i_xmid:end, :], xx[i_xmid:end] .- xmid, yy)
     ∫ₗ = vortex_integrals(ωᵥ[1:i_xmid, :], xx[1:i_xmid] .- xmid, yy)
+    ωmax = maximum(abs, ωᵥ)
 
     f = Figure()
     ax = Axis(f[1, 1], aspect=DataAspect(), xlabel="x [m]", ylabel="Z [m]", 
         title="Ring ROI for $(runname(runmeta))")
     hm = heatmap!(ax, ustrip.(u"m", xx .- xmid), ustrip.(u"m", yy), ustrip.(u"s^-1", ωᵥ),
-        colormap=:balance, colorrange=(-5e4, 5e4))
+        colormap=:balance, colorrange=ustrip.(u"s^-1", (-ωmax, ωmax))) # (-5e4, 5e4))
     # Colorbar(f[1, 2], hm, label="ω [s⁻¹]", ticklabelsize=12)
     scatter!(ax, ustrip.(u"m", [∫ᵣ.R, ∫ₗ.R]), ustrip.(u"m", [∫ᵣ.Z, ∫ₗ.Z]), 
         markersize=40, marker='+', color=[:blue, :red])
@@ -132,7 +137,7 @@ gasidx = Dict(gases .=> 1:4)
 
 fig = Figure(resolution = (600, 400))
 ax = Axis(fig[1, 1], xticks = (1:length(gases), gases), ylabel="Γ [m²/s]",
-    title="Pre- and post-shock vortex circulation")
+    title="Pre- and post-shock vortex circulation",)
 colors = categorical_colors(:Set1, length(gases))
 for k in keys(gdf)
     Γₗ = getfield.(gdf[k].leftcore, :Γ)
