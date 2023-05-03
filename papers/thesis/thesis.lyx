@@ -1,0 +1,4151 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\begin_preamble
+
+%\usepackage[cache=false]{minted}
+%\usepackage{tikz}
+\usepackage{color}
+%\usetikzlibrary{shapes,arrows,calc}
+
+\usepackage[bold]{hhtensor} % options:bold, arrow, uline
+\usepackage{physics}
+\usepackage{siunitx}
+
+\makeevenhead{headings}{}{}{\thepage}
+\makeoddhead{headings}{}{}{\thepage}
+\makeevenfoot{headings}{}{}{}
+\makeoddfoot{headings}{}{}{}
+
+\copypagestyle{chapter}{plain} 
+\makeevenhead{chapter}{}{}{\thepage}
+\makeoddhead{chapter}{}{}{\thepage}
+\makeevenfoot{chapter}{}{}{}
+\makeoddfoot{chapter}{}{}{}
+
+\usepackage{ifthen}
+\renewenvironment{figure}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{figure}
+ }{%
+   \@float{figure}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+
+
+\renewenvironment{table}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{table}
+ }{%
+   \@float{table}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+
+\renewcommand{\maketitle}{%
+    \let\footnotesize\small \let\footnoterule\relax 
+	\setcounter{page}{0}
+	\thispagestyle{empty}%
+	% Cleo wants the title page to start higher 
+	%\null\vskip1in%
+	\begin{center}
+		\LARGE{\textbf{\expandafter{\@title}}}
+% original:	{\Bold\uppercase\expandafter{\@title}}
+	\end{center}
+	\vfill
+	\begin{center}
+		\textrm{By}\\
+		{\textbf{\@author}}\\
+	\end{center}
+	\vfill
+	\begin{center}
+		\textsc{A \expandafter{preliminary report} submitted in partial 
+		fulfillment of the \\
+		requirements for the degree of}
+	\end{center}
+	\vfill
+	\begin{center}
+		\textsc{ Doctor of Philosophy \\
+		(\expandafter{Engineering Mechanics})}
+        \end{center}
+	\vfill
+	\begin{center}
+		at the \\
+		\textbf{UNIVERSITY OF WISCONSIN -- MADISON}\\
+		%\@submitdate\\
+		\expandafter{2022}
+	\end{center}\vskip.5in
+%	\singlespacing 
+%	\noindent Date of final oral examination: \@oralexamdate \hspace*{\fill} \\[\@thesistitlemedskip]
+\newpage
+}
+\end_preamble
+\options final
+\use_default_options false
+\begin_modules
+customHeadersFooters
+todonotes
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "Baskerville"
+\font_sans "biolinum" "default"
+\font_typewriter "beramono" "Menlo"
+\font_math "garamondx-ntxm" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement t
+\paperfontsize 12
+\spacing double
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 2
+\tocdepth 1
+\paragraph_separation skip
+\defskip medskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle headings
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Multifluid Shock-Vortex Interactions
+\end_layout
+
+\begin_layout Author
+Alex Ames
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+frontmatter 
+\backslash
+pagenumbering{Roman}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+listoftodos
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList table
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Standard
+A great deal of effort has been levied in assessing the statistical properties
+ of variable-density mixing layers driven by the Richtmyer-Meshkov and Rayleigh-
+Taylor instabilities in the pursuit of compression efficiency for inertial
+ confinement fusion.
+ In such applications, the predominant contributions to the fat tails of
+ the mixedness distribution are the result of singular engineering features
+ which cannot be boiled away via Fourier decomposition or other convenient
+ means.
+ For example, the fill tube implosion defect manifests as a mushroom-headed
+ jet of cold, opaque material protruding into (and impeding the assembly
+ of) the central hot spot as seen in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fill-tube-implosion"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+; likewise the annuli produced by the vaporized remnants of the capsule
+ support tent.
+ As a matter of design focus, it may be better to characterize these kurtogenic
+ phenomena in isolation rather than allowing them to pollute an otherwise
+ tractable history of multimodal mixing arising from statistically-regular
+ perturbations within the layers of the inertial confinement fusion capsule's
+ shell.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/external/weber2020_hdc_fill_tube.png
+	lyxscale 60
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/external/weber2020_fill_tube_jet.png
+	lyxscale 60
+	width 34col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fill-tube-implosion"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+ICF capsule fill tube assembly
+\end_layout
+
+\end_inset
+
+(a) Fill-tube assembly of a high-density carbon (HDC) inertial confinement
+ fusion capsule.
+ The fill tube extends to the right of the image and is shown penetrating
+ the capsule in the inset X-ray radiograph.
+ (b) Density (top) and electron temperature (bottom) of a simulated ICF
+ capsule implosion at the time of peak compression (
+\begin_inset Quotes eld
+\end_inset
+
+bang time
+\begin_inset Quotes erd
+\end_inset
+
+) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "weber_filltube"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Even in the case of vorticity-driven interfacial mixing arising from interfaces
+ with a statistically-uniform perturbation structure, there is something
+ to be gained by examining the features found at the furthest extents of
+ the mixing layer.
+ Whether from a bubble or a spike, these interpenetrating blobs tend to
+ be roughly axisymmetric, with tips which often develop into the familiar
+ shape of a vortex ring.
+ These rings constitute little engines powered by the impulse of their formation
+, driving bulk transport of conserved quantities away from the interface.
+ As the mixing layer develops, transport from inertial to dissipative scales
+ is in large part driven by vortex stretching whose qualitative effect is
+ readily apparent when comparing 2D & 3D simulations (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Olson2014-SF6-air"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), as the former inherently excludes vortex stretching.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/external/bjo2014_RMI_2D_3D.jpeg
+	lyxscale 50
+	width 95col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $M=1.5$
+\end_inset
+
+ 
+\begin_inset Formula $\mathrm{SF_{6}-air}$
+\end_inset
+
+ RMI simulation in 2D and 3D
+\end_layout
+
+\end_inset
+
+Evolution of SF6-air (black-white) mass fraction during 
+\begin_inset Formula $M=1.5$
+\end_inset
+
+ planar shock/reshock interaction in 3D (top) and 2D (bottom) geometry using
+ the 
+\noun on
+Miranda
+\noun default
+ code 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Olson2014"
+literal "false"
+
+\end_inset
+
+.
+ The leftmost frame is captured 2 ms after shock interaction, and the subsequent
+ frames are 0.4, 1.9, and 6.0 ms after reshock.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Olson2014-SF6-air"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vortex rings have themselves been an object of intense study for decades,
+ attracting theoreticians by the tractability of closed-form description,
+ experimentalists by the ease of generation in laboratory settings, and
+ developers of numerical methods by simplicity of initialization.
+ However, most existing efforts focus on the single-fluid, incompressible
+ case, with a handful of studies exploring multifluid mixing in incompressible
+ geophysical flows, and some single-fluid studies exploring compressibility
+ and shock interaction in the context of noise minimization during supersonic
+ flight as depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:pirozzoli-SVI"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The present work endeavors to describe the behavior of vortex rings during
+ and after shock compression in multifluid cases with baroclinic vorticity
+ deposition on the interface between the ring and its surroundings.
+ It includes experiments on the behavior of vortex rings generated at the
+ open end of a shock tube captured with high-speed Schlieren imaging, experiment
+s on the propagation and interaction of a vortex ring with a planar shock
+ wave, and computations of vortex-interface-shock interactions.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/external/pirozzoli2004_vortex.png
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Interaction of an inclined vortex ring with 
+\begin_inset Formula $M=1.5$
+\end_inset
+
+ planar shock wave in air
+\end_layout
+
+\end_inset
+
+Interaction of an inclined vortex ring with 
+\begin_inset Formula $M=1.5$
+\end_inset
+
+ planar shock wave in air.
+ Dark gray shading represents the vortex ring as identified by 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ criterion; light gray represents a 
+\begin_inset Formula $\div{\vec{u}}=-0.1$
+\end_inset
+
+ isosurface associated with strong acoustic perturbations 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Pirozzoli2004"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pirozzoli-SVI"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Chapter
+Background
+\end_layout
+
+\begin_layout Section
+Vorticity deposition
+\end_layout
+
+\begin_layout Standard
+The propagation of vortex rings as well as the evolution of interfacial
+ mixing between two fluids is driven by vorticity and can be described by
+ the vorticity transport equation for a compressible fluid.
+ Temporarily omitting consideration of multiple fluid species, consider
+\begin_inset Formula 
+\begin{equation}
+\pdv{\vec{\omega}}{t}+\curl(\vec{\omega}\cross\vec{u})=\frac{1}{\rho^{2}}(\grad{\rho}\cross\grad{p})+\curl(\frac{1}{\rho}\div{\vec{\tau}})
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\vec{u}$
+\end_inset
+
+ is the velocity, 
+\begin_inset Formula $\vec{\omega}=\curl\vec{u}$
+\end_inset
+
+ is the vorticity, 
+\begin_inset Formula $\rho$
+\end_inset
+
+ and 
+\begin_inset Formula $p$
+\end_inset
+
+ are the bulk density and pressure, and 
+\begin_inset Formula $\vec{\tau}$
+\end_inset
+
+ is the viscous stress tensor.
+ In shock-driven mixing, the baroclinic production term 
+\begin_inset Formula $\grad{\rho}\cross\grad{p}$
+\end_inset
+
+ dominates, while in vortex-driven flows, the vortex stretching and vorticity
+ diffusion terms 
+\begin_inset Formula $\curl(\vec{\omega}\cross\vec{u})$
+\end_inset
+
+ and 
+\begin_inset Formula $\curl(\frac{1}{\rho}\div{\vec{\tau}})$
+\end_inset
+
+ drive the formation, evolution, and breakdown of the vortical core.
+ 
+\end_layout
+
+\begin_layout Subsection
+Richtmyer-Meshkov instability
+\end_layout
+
+\begin_layout Standard
+This work is fundamentally driven by the need to characterize and predict
+ the behavior of shock-accelerated inhomogeneous fluids, an effort which
+ stretches back to the 1960s with pioneering theoretical predictions by
+ Richtmyer and experimental confirmation by Meshkov 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Richtmyer1960,Meshkov1972"
+literal "false"
+
+\end_inset
+
+.
+ The canonical initial condition under consideration consists of two stratified
+ fluids of different densities, 
+\begin_inset Formula $\rho_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\rho_{2}$
+\end_inset
+
+, which meet at a corrugated interface.
+ Notably, many of the resultant phenomena are shared with the Rayleigh-Taylor
+ instability, which can be viewed as a continuously-accelerated cousin of
+ the impulsively-accelerated Richtmyer-Meshkov instability.
+ A thorough review of recent investigation into both instabilities was conducted
+ by Zhou 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zhou2017a,Zhou2017b"
+literal "false"
+
+\end_inset
+
+.
+ In both cases, vorticity is deposited at the interface by baroclinicity.
+ 
+\emph on
+i.e.
+
+\emph default
+ misalignment between the interfacial density gradient and the pressure
+ gradient.
+ A linearized model of vorticity deposition allows for prediction of post-shock
+ interface amplitude growth rates from initial conditions via algebraic
+ gas dynamics, namely
+\begin_inset Formula 
+\begin{equation}
+\dv{\eta}{t}=k\varDelta\!VA\,\eta_{0}
+\end{equation}
+
+\end_inset
+
+where the sinusoidal perturbation's amplitude and wavenumber are given by
+ 
+\begin_inset Formula $\eta_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $k$
+\end_inset
+
+, the shock velocity jump by 
+\begin_inset Formula $\varDelta\!V$
+\end_inset
+
+, and the interfacial Atwood number by 
+\begin_inset Formula $A\equiv(\rho_{2}-\rho_{1})/(\rho_{2}+\rho_{1})$
+\end_inset
+
+.
+ Given that the deposition process occurs as the shock wave is sweeping
+ through the interface, there is some ongoing debate as to the suitability
+ of the pre-shock 
+\emph on
+vs.
+ 
+\emph default
+post-shock values of 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $\eta_{0}$
+\end_inset
+
+, but fairly good agreement is found for most cases by taking the average
+ 
+\begin_inset Formula $(A^{-}\eta_{0}^{-}+A^{+}\eta_{0}^{+})/2$
+\end_inset
+
+, with 
+\begin_inset Formula $^{-}$
+\end_inset
+
+ and 
+\begin_inset Formula $^{+}$
+\end_inset
+
+ indicating pre- and post-shock conditions 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Vandenboomgaerde1998"
+literal "false"
+
+\end_inset
+
+.
+ In Meshkov's experiments, the initial shape of the interfacial perturbations
+ was enforced by a thin nitrocellulose membrane , but the fragmentation
+ of this membrane saps the strength of the shock wave and disturbs the post-shoc
+k evolution of the interface.
+ Additionally, the presence of a solid membrane presents severe difficulties
+ for quantitative flow visualization techniques.
+ As a result, subsequent workers have adopted a variety of membrane-free
+ interfaces involving oscillating pistons, retractable corrugated sheets,
+ vibrating walls, gas curtains, 
+\emph on
+etc.
+
+\emph default
+ 
+\end_layout
+
+\begin_layout Standard
+As time advances following the passage of the shock wave, the interface
+ is distended beyond the limits of linear growth, with the resultant nonlinear
+ development proceeding to fully-turbulent mixing at late times.
+ Mixing is particularly intensified by the reshock phenomenon, which is
+ a consequence of the arrival of additional shock waves at an already-distended
+ interface which offers more leverage for baroclinic torque.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/external/balakumar2012_reshock.png
+	lyxscale 60
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Pre- and post-reshock 
+\begin_inset Formula $(M=1.21$
+\end_inset
+
+) concentration and velocity fields of a corrugated 
+\begin_inset Formula $\mathrm{SF_{6}}$
+\end_inset
+
+ gas curtain in 
+\begin_inset Formula $\mathrm{N_{2}}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Balakumar2012"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ In the inertial confinement fusion case, these additional shock waves arrive
+ in a sequential train as the drive laser power proceeds through a series
+ of intensifying ramps, while laboratory shock tubes typically generate
+ reshock conditions by reflection of the main shock wave at the end-wall
+ of the facility.
+ In both cases, the narrative is complicated by the arrival of secondary
+ compression & rarefaction waves resulting in further mixing due to the
+ Rayleigh-Taylor instability.
+ While these waves cannot be completely eradicated from laboratory experiments,
+ their influence should be minimized by the mindful experimentalist.
+ When the interface is permitted to grow significantly prior to reshock,
+ vortex rings are frequently observed as ejecta from regions with symmetric
+ initial perturbations.
+\end_layout
+
+\begin_layout Subsection
+Shock-bubble interactions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/external/haehn2011_reshocked_N2_Ar_SBI.png
+	lyxscale 40
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Planar Mie scattering images of reshocked shock-bubble interaction
+\end_layout
+
+\end_inset
+
+Planar Mie scattering images of reshocked shock-bubble interaction of a
+ nitrogen bubble in ambient argon upon acceleration by 
+\begin_inset Formula $M=1.35$
+\end_inset
+
+ (top) and 
+\begin_inset Formula $M=2.07$
+\end_inset
+
+ (bottom) shock waves 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Haehn2012a"
+literal "false"
+
+\end_inset
+
+.
+ Leftmost image is taken immediately before reshock, and subsequent images
+ are presented in order of nondimensional time 
+\begin_inset Formula $\tau=tW_{i}/D_{0}$
+\end_inset
+
+, where 
+\begin_inset Formula $W_{i}$
+\end_inset
+
+ is the incident shock velocity and 
+\begin_inset Formula $D_{0}$
+\end_inset
+
+ is the initial bubble diameter.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Haehn-reshocked-SBI"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As with the Richtmyer-Meshkov instability, baroclinic vorticity deposition
+ drives the post-shock evolution of a bubble whose density is different
+ from its surroundings.
+ This classic shock-driven flow has been extensively studied following Hass
+ & Sturtevant's foundational 1987 work 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Haas1987"
+literal "false"
+
+\end_inset
+
+, with extension to cylinders, arrays of cylinders 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Tomkins2003,Kumar2007"
+literal "false"
+
+\end_inset
+
+, reactive bubbles 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "HaehnThesis"
+literal "false"
+
+\end_inset
+
+, and other attractive initial conditions.
+ In each case, maximum baroclinic misalignment can be found at the bubble's
+ equator, with the resulting vortex sheet typically rolling up into a characteri
+stic vortex ring immediately after shock passage, or multiple rings in the
+ case of strong shocks 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Ranjan2008"
+literal "false"
+
+\end_inset
+
+.
+ These experiments present the strongest phenomenological linkage to the
+ present work, which was originally motivated by frustration with the degrading
+ influence of soap bubble film residuals on quantitative diagnostic imaging
+ techniques for shock-bubble interactions.
+ Briefly, the bubble immediately disintegrates upon shock arrival, producing
+ uneven, varicose-patterned fragmentation of the bubble film material which
+ prevents collection of actionable particle displacement images for particle
+ image velocimetry.
+ Planar laser-induced fluorescence is likewise hindered by the bubble film
+ remnants, which fluoresce strongly upon laser excitation due to the inherent
+ fluorescence of surfactant materials alongside the high density of liquid
+ surfactant droplets relative to conventional gas-phase laser-induced fluorescen
+ce tracer molecules.
+ Consequently, experimental study of shock-bubble interactions has largely
+ relied on Mie-scattered images of the bubble film and path-integrated technique
+s including shadowgraphy and Schlieren imaging.
+\end_layout
+
+\begin_layout Standard
+The most obvious consequence of a shock-bubble interaction is differential
+ acceleration of the bubble and the surrounding gas due to both inertia
+ and shock-induced circulation.
+ Several simple models are presented in the review by Ranjan 
+\emph on
+et al
+\emph default
+.
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Ranjan2011"
+literal "false"
+
+\end_inset
+
+, including a circulation deposition model derived from a straightforward
+ integral of the vorticity production equation by Picone & Boris 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Picone1988"
+literal "false"
+
+\end_inset
+
+ which gives
+\begin_inset Formula 
+\begin{align}
+\Gamma_{\mathrm{PB}} & \approx2u_{p}\left(1-\frac{u_{p}}{2W_{i}}\right)\frac{D}{2}\log\frac{\rho_{b}}{\rho_{a}}\label{eq:Gamma-picone-boris}\\
+u_{v} & \approx u_{p}+\frac{\Gamma_{\mathrm{PB}}}{4\pi R}
+\end{align}
+
+\end_inset
+
+where 
+\begin_inset Formula $u_{p}$
+\end_inset
+
+ is the post-shock particle velocity, 
+\begin_inset Formula $W_{i}$
+\end_inset
+
+ is the incident shock wave speed, 
+\begin_inset Formula $\rho_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $\rho_{b}$
+\end_inset
+
+ are the ambient and bubble densities, 
+\begin_inset Formula $D$
+\end_inset
+
+ is the pre-shock diameter of the bubble, and 
+\begin_inset Formula $R$
+\end_inset
+
+ is the radius of the post-shock vortex ring.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Shock-bubble interaction: reshock behavior
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Vortex rings
+\end_layout
+
+\begin_layout Subsection
+Description
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/PrelimVortex/plots/diagrams/ringcoords_cart.png
+	lyxscale 10
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/PrelimVortex/plots/diagrams/ringcoords_rz.svg
+	lyxscale 10
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vortex ring geometry in (a) Cartesian and (b) axisymmetric cylindrical coordinat
+es
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Well-formed vortex rings are self-evidently amenable to description in cylindric
+al 
+\begin_inset Formula $(r,\theta,z)$
+\end_inset
+
+ coordinates, with the azimuthal 
+\begin_inset Formula $\theta$
+\end_inset
+
+-direction often neglected except when investigating vortex swirl or instability.
+ The principal ring radius is indicated by 
+\begin_inset Formula $R$
+\end_inset
+
+, while the radius of the core is given by 
+\begin_inset Formula $a$
+\end_inset
+
+, and the core slenderness ratio by 
+\begin_inset Formula $\alpha=a/R$
+\end_inset
+
+.
+ Analytical descriptions following this parameterization have been pursued
+ for over a century, with the main class of steady, inviscid rings of core
+ vorticity 
+\begin_inset Formula $\omega=\Omega r$
+\end_inset
+
+ described by Norbury and Fraenkel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Norbury1973,Fraenkel1972"
+literal "false"
+
+\end_inset
+
+.
+ This family is parameterized solely by 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and permits solutions between 
+\begin_inset Formula $0<\alpha<\sqrt{2}$
+\end_inset
+
+, with the lower and upper limits describing an infinitesimally thin-core
+ ring and Hill's classical spherical vortex, respectively.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/external/norbury1973_core_shape.png
+	lyxscale 30
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Variation of vortex core boundary 
+\begin_inset Formula $\partial A$
+\end_inset
+
+ versus 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ for the Norbury-Fraenkel vortex family of unit toroidal radius 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Norbury1973"
+literal "false"
+
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:norbury-fraenkel-vortices"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Analytical solutions are available for the limiting cases, but intermediate
+ values of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ require numerical solution of an integral equation
+\begin_inset Formula 
+\begin{align}
+\psi(r,z) & =-\frac{1}{2}Ur^{2}+\frac{\Omega}{2\pi}\iint_{A}G(r,\hat{r},z-\hat{z})\dd{\hat{r}}\dd{\hat{z}}\\
+\qq{where}G & =\frac{1}{2}r\hat{r}^{2}\int_{-\pi}^{\pi}\frac{\cos\hat{\lambda}\dd{\hat{\lambda}}}{[r^{2}+\hat{r}^{2}-2r\hat{r}\cos\hat{\lambda}+(z-\hat{z})^{2}]^{1/2}}
+\end{align}
+
+\end_inset
+
+giving a unique vortex core boundary curve 
+\begin_inset Formula $\partial A$
+\end_inset
+
+ shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:norbury-fraenkel-vortices"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and corresponding values of 
+\begin_inset Formula $\psi|_{\partial A}=k$
+\end_inset
+
+ and propagation velocity 
+\begin_inset Formula $U$
+\end_inset
+
+ for a prescribed 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ following appropriate normalization.
+ For thin rings, this gives a propagation velocity
+\begin_inset Formula 
+\begin{equation}
+U=\frac{\Gamma}{4\pi R}\left[\ln\frac{8}{\alpha}-\frac{1}{4}+\alpha^{2}\left(-\frac{3}{8}\ln\frac{8}{\alpha}+\frac{15}{32}\right)\right]
+\end{equation}
+
+\end_inset
+
+with core circulation following Stokes' theorem:
+\begin_inset Formula 
+\begin{equation}
+\Gamma=\oint\vec{u}\vdot\dd{\vec{s}}=\iint\vec{\omega}\vdot\hat{n}\dd{A}
+\end{equation}
+
+\end_inset
+
+assuming purely-azimuthal vorticity 
+\begin_inset Formula $\vec{\omega}=\omega\hat{e}_{\theta}$
+\end_inset
+
+.
+ Other workers have found similar expressions for the propagation velocity
+ under different assumptions and following a variety of approaches, with
+ each following the general form
+\begin_inset Formula 
+\begin{equation}
+U=\frac{\Gamma}{4\pi R}\left[\ln\frac{8}{\alpha}-\frac{1}{2}+A\right]
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $A$
+\end_inset
+
+ varies according to the assumed distribution of vorticity within the ring
+ as detailed by Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Ring-translational-velocity-factors"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ring vorticity distribution factors
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Ring-translational-velocity-factors"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="3">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Treatment
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Author
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hollow, stagnant rings
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hicks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hicks1885"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Thin rings
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Kelvin 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kelvin1867"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.058$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Unsteady viscous rings with 
+\begin_inset Formula $a=\sqrt{4\nu t}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Saffman 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Saffman1970"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{4}+\alpha^{2}\left(-\frac{3}{8}\ln\frac{8}{\alpha}+\frac{15}{32}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Uniform 
+\begin_inset Formula $\omega=\Omega r$
+\end_inset
+
+ within vortex core
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fraenkel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fraenkel1972"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{4}-\frac{5}{12}M^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Compressible rings with 
+\begin_inset Formula $M=\frac{\Gamma}{2\pi ac_{\infty}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moore 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Moore1985"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.058-3.6716\frac{\nu t}{R^{2}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Unsteady viscous rings with 
+\begin_inset Formula $a=\sqrt{4\nu t}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fukumoto 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fukumoto2000"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Because of the difficulty associated with accurate experimental measurement
+ of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+ (and the ease of measuring 
+\begin_inset Formula $U$
+\end_inset
+
+), the relative merit of each of the proposed forms of 
+\begin_inset Formula $A$
+\end_inset
+
+ is largely a matter of judgment for the practicing experimentalist.
+\end_layout
+
+\begin_layout Standard
+For numerical models where the conserved scalar and vector fields are known
+ throughout the domain, the geometric parameters of the vortex arise straightfor
+wardly from the first and second areal moments of vorticity.
+ Each of these moments is normalized by the total circulation.
+ Following Saffman 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Saffman1970"
+literal "false"
+
+\end_inset
+
+ and integrating in the local neighborhood of the vortex in axisymmetric
+ cylindrical coordinates,
+\begin_inset Formula 
+\begin{align}
+\Gamma & =\iint\omega\dd{r}\dd{z}\label{eq:Gamma_vortex}\\
+R & =\frac{1}{\Gamma}\iint\omega r\dd{r}\dd{z}\\
+R_{2}^{2} & =\frac{1}{\Gamma}\iint\omega r^{2}\dd{r}\dd{z}\\
+z_{c} & =\frac{1}{\Gamma}\iint\omega z\dd{r}\dd{z}\label{eq:z_vortex_center}
+\end{align}
+
+\end_inset
+
+From Archer 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Archer2008"
+literal "false"
+
+\end_inset
+
+, if the vortex core maintains a Gaussian vorticity distribution, the core
+ radius is approximately
+\begin_inset Formula 
+\begin{equation}
+a^{2}=(R_{2}^{2}-R^{2})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When a numerical model does not include the vortex formation process, the
+ steady-state vortex-induced velocity field must instead be determined by
+ first positing the vorticity distribution in the core.
+ The simplest case, depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-induced-velocity"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, is that of an infinitely thin core, with equivalent closed-form expressions
+ for velocity taken either from the vortex streamfunction 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Nitsche1994"
+literal "false"
+
+\end_inset
+
+ or from the Biot-Savart law 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Yoon2004"
+literal "false"
+
+\end_inset
+
+.
+ Briefly,
+\begin_inset Formula 
+\begin{align}
+u_{r} & =\frac{\Gamma R}{4\pi}\frac{z-z_{c}}{B}(I_{1}-AI_{2})\\
+u_{z} & =\frac{\Gamma R}{4\pi}\left(\left(R+r\frac{A}{B}\right)I_{2}-r\frac{I_{1}}{B}\right)
+\end{align}
+
+\end_inset
+
+with 
+\begin_inset Formula $I_{1}=\frac{4}{\kappa}K(m)$
+\end_inset
+
+, 
+\begin_inset Formula $I_{2}=\frac{4}{\kappa^{3}}\frac{E(m)}{1-m},$
+\end_inset
+
+ 
+\begin_inset Formula $A=(z-z_{c})^{2}+r^{2}+R^{2}$
+\end_inset
+
+, 
+\begin_inset Formula $B=-2rR$
+\end_inset
+
+, 
+\begin_inset Formula $\kappa^{2}=(r+R)^{2}+(z-z_{c})^{2}$
+\end_inset
+
+, and 
+\begin_inset Formula $m=\frac{4rR}{\kappa^{2}}$
+\end_inset
+
+, where 
+\begin_inset Formula $K(m)$
+\end_inset
+
+ and 
+\begin_inset Formula $E(m)$
+\end_inset
+
+ are complete elliptic integrals of the first and second kinds, respectively.
+ This formulation contains unphysical, numerically-undesirable singularities
+ at the vortex core, and practical application requires the introduction
+ of a relaxation term for the core radius.
+ A more robust formulation 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Shariff1994"
+literal "false"
+
+\end_inset
+
+ arises from the imposition of a Gaussian vorticity distribution 
+\begin_inset Formula $\omega(r,z)=\frac{\Gamma}{\pi a^{2}}\exp\left(-(z^{2}+(r-R)^{2})/a^{2}\right)$
+\end_inset
+
+ and solution of the Poisson equation for the streamfunction 
+\begin_inset Formula $\laplacian\psi=-\omega$
+\end_inset
+
+, with 
+\begin_inset Formula $\vec{u}=\curl\psi$
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/PIV/streamfield.svg
+	lyxscale 39
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Velocity field induced by a thin-core vortex ring
+\end_layout
+
+\end_inset
+
+Velocity field induced by a thin-core vortex ring of unit circulation and
+ radius in a frame of motion co-moving with the vortex ring.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vortex-induced-velocity"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Generation
+\end_layout
+
+\begin_layout Standard
+In almost all cases, vortex rings are produced by pulsed discharge from
+ a pipe or orifice, with exceptional cases typically described in terms
+ of equivalent pipe discharge for ease of comparison.
+ In the typical case, vortex ring formation arises from production of vorticity
+ by shear within the wall boundary layer of an impulsively-started internal
+ flow.
+ As the fluid slug is discharged into ambient fluid, the vortex sheet at
+ the slug-ambient boundary rolls itself into a compact, toroidal vortex
+ core whose diameter immediately grows to 
+\begin_inset Formula $1.4\sim2$
+\end_inset
+
+ times that of the slug.
+ As additional vorticity is entrained into the core, the ring's translational
+ velocity increases and the vortex-induced circulation eventually becomes
+ strong enough to prevent (
+\emph on
+pinch-off
+\emph default
+) any further entrainment.
+ In cases where the slug discharge velocity is maintained or increased,
+ as in starting jets, pinch-off does not occur completely, allowing unsteady
+ entrainment of additional fluid from the trailing jet which may trigger
+ instability development in the primary ring.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/PrelimVortex/plots/diagrams/generator_schematic.svg
+	lyxscale 20
+	width 14cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Classical vortex ring generator 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:classical-vortex-generator"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The classical lab vortex ring generator depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:classical-vortex-generator"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is an open-ended piston which impulsively attains a constant piston velocity
+ 
+\begin_inset Formula $U_{p}$
+\end_inset
+
+ along some prescribed stroke length 
+\begin_inset Formula $L$
+\end_inset
+
+.
+ More generally, the piston velocity can be allowed to vary with minimal
+ consequence on the properties of the resultant ring, with the total length
+ of discharged fluid given by 
+\begin_inset Formula $L=\int U_{p}(t)\dd{t}$
+\end_inset
+
+ from an orifice of diameter 
+\begin_inset Formula $D_{p}$
+\end_inset
+
+.
+ For incompressible vortex rings, peak circulation is attained at a universal
+ formation number 
+\begin_inset Formula $N=L/D_{p}\approx4$
+\end_inset
+
+ as described by Gharib 
+\emph on
+et al
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Gharib1998"
+literal "false"
+
+\end_inset
+
+, after which time the vortex ring's strength and distance from the outlet
+ is sufficient to prevent entrainment of any additional vorticity.
+ 
+\end_layout
+
+\begin_layout Standard
+The depiction of the vortex ring formation process as the roll-up of a cylindric
+al vortex sheet has been confirmed by experiments and computations to be
+ largely accurate, although several complicating factors must be introduced.
+ One involves induction of opposite-sign vorticity at the orifice lip, which
+ saps the strength of the main vortex ring.
+ This effect can be mitigated to some degree by the adoption of a chamfered
+ outer lip of angle 
+\begin_inset Formula $\beta$
+\end_inset
+
+.
+ In the compressible case, pinch-off occurs somewhat sooner as the developing
+ internal boundary layer restricts the effective cross-sectional area of
+ the outlet, which creates a nozzle effect driving 
+\begin_inset Formula $U_{p,\mathrm{max}}$
+\end_inset
+
+ greater than the piston velocity 
+\begin_inset Formula $U_{p}$
+\end_inset
+
+ predicted by 1D gas dynamics, and thus greater shear and higher peak vorticity
+ production.
+\end_layout
+
+\begin_layout Subsection
+Propagation
+\end_layout
+
+\begin_layout Standard
+Ideal inviscid vortex rings ought to propagate indefinitely due to the closed
+ streamlines around the bubble of vortex-entrained fluid, but rings whose
+ 
+\begin_inset Formula $Re$
+\end_inset
+
+ is sufficiently high to allow inviscid treatment invariably produce turbulent
+ wakes into which the ring's momentum is shed while simultaneously entraining
+ ambient fluid (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Instability-manifold"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ At lower Reynolds numbers, viscosity acts to diffuse vorticity from the
+ vortex core region, increasing the effective size of the core at a rate
+ of 
+\begin_inset Formula $\dv{a}{t}\sim\sqrt{\nu/t}$
+\end_inset
+
+ and thus enlarging the entrainment bubble.
+ In both cases, the ring radius 
+\begin_inset Formula $R$
+\end_inset
+
+ is found to grow steadily as circulation weakens.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Expand on literature for vortex propagation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Instabilities
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/external/shariff1989_ring_unstable_manifold.png
+	lyxscale 10
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Instability manifold derived from a Poincaré map of particle dynamics in
+ the neighborhood of an elliptical-core vortex ring with 
+\begin_inset Formula $\alpha=0.2$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Shariff1989"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Instability-manifold"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Missing Figure
+status open
+
+\begin_layout Plain Layout
+Formation number comparison
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Formation number comparison
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When the vortex core diameter grows more rapidly than the size of the vortex-ent
+rained bubble, vortex stretching and conservation of angular momentum eventually
+ produce unstable azimuthal waves which were long observed by experimentalists
+ prior to being first formally described by Widnall 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Widnall1974"
+literal "false"
+
+\end_inset
+
+.
+ At sufficiently high Reynolds number, sudden `bursting' of the vortex ring
+ is observed, producing a slow, high-volume ring of much lower 
+\begin_inset Formula $Re$
+\end_inset
+
+.
+ When the discharge velocity profile extends significantly beyond pinch-off
+ or accelerates over time, the trailing jet develops one or more embedded
+ Kelvin-Helmholtz vortices, which in extreme cases can overtake and disrupt
+ the primary ring.
+\end_layout
+
+\begin_layout Chapter
+Experimental study
+\end_layout
+
+\begin_layout Standard
+Initial investigations of the compressible vortex ring formation process
+ were carried out on several testbed platforms using high-speed Schlieren
+ imaging to guide and validate the design of a vortex ring generator.
+ Following the installation and qualification of the vortex ring generator
+ in the Wisconsin Shock Tube, the multifluid vortex-shock interaction process
+ was imaged using high-speed simultaneous planar laser-induced fluorescence
+ and particle image velocimetry.
+\end_layout
+
+\begin_layout Section
+Vortex ring generation
+\end_layout
+
+\begin_layout Subsection
+Testbed design
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/pix/generator_evolution.png
+	lyxscale 40
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Vortex ring generator design evolution
+\end_layout
+
+\end_inset
+
+Vortex ring generator design evolution.
+ Left: diaphragm mounting flange connected to driver section below and driven
+ section above.
+ Center: laser diaphragm rupture testbed platform.
+ Right: vortex ring generator mounted in end-wall flange prior to installation
+ in shock tube.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vortex-ring-generator-evo"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The design process proceeded in three iterations, starting with proof of
+ concept based on galvanized steel Schedule 40 plumbing connectors purchased
+ from a local hardware store, moving to a low-pressure testbed mimicking
+ the dimensions of the shock tube, and culminating in a high-strength apparatus
+ permanently installed in the shock tube.
+\end_layout
+
+\begin_layout Standard
+Existing literature on vortex generation from the open end of a shock tube
+ lent credence to the basic concept 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Arakeri2004,Poudel2021,Murugan2012"
+literal "false"
+
+\end_inset
+
+, but several operational constraints necessitated a novel design.
+ Prior art generally involves discharge of air-formed vortex rings into
+ the ambient atmosphere without shock interaction, while this research effort
+ is fundamentally motivated by the study of mixing, which necessitates both
+ an initial condition which is unmixed and a diagnostic technique which
+ allows visualization of mixedness.
+ Because of the dimensional limitations of the shock tube facility, the
+ size of the vortex generator was constricted both by the limited vertical
+ space between the end-wall of the shock tube and the concrete floor, as
+ well as the desire to avoid wall effects in a 25 cm square cross section.
+ Temporal uncertainty on the order of 
+\begin_inset Formula $\pm100$
+\end_inset
+
+ ms in the delay between boost tank fast-acting valve actuation and initiation
+ of diaphragm rupture required vortex ring generation to be initiated immediatel
+y after detection of the main shock wave by a pressure transducer.
+ Additionally, tight control of vortex generator rupture timing and pre-rupture
+ gas state and composition was needed to ensure the occurrence of the shock
+ wave–vortex interaction within the imaging window at a predefined imaging
+ time.
+\end_layout
+
+\begin_layout Standard
+These constraints were addressed by several design elements, with novelties
+ including pulsed laser-induced rupture of the vortex ring generator diaphragm
+ and maintenance of initial separation between driven and ambient gas by
+ evacuation of excess acetone-seeded gas via an annular slot encircling
+ the exit orifice.
+\end_layout
+
+\begin_layout Subsection
+Laser-induced diaphragm rupture
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/pix/laserknife.png
+	lyxscale 10
+	height 6cm
+
+\end_inset
+
+
+\begin_inset space \quad{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/pix/rupture.png
+	lyxscale 50
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+(a) Laser cross optics for diaphragm rupture.
+ (b) Ruptured diapragm mounted on vortex ring generator driven section inlet
+ flange.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pulsed lasers allow for inexpensive production of high-energy-density conditions
+ with the aid of focusing optics, with widespread commercial application
+ to material processing.
+ These advancements have been harnessed by fluid dynamicists to provide
+ illumination for most modern flow visualization techniques, with a resultant
+ abundance of high-power pulsed lasers in many shock tube laboratories.
+ Such lasers can be usefully repurposed as a means of rupturing thin diaphragms
+ in a tightly controlled fashion, allowing exact repetition of rupture pressure
+ and shock release timing.
+ For these experiments, the fundamental 1064 nm output of a dual-cavity
+ Nd:YAG Ekspla NL-303D laser was separated by a polarized beamsplitter,
+ focused by a pair of orthogonally-oriented cylindrical lenses, and recombined
+ by another beamsplitter into a 
+\begin_inset Formula $\times$
+\end_inset
+
+ shape directed at the vortex ring generator diaphragm.
+\end_layout
+
+\begin_layout Section
+Schlieren experiments
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/PrelimVortex/plots/diagrams/schlieren_setup.svg
+	lyxscale 20
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schlieren imaging apparatus
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A series of 135 experiments were conducted on the testbed platforms depicted
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-ring-generator-evo"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ to design and validate a vortex ring generator using high-speed Schlieren
+ imaging.
+ The cylinder diameter 
+\begin_inset Formula $D_{p}$
+\end_inset
+
+ was constrained by the dimensions of adjacent visualization laser entry
+ windows, leaving the lengths of the driver and driven sections to be determined
+ by experiments.
+ The initial hypothesis was that a driver section with a length of 
+\begin_inset Formula $15.2$
+\end_inset
+
+ cm would allow the vortex ring to reach the limiting formation number 
+\begin_inset Formula $N=4$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Mohseni2002"
+literal "false"
+
+\end_inset
+
+, but a shorter driver length of 8.4 cm was found to produce a sufficiently
+ strong ring without triggering a premature transition to turbulence through
+ the leapfrogging effect induced by the trailing jet.
+\end_layout
+
+\begin_layout Standard
+The early-time development of one such ring is pictured in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Schlieren-vortex-ring"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The first four frames show the release of a planar shock wave and its immediate
+ development into a weak spherical shock followed by a series of acoustic
+ waves.
+ At the same time, the vortex ring detaches from the outlet and rapidly
+ grows to near its quasi-steady-state diameter while entraining additional
+ fluid and vorticity.
+ The vortex core is visible here as two dark regions connected by a thin
+ horizontal filaments.
+ The next four frames show the early near-laminar propagation of the ring,
+ with the vortex core filaments separating slightly from one another as
+ the ring begins to develop azimuthal bending waves.
+ These Widnall-type waves are increasingly apparent in the last four frames,
+ along with a series of weak Kelvin-Helmholtz type waves in the trailing
+ jet region below the vortex.
+ At later times (not depicted), the ring becomes fully turbulent, decelerating
+ sharply due to rapid entrainment of ambient fluid.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/schlieren/vortexformation.png
+	lyxscale 50
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Schlieren images of vortex ring formation
+\end_layout
+
+\end_inset
+
+Schlieren images of vortex ring formation (sequenced left to right, top
+ to bottom).
+ The first image is captured 
+\begin_inset Formula $\SI{700}{\micro\second}$
+\end_inset
+
+ after vortex ring generator diaphragm rupture, with subsequent images taken
+ at 
+\begin_inset Formula $\SI{105}{\micro\second}$
+\end_inset
+
+ intervals.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schlieren-vortex-ring"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Shock tube facility
+\end_layout
+
+\begin_layout Standard
+The subsequent experiments were conducted in the Wisconsin Shock Tube Laboratory
+'s 
+\begin_inset Formula $\SI{9.1}{m}$
+\end_inset
+
+ vertical shock tube, which fires shock waves downwards from a 
+\begin_inset Formula $\SI{2}{m}$
+\end_inset
+
+ driver section into a test section with a square 
+\begin_inset Formula $25.4\times25.4$
+\end_inset
+
+ cm cross-section.
+ The facility is nominally capable of withstanding pressures up to 
+\begin_inset Formula $\SI{20}{MPa}$
+\end_inset
+
+, although it was operated at less than 
+\begin_inset Formula $\SI{2}{MPa}$
+\end_inset
+
+ for these experiments.
+ It has hosted a wide range of experiments over its more than 20 years in
+ service, including shock mitigation studies for inertial confinement fusion,
+ shock-bubble interactions, and studies of the Richtmyer-Meshkov instability
+ with several membraneless initial conditions.
+ 
+\end_layout
+
+\begin_layout Section
+Imaging and diagnostics
+\end_layout
+
+\begin_layout Standard
+Illumination is provided by a pulse-burst laser system firing at a repetition
+ rate of 
+\begin_inset Formula $\SI{20}{kHz}$
+\end_inset
+
+ throughout the 
+\begin_inset Formula $\SI{10}{ms}$
+\end_inset
+
+ duration of the experiment.
+ The fundamental 
+\begin_inset Formula $\SI{1064}{nm}$
+\end_inset
+
+ laser emission is seeded by a diode-pumped Nd:YVO
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+
+ oscillator laser and intensified by two twice-through Nd:YAG amplifier
+ stages before undergoing frequency-doubling and -quadrupling by nonlinear
+ crystals to produce a co-propagating 532 and 
+\begin_inset Formula $\SI{266}{nm}$
+\end_inset
+
+ laser pulse with average energies of 90 and 39 mJ per pulse at each respective
+ wavelength.
+ The laser beam is focused by a converging spherical and diverging cylindrical
+ lens to produce a laser sheet whose nominal width is 12 cm at its waist
+ in the center of the imaging window.
+ The Mie-scattered TiO
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ particle image is captured by a Photron Fastcam SA-Z camera, while the
+ fluorescence signal is recorded by a Phantom v1211 camera oriented as depicted
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:High-speed-laser-camera-config"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Both cameras are synchronized with the laser oscillator, producing image
+ sequences with 
+\begin_inset Formula $\SI{50}{\micro\second}$
+\end_inset
+
+ inter-frame separation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/PrelimVortex/plots/diagrams/lasers_cameras.svg
+	lyxscale 15
+	width 12cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+High-speed laser & camera layout
+\end_layout
+
+\end_inset
+
+High-speed laser & camera layout.
+ The imaging window's centerline is 28 cm from the vortex ring generator
+ outlet.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:High-speed-laser-camera-config"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Procedure
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/PrelimVortex/plots/diagrams/MST_diagram.png
+	lyxscale 20
+	height 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/PrelimVortex/plots/diagrams/mst_dimensions.png
+	lyxscale 20
+	height 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/timing/xt.svg
+	lyxscale 50
+	height 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Vortex ring generator apparatus and timing diagram
+\end_layout
+
+\end_inset
+
+(a) Vortex ring generator apparatus embedded in shock tube end-wall flange.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(b) Vortex ring generator dimensions in inches.
+ 
+\end_layout
+
+\end_inset
+
+(b) Laser and camera timing diagram overlaid with shock detection times
+ extracted from experimental pressure traces.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All internal volumes within the shock tube are first evacuated to approximately
+ 6 kPa to remove air and other contaminants.
+ The driver section is then filled with 
+\begin_inset Formula $\mathrm{N_{2}}$
+\end_inset
+
+ to 1.5 MPa, and the driven section is filled to atmospheric pressure with
+ 
+\begin_inset Formula $\mathrm{N_{2}}$
+\end_inset
+
+ seeded with 
+\begin_inset Formula $\diameter=300$
+\end_inset
+
+ nm 
+\begin_inset Formula $\mathrm{TiO_{2}}$
+\end_inset
+
+ particles for flow visualization.
+ An acetone bath is held at 293 K and pressurized with argon to 305 kPa,
+ seeding the argon with 8% acetone by volume.
+ A steady stream of acetone-seeded argon is introduced to the driven section
+ of the vortex ring generator, with excess argon removed by the annular
+ vacuum slot encircling the vortex generator outlet.
+ Several seconds prior to the arrival of the shock wave, the vortex ring
+ generator driver is pressurized with argon to 300 kPa.
+ The shock tube driver is then rapidly pressurized to 1.9 MPa, at which point
+ the aluminum diaphragm separating the driver and driven sections ruptures,
+ generating a shock wave of nominal strength 
+\begin_inset Formula $M=1.8$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As the shock wave travels down the driven section of the shock tube, the
+ associated pressure rise is detected by a high-frequency pressure transducer,
+ triggering the laser-induced rupture of the vortex ring generator diaphragm
+ and initiating imaging by the pulse-burst laser and high-speed cameras.
+ The initial propagation of the vortex ring, its acceleration by the shock
+ wave, and its continued propagation following re-shock is then captured
+ during the 10 ms imaging duration.
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+Several obstacles appeared while processing PLIF and PIV images to extract
+ density and velocity fields.
+ Because of a slow leak in the vortex ring generator driven section which
+ was not detected until near the end of the experimental campaign, the argon
+ in that section was contaminated by a varying amount of nitrogen.
+ This made it difficult to perform the iterative correction procedure needed
+ for accurate estimation of the acetone concentration, preventing calculation
+ of the density field.
+ 
+\end_layout
+
+\begin_layout Standard
+The PIV images show the presence of large particle displacements in the
+ up-welling region along the centerline of the entrainment bubble, with
+ pre-shock displacements on the order of 60-80 pixels, and post-shock displaceme
+nts several times larger.
+ Although an attempt was made to take advantage of the theoretically well-descri
+bed vortex-induced velocity field for a displacement estimate, these displacemen
+ts proved too large for a state-of-the-art multi-pass PIV processing procedure
+ with a robust phase correlator and iterative window deformation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/PrelimVortex/plots/ringpositionvelocity.png
+	width 14cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Vortex core trajectories and velocities extracted from PLIF
+\end_layout
+
+\end_inset
+
+Vortex core trajectories and velocities manually extracted from PLIF image
+ sequences.
+ 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $z_{0}$
+\end_inset
+
+ are the shock-vortex interaction time and vertical location, respectively.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vortex-core-trajectories"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/PLIF/init.png
+	lyxscale 30
+	width 32col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/PLIF/shock.png
+	lyxscale 30
+	width 32col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/PLIF/reshock.png
+	lyxscale 30
+	width 32col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Pre-shock, post-shock, and post-reshock PLIF images
+\end_layout
+
+\end_inset
+
+Pre-shock, post-shock, and post-reshock PLIF images (left to right) of the
+ vortex ring at a fixed vertical station.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pre-post-re-shock-PLIF"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/PLIF/svi1.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/PLIF/svi2.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/PLIF/svi3.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/PLIF/svi4.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+PLIF images of the vortex ring prior to and during shock acceleration.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PLIF-SVI"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/PIV/PIV.png
+	lyxscale 50
+	width 100col%
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+PIV vectors and particle image of the pre-shock vortex ring
+\end_layout
+
+\end_inset
+
+PIV vectors (left) and particle image (right) of the vortex ring prior to
+ shock acceleration.
+ Green vectors denote correlation strengths 
+\begin_inset Formula $C\geq0.05$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PIV-vectors"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Acetone PLIF intensity variation due to changes in thermodynamic conditions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Computational study
+\end_layout
+
+\begin_layout Standard
+In lieu of (or as a precursor to) costly apparatus development, large eddy
+ simulations offer a flexible, detailed means of investigating complex compressi
+ble flows.
+ To that end, a mature hydrodynamics code was used to simulate the interaction
+ of a vortex ring with a stratified interface, followed by shock acceleration,
+ across a range of conditions.
+\end_layout
+
+\begin_layout Section
+
+\noun on
+Miranda
+\noun default
+ physics
+\end_layout
+
+\begin_layout Standard
+
+\noun on
+Miranda
+\noun default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Cook2007a"
+literal "false"
+
+\end_inset
+
+ describes the evolution of compressible flows considering the conservation
+ of mass, momentum, and energy for 
+\begin_inset Formula $N$
+\end_inset
+
+ miscible fluids:
+\begin_inset Formula 
+\begin{align*}
+\pdv{\rho Y_{i}}{t}+\div\left[\rho Y_{i}\vec{u}+\vec{J}_{i}\right] & =0\\
+\pdv{\rho\vec{u}}{t}+\div\left[\rho\vec{u}\vec{u}+p\vec{I}-\vec{\tau}\right] & =0\\
+\pdv{E}{t}+\div\left[(E+p)\vec{u}-\vec{\tau}\vdot\vec{u}+\vec{q}\right] & =0
+\end{align*}
+
+\end_inset
+
+with 
+\begin_inset Formula $\rho$
+\end_inset
+
+, 
+\begin_inset Formula $p$
+\end_inset
+
+, and 
+\begin_inset Formula $\vec{u}$
+\end_inset
+
+ representing density, pressure, and velocity, diffusive mass flux 
+\begin_inset Formula $\vec{J}_{i}$
+\end_inset
+
+ for the 
+\begin_inset Formula $i_{\mathrm{th}}$
+\end_inset
+
+ species of mass fraction 
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+, viscous stress tensor 
+\begin_inset Formula $\vec{\tau}$
+\end_inset
+
+, total energy given by 
+\begin_inset Formula $E=\rho(e+\frac{1}{2}\vec{u}^{2})$
+\end_inset
+
+, and the heat conduction flux 
+\begin_inset Formula $\vec{q}$
+\end_inset
+
+.
+ Instead of applying a large eddy simulation (LES) filter to the governing
+ equations, 
+\noun on
+Miranda
+\noun default
+ instead imposes artificial fluid properties (viscosity, conductivity, and
+ diffusivity) designed to damp out high-wavenumber modes in the conserved
+ vector and scalar fields while maintaining physical behavior in the inertial
+ range.
+ This selectivity is enforced by the Gaussian-filtered application of a
+ biharmonic operator, with spatial derivatives for the governing equations
+ and polyharmonic operators taken from Lele's work on compact finite difference
+ schemes with spectral-like resolving power 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Lele1992"
+literal "false"
+
+\end_inset
+
+.
+ Advancement in time is conducted by a five-step, fourth-order low-storage
+ Runge-Kutta method.
+ 
+\end_layout
+
+\begin_layout Section
+Modeling
+\end_layout
+
+\begin_layout Standard
+Because of the importance of the trailing jet on the early evolution of
+ compressible vortex rings, it does not suffice to simply initialize a vortex
+ ring 
+\emph on
+in situ
+\emph default
+ from analytical models of the velocity profile.
+ However, the vortex ring's behavior is relatively insensitive to small
+ variations in the velocity profile 
+\begin_inset Formula $U_{p}(t)$
+\end_inset
+
+ of the generator 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Shusser2006a"
+literal "false"
+
+\end_inset
+
+, and radial variation in the velocity profile is known from experiments
+ on axial jets to be well-described by arctangents 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Danaila2008"
+literal "false"
+
+\end_inset
+
+.
+ With these facts in mind, the vortex ring is initialized using a prescribed
+ inlet velocity profile
+\begin_inset Formula 
+\begin{align*}
+H(\eta,n_{0},\delta\eta) & =\frac{1}{2}\left[1+\tanh\left(\frac{\eta-\eta_{0}}{\delta\eta}\right)\right]\\
+f(r) & =1-H(r,D_{p}/2,\delta_{b}D_{p}/4)\\
+g(t) & =H(t,0,\tau_{1}/2)(1-H(t,t_{2},\tau_{2}/2))\\
+U(r,t) & =U_{p}f(r)g(t)
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $H$
+\end_inset
+
+ is a smeared step function, 
+\begin_inset Formula $D_{p}$
+\end_inset
+
+ is the piston diameter, 
+\begin_inset Formula $\delta_{b}$
+\end_inset
+
+ is the boundary layer thickness, 
+\begin_inset Formula $\tau_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tau_{2}$
+\end_inset
+
+ are the ramp-up and ramp-down timescales associated with shock and rarefaction
+ wave arrival, 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ is the formation time 
+\begin_inset Formula $N_{f}D_{p}/U_{p}$
+\end_inset
+
+, and 
+\begin_inset Formula $U_{p}$
+\end_inset
+
+ is the post-shock velocity prescribed by 1D gas dynamics for a given Mach
+ number.
+ 
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+Simulations were conducted in 2D 
+\begin_inset Formula $r-z$
+\end_inset
+
+ cylindrical axisymmetric geometry, reducing computational resource requirements
+ to approximately 800 CPU core hours per simulation on either the 
+\noun on
+RzTopaz
+\noun default
+ or 
+\noun on
+RzTrona
+\noun default
+ clusters at Lawrence Livermore National Laboratory.
+ A 3D simulation was attempted, but resolution-dependent aliasing effects
+ appeared after 5000 CPU hours, demanding increased resolution and higher-yet
+ resource requirements.
+ The 2D simulations were unable to model the development of the Widnall
+ instability or the turbulent wake shed from the vortex ring, resulting
+ in overprediction of the vortex velocity and underprediction of its size.
+ However, the vortex formation and shock-vortex interactions were well-captured,
+ with circulation from shock-deposited vorticity agreeing surprisingly well
+ with the bubble model described by Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Gamma-picone-boris"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ with the addition an ellipticity correction term, giving 
+\begin_inset Formula 
+\begin{equation}
+\Gamma_{v}\approx\Gamma_{\mathrm{PB}}H/D\label{eq:Gamma_vortex_shock}
+\end{equation}
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/miranda/N2_Ar_trajectory.svg
+	lyxscale 50
+	width 48col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/miranda/N2_SF6_trajectory.svg
+	lyxscale 50
+	width 48col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Simulated vortex trajectory, velocity, and circulation
+\end_layout
+
+\end_inset
+
+Vortex trajectory (top), velocity (center), and circulation (bottom) during
+ simulated vortex-interface-shock interaction; left: 
+\begin_inset Formula $\mathrm{N_{2}/Ar}$
+\end_inset
+
+, right: 
+\begin_inset Formula $\mathrm{N_{2}/SF_{6}}$
+\end_inset
+
+.
+ The dotted lines in the circulation plots denote the predicted post-shock
+ circulation 
+\begin_inset Formula $\Gamma_{v}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/visit/N2_Ar_rho_omega_combined.png
+	lyxscale 20
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Vortex-interface-shock interaction: argon into nitrogen, 
+\begin_inset Formula $M=1.8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Density (left) and vorticity (right) prior to, during, and following vortex-inte
+rface-shock interaction of an argon vortex ring formed by 
+\begin_inset Formula $M=1.25$
+\end_inset
+
+ discharge with a formation number of 2 with a 
+\begin_inset Formula $M=1.8$
+\end_inset
+
+ shock wave traveling downwards in nitrogen.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/visit/N2_SF6_combined.png
+	lyxscale 20
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Vortex-interface-shock interaction: 
+\begin_inset Formula $\mathrm{SF_{6}}$
+\end_inset
+
+ into nitrogen, 
+\begin_inset Formula $M=1.8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Volume fraction (left) and vorticity overlaid with isocontours of velocity
+ magnitude (right) prior to, during, and following vortex-interface-shock
+ interaction of a 
+\begin_inset Formula $\mathrm{SF_{6}}$
+\end_inset
+
+ vortex ring formed by 
+\begin_inset Formula $M=1.25$
+\end_inset
+
+ discharge with a formation number of 2 with a 
+\begin_inset Formula $M=1.8$
+\end_inset
+
+ shock wave traveling downwards in nitrogen.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Conclusions & future work
+\end_layout
+
+\begin_layout Standard
+A vortex ring generator was designed to release a well-controlled vortex
+ ring with a formation number of approximately 2.
+ The generator allows seeding of the driven gas with acetone for laser-induced
+ fluorescence, but a leak during experiments in the shock tube resulted
+ in undesirable variations in the gas composition of the resultant vortex
+ ring.
+ Improvements in the vortex ring generator filling and operating procedure
+ are necessary to prevent recurrence of this issue in future experiments.
+\end_layout
+
+\begin_layout Standard
+The particle image velocimetry data was likewise contaminated by weak image
+ correlations due to a relatively large inter-frame timing of 50 
+\begin_inset Formula $\si{\micro\second}$
+\end_inset
+
+.
+ It may be possible to modify the pulse-burst laser to operate in a staggered-fr
+ame output mode which would allow for smaller inter-pulse intervals of 10-20
+ 
+\begin_inset Formula $\si{\micro\second}$
+\end_inset
+
+, but this remains to be seen.
+ If such modification is not possible, further experiments will rely on
+ a conventional PIV imaging setup with a dual-cavity laser and a specialized
+ framing camera.
+\end_layout
+
+\begin_layout Standard
+2D simulations showed promising results for the inclusion of a stratified
+ gas interface in the vortex-shock interaction, with shock-deposited circulation
+ close to theoretical predictions.
+ These simulations neglect vortex stretching and are thus of limited predictive
+ value when considering Widnall instability development, but 3D simulations
+ at full resolution have a high computational cost.
+ This cost might be mitigated to some degree by the use of adaptive mesh
+ refinement.
+ Additionally, the aliasing effects observed in 3D must be mitigated by
+ careful choice of mesh topology and boundary conditions.
+\end_layout
+
+\begin_layout Chapter*
+\start_of_appendix
+Appendix 
+\end_layout
+
+\begin_layout Section*
+Schlieren imaging
+\end_layout
+
+\begin_layout Standard
+As a ray of light propagates through transparent optical media, its path
+ may be altered by refractive index gradients corresponding to density or
+ species concentration gradients.
+ Schlieren and shadowgraphic imaging harness these deviations to capture
+ the gradient and curvature, respectively, of the refractive index fields
+ of inhomogeneous gases along a collimated beam path.
+ The operating principles of each method are captured by the optical Eikonal
+ equation 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Gutierrez2005"
+literal "false"
+
+\end_inset
+
+ describing the propagation of a ray of light along a path parametrized
+ by 
+\begin_inset Formula $s$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\dv{s}(n\dv{x_{j}}{s})-\pdv{n}{x_{j}}=0
+\]
+
+\end_inset
+
+which expands to
+\begin_inset Formula 
+\[
+\dv[2]{x_{j}}{s}=\frac{1}{n}\left(\pdv{n}{x_{j}}-\dv{n}{s}\dv{x_{j}}{s}\right)
+\]
+
+\end_inset
+
+with
+\begin_inset Formula 
+\[
+\dv{n}{s}=\dv{n}{x_{k}}\dv{x_{k}}{s}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $n$
+\end_inset
+
+ is the local refractive index and 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ is the 
+\begin_inset Formula $i^{\mathrm{th}}$
+\end_inset
+
+ coordinate of the ray's position.
+ In the paraxial (small-deviation) limit, with light propagating along the
+ 
+\begin_inset Formula $z$
+\end_inset
+
+-axis, the second term can be discarded, giving 
+\begin_inset Formula 
+\[
+\dv[2]{x_{j}}{z}=\frac{1}{n}\pdv{n}{x_{j}}
+\]
+
+\end_inset
+
+Shadowgraphy relies on beam-steering caused by local variation in the refractive
+ index gradient 
+\begin_inset Formula $(\pdv[2]{n}{x}\neq0)$
+\end_inset
+
+ to produce light and dark bands in an otherwise uniform intensity field,
+ while Schlieren uses a knife edge obstruction placed at the focal point
+ of a converging lens to cut off some fraction of the light rays proportional
+ to 
+\begin_inset Formula $\pdv{n}{x_{j}}$
+\end_inset
+
+, producing a relief-shaded image of the gradients perpendicular to the
+ knife edge.
+ All Schlieren images include shadowgraphic fringes, which makes it difficult
+ to extract quantitative estimates of the refractive index gradients from
+ such images, so their use is mostly restricted to qualitative descriptions
+ and basic geometric measurements of prominent flow features.
+ Nevertheless, the simplicity of the Schlieren optical apparatus remains
+ attractive in cases when such measurements are sufficient, as was the case
+ for the vortex ring generator design validation process.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schlieren configurations
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Series
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Light source
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Focusing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Imaging
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(a)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Microscopy light hose
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f=0.5$
+\end_inset
+
+ m, 
+\begin_inset Formula $\diameter=80$
+\end_inset
+
+ mm lens
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Princeton Instruments PIMAX 4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(b)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Microscopy light hose
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f=1$
+\end_inset
+
+ m, 
+\begin_inset Formula $\diameter=127$
+\end_inset
+
+ mm mirror
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Princeton Instruments PIMAX 4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Fill out entirety of Schlieren configuration table
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "C:/Users/alexa/Documents/Bibtex/library"
+options "aiaa"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
