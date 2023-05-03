@@ -164,16 +164,6 @@ PLIFlist.runname = runname.(eachrow(PLIFlist))
 leftjoin!(PLIFlist, DataFrame(PLIFcores), on=:runname)
 
 ##
-function MST_state(runmeta)
-    p_ace = Species("acetone", T = 22u"°C").Psat*u"Pa"
-    p_total = (runmeta.MST_psig + 14.5)*u"psi" |> u"Pa"
-    χ_ace = p_ace/p_total
-    MSTgas = Mixture([runmeta.MST_gas => 1-χ_ace, "acetone" => χ_ace])
-    Ma = fzero(1.31) do M
-        pressure(PyThermo.ShockTube.driverpressure(MSTgas, MSTgas, M)) - p_total
-    end
-    sc = PyThermo.ShockTube.shockcalc(MSTgas, MSTgas, Ma)
-end
 
 # runmeta = eachrow(PLIFlist)[5]
 # begin; runmeta = select_run(PLIFlist, "2022-11-15_run1")
@@ -262,7 +252,7 @@ foreach(eachrow(PLIFlist)) do runmeta
     catch
         nothing
     end
-    save(plotsdir("PLIF_core_trajectories", runname(runmeta)*".png"), f, px_per_unit=4)
+    savefigs && save(plotsdir("PLIF_core_trajectories", runname(runmeta)*".png"), f, px_per_unit=4)
     f
 end
 
