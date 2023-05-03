@@ -29,3 +29,19 @@ function phantom_timing(runmeta, timings, cine_nframes)
     t_err, cine_PIV_idx = findmin(t -> abs(t - t_TSI), t_Phantom)
     return cine_PIV_idx, t_err
 end
+
+"""
+    MST_state(runmeta)
+
+Calculate the vortex ring generator gas states for a given run.
+"""
+function MST_state(runmeta)
+    p_ace = Species("acetone", T = 22u"°C").Psat*u"Pa"
+    p_total = (runmeta.MST_psig + 14.5)*u"psi" |> u"Pa"
+    χ_ace = p_ace/p_total
+    MSTgas = Mixture([runmeta.MST_gas => 1-χ_ace, "acetone" => χ_ace])
+    Ma = fzero(1.31) do M
+        pressure(PyThermo.ShockTube.driverpressure(MSTgas, MSTgas, M)) - p_total
+    end
+    sc = PyThermo.ShockTube.shockcalc(MSTgas, MSTgas, Ma)
+end
