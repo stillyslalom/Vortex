@@ -25,6 +25,7 @@ include("timing.jl")
 include("PIV/post.jl")
 include("registration.jl")
 include("painting.jl")
+include("fluiddyn.jl")
 
 export loadmeta, along, select_run
 export imadjust, phantom_bgsub, overlapimages
@@ -35,6 +36,7 @@ export PranaData, PranaPass, vector_replacement, VectorStatus, vector_infill
 export PEAK1, PEAK2, INTERP, FAILED # vector status enum
 export push1
 export MST_state
+export vorticity
 
 function loadmeta(f=(_ -> true))
     filter!(f, DataFrame(XLSX.readtable(datadir("meta.xlsx"), "Sheet1")))

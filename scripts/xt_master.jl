@@ -126,7 +126,7 @@ function PLIF_cores(runmeta)
             xi = itp_xgrid(core_ix(cores, lr, state))
             zi = itp_zgrid(core_iz(cores, lr, state))
             for (i, ti) in enumerate(ti)
-                t = t_Phantom[ti]
+                t = runmeta.t_Phantom[ti]
                 x = zi[i]
                 z = zi[i]
                 corephys[Symbol(lr)][state][ti] = (t=t, x=x, z=z)
@@ -196,7 +196,7 @@ transform!(runlist, AsTable(:) => ByRow(find_SVI) => [:zfits, :psfits, :t_SVI, :
 ## Extract and save new values to JLD2
 foreach(eachrow(runlist)) do runmeta
     newdata = ntuple2dict((;
-        grid = runmeta.grid,
+        grid = (x = runmeta.grid.xx, z = runmeta.grid.zz),
         t₀ = runmeta.t₀,
         t_Phantom = runmeta.t_Phantom,
         t_TSI = runmeta.t_TSI,
