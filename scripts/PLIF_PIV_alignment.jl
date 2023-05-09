@@ -96,7 +96,8 @@ foreach(eachrow(PIVlist)) do runmeta
         xx = range(0, step=phantomscale.mm_per_px, length=size(cine_PIV, 2))
         yy = range(stop = phantomscale.origin_mm, step=phantomscale.mm_per_px, length=size(cine_PIV, 1))
         u, v = (reverse.((uv.u, uv.v), dims=2)...,)
-        data = Dict{String, Any}("x" => xx, "y" => yy, "u" => u, "v" => v)
+        σu, σv = (reverse.((uv.σu, uv.σv), dims=2)...,)
+        data = Dict{String, Any}("x" => xx, "y" => yy, "u" => u, "v" => v, "σu" => σu, "σv" => σv)
     end
     data["runname"] = runname(runmeta)
     data
