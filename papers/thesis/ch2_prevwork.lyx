@@ -1,0 +1,464 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\begin_preamble
+
+%\usepackage[cache=false]{minted}
+%\usepackage{tikz}
+\usepackage{color}
+%\usetikzlibrary{shapes,arrows,calc}
+
+\usepackage[bold]{hhtensor} % options:bold, arrow, uline
+\usepackage{physics}
+\usepackage{siunitx}
+
+\makeevenhead{headings}{}{}{\thepage}
+\makeoddhead{headings}{}{}{\thepage}
+\makeevenfoot{headings}{}{}{}
+\makeoddfoot{headings}{}{}{}
+
+\copypagestyle{chapter}{plain} 
+\makeevenhead{chapter}{}{}{\thepage}
+\makeoddhead{chapter}{}{}{\thepage}
+\makeevenfoot{chapter}{}{}{}
+\makeoddfoot{chapter}{}{}{}
+
+\usepackage{ifthen}
+\renewenvironment{figure}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{figure}
+ }{%
+   \@float{figure}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+
+
+\renewenvironment{table}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{table}
+ }{%
+   \@float{table}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+
+\renewcommand{\maketitle}{%
+    \let\footnotesize\small \let\footnoterule\relax 
+	\setcounter{page}{0}
+	\thispagestyle{empty}%
+	% Cleo wants the title page to start higher 
+	%\null\vskip1in%
+	\begin{center}
+		\LARGE{\textbf{\expandafter{\@title}}}
+% original:	{\Bold\uppercase\expandafter{\@title}}
+	\end{center}
+	\vfill
+	\begin{center}
+		\textrm{By}\\
+		{\textbf{\@author}}\\
+	\end{center}
+	\vfill
+	\begin{center}
+		\textsc{A \expandafter{dissertation} submitted in partial 
+		fulfillment of the \\
+		requirements for the degree of}
+	\end{center}
+	\vfill
+	\begin{center}
+		\textsc{ Doctor of Philosophy \\
+		(\expandafter{Engineering Mechanics})}
+        \end{center}
+	\vfill
+	\begin{center}
+		at the \\
+		\textbf{UNIVERSITY OF WISCONSIN -- MADISON}\\
+		%\@submitdate\\
+		\expandafter{2023}
+	\end{center}\vskip.5in
+	\noindent Date of final oral examination: 05/30/2023\\ %\hspace*{\fill} 
+\vspace{-8bp}\noindent This dissertation is approved by the following members of the Final Oral Committee:\\
+\vspace{-8bp}\hspace{12bp} Riccardo Bonazza, Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} David A. Rothamer, Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} Jennifer A. Franck, Asst. Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} Fabian Waleffe, Professor, Mathematics\\
+\vspace{-8bp}\hspace{12bp} Mario Trujillo, Professor, Mechanical Engineering
+
+
+
+\newpage
+}
+\end_preamble
+\options final
+\use_default_options false
+\begin_modules
+customHeadersFooters
+todonotes
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "biolinum" "default"
+\font_typewriter "beramono" "default"
+\font_math "garamondx-ntxm" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype true
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement t
+\paperfontsize 12
+\spacing double
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 2
+\tocdepth 1
+\paragraph_separation skip
+\defskip medskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle headings
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Previous Work
+\end_layout
+
+\begin_layout Section
+Vortex rings
+\end_layout
+
+\begin_layout Subsection
+Formation by shock tube
+\end_layout
+
+\begin_layout Subsection
+Evolution of turbulent rings
+\end_layout
+
+\begin_layout Subsection
+Compressibility effects
+\end_layout
+
+\begin_layout Subsection
+Propagation in confined geometry
+\end_layout
+
+\begin_layout Subsection
+Interaction with stratified interfaces
+\end_layout
+
+\begin_layout Section
+Shock-vortex interactions
+\end_layout
+
+\begin_layout Subsection
+Sound generation
+\end_layout
+
+\begin_layout Subsection
+Vortex deformation
+\end_layout
+
+\begin_layout Subsection
+Vorticity production
+\end_layout
+
+\begin_layout Subsection
+Past experiments
+\end_layout
+
+\begin_layout Section
+Shock-bubble interactions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/external/haehn2011_reshocked_N2_Ar_SBI.png
+	lyxscale 40
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Planar Mie scattering images of reshocked shock-bubble interaction
+\end_layout
+
+\end_inset
+
+Planar Mie scattering images of reshocked shock-bubble interaction of a
+ nitrogen bubble in ambient argon upon acceleration by 
+\begin_inset Formula $M=1.35$
+\end_inset
+
+ (top) and 
+\begin_inset Formula $M=2.07$
+\end_inset
+
+ (bottom) shock waves 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Haehn2012a"
+literal "false"
+
+\end_inset
+
+.
+ Leftmost image is taken immediately before reshock, and subsequent images
+ are presented in order of nondimensional time 
+\begin_inset Formula $\tau=tW_{i}/D_{0}$
+\end_inset
+
+, where 
+\begin_inset Formula $W_{i}$
+\end_inset
+
+ is the incident shock velocity and 
+\begin_inset Formula $D_{0}$
+\end_inset
+
+ is the initial bubble diameter.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Haehn-reshocked-SBI"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As with the Richtmyer-Meshkov instability, baroclinic vorticity deposition
+ drives the post-shock evolution of a bubble whose density is different
+ from its surroundings.
+ This classic shock-driven flow has been extensively studied following Hass
+ & Sturtevant's foundational 1987 work 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Haas1987"
+literal "false"
+
+\end_inset
+
+, with extension to cylinders, arrays of cylinders 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Tomkins2003,Kumar2007"
+literal "false"
+
+\end_inset
+
+, reactive bubbles 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "HaehnThesis"
+literal "false"
+
+\end_inset
+
+, and other attractive initial conditions.
+ In each case, maximum baroclinic misalignment can be found at the bubble's
+ equator, with the resulting vortex sheet typically rolling up into a characteri
+stic vortex ring immediately after shock passage, or multiple rings in the
+ case of strong shocks 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Ranjan2008"
+literal "false"
+
+\end_inset
+
+.
+ These experiments present the strongest phenomenological linkage to the
+ present work, which was originally motivated by frustration with the degrading
+ influence of soap bubble film residuals on quantitative diagnostic imaging
+ techniques for shock-bubble interactions.
+ Briefly, the bubble immediately disintegrates upon shock arrival, producing
+ uneven, varicose-patterned fragmentation of the bubble film material which
+ prevents collection of actionable particle displacement images for particle
+ image velocimetry.
+ Planar laser-induced fluorescence is likewise hindered by the bubble film
+ remnants, which fluoresce strongly upon laser excitation due to the inherent
+ fluorescence of surfactant materials alongside the high density of liquid
+ surfactant droplets relative to conventional gas-phase laser-induced fluorescen
+ce tracer molecules.
+ Consequently, experimental study of shock-bubble interactions has largely
+ relied on Mie-scattered images of the bubble film and path-integrated technique
+s including shadowgraphy and Schlieren imaging.
+\end_layout
+
+\begin_layout Standard
+The most obvious consequence of a shock-bubble interaction is differential
+ acceleration of the bubble and the surrounding gas due to both inertia
+ and shock-induced circulation.
+ Several simple models are presented in the review by Ranjan 
+\emph on
+et al
+\emph default
+.
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Ranjan2011"
+literal "false"
+
+\end_inset
+
+, including a circulation deposition model derived from a straightforward
+ integral of the vorticity production equation by Picone & Boris 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Picone1988"
+literal "false"
+
+\end_inset
+
+ which gives
+\begin_inset Formula 
+\begin{align}
+\Gamma_{\mathrm{PB}} & \approx2u_{p}\left(1-\frac{u_{p}}{2W_{i}}\right)\frac{D}{2}\log\frac{\rho_{b}}{\rho_{a}}\label{eq:Gamma-picone-boris}\\
+u_{v} & \approx u_{p}+\frac{\Gamma_{\mathrm{PB}}}{4\pi R}
+\end{align}
+
+\end_inset
+
+where 
+\begin_inset Formula $u_{p}$
+\end_inset
+
+ is the post-shock particle velocity, 
+\begin_inset Formula $W_{i}$
+\end_inset
+
+ is the incident shock wave speed, 
+\begin_inset Formula $\rho_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $\rho_{b}$
+\end_inset
+
+ are the ambient and bubble densities, 
+\begin_inset Formula $D$
+\end_inset
+
+ is the pre-shock diameter of the bubble, and 
+\begin_inset Formula $R$
+\end_inset
+
+ is the radius of the post-shock vortex ring.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Shock-bubble interaction: reshock behavior
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Vortices in high-energy-density settings
+\end_layout
+
+\end_body
+\end_document

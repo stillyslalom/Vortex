@@ -1,0 +1,239 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\begin_preamble
+
+%\usepackage[cache=false]{minted}
+%\usepackage{tikz}
+\usepackage{color}
+%\usetikzlibrary{shapes,arrows,calc}
+
+\usepackage[bold]{hhtensor} % options:bold, arrow, uline
+\usepackage{physics}
+\usepackage{siunitx}
+
+\makeevenhead{headings}{}{}{\thepage}
+\makeoddhead{headings}{}{}{\thepage}
+\makeevenfoot{headings}{}{}{}
+\makeoddfoot{headings}{}{}{}
+
+\copypagestyle{chapter}{plain} 
+\makeevenhead{chapter}{}{}{\thepage}
+\makeoddhead{chapter}{}{}{\thepage}
+\makeevenfoot{chapter}{}{}{}
+\makeoddfoot{chapter}{}{}{}
+
+\usepackage{ifthen}
+\renewenvironment{figure}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{figure}
+ }{%
+   \@float{figure}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+
+
+\renewenvironment{table}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{table}
+ }{%
+   \@float{table}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+
+\renewcommand{\maketitle}{%
+    \let\footnotesize\small \let\footnoterule\relax 
+	\setcounter{page}{0}
+	\thispagestyle{empty}%
+	% Cleo wants the title page to start higher 
+	%\null\vskip1in%
+	\begin{center}
+		\LARGE{\textbf{\expandafter{\@title}}}
+% original:	{\Bold\uppercase\expandafter{\@title}}
+	\end{center}
+	\vfill
+	\begin{center}
+		\textrm{By}\\
+		{\textbf{\@author}}\\
+	\end{center}
+	\vfill
+	\begin{center}
+		\textsc{A \expandafter{dissertation} submitted in partial 
+		fulfillment of the \\
+		requirements for the degree of}
+	\end{center}
+	\vfill
+	\begin{center}
+		\textsc{ Doctor of Philosophy \\
+		(\expandafter{Engineering Mechanics})}
+        \end{center}
+	\vfill
+	\begin{center}
+		at the \\
+		\textbf{UNIVERSITY OF WISCONSIN -- MADISON}\\
+		%\@submitdate\\
+		\expandafter{2023}
+	\end{center}\vskip.5in
+	\noindent Date of final oral examination: 05/30/2023\\ %\hspace*{\fill} 
+\vspace{-8bp}\noindent This dissertation is approved by the following members of the Final Oral Committee:\\
+\vspace{-8bp}\hspace{12bp} Riccardo Bonazza, Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} David A. Rothamer, Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} Jennifer A. Franck, Asst. Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} Fabian Waleffe, Professor, Mathematics\\
+\vspace{-8bp}\hspace{12bp} Mario Trujillo, Professor, Mechanical Engineering
+
+
+
+\newpage
+}
+\end_preamble
+\options final
+\use_default_options false
+\begin_modules
+customHeadersFooters
+todonotes
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "biolinum" "default"
+\font_typewriter "beramono" "default"
+\font_math "garamondx-ntxm" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype true
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement t
+\paperfontsize 12
+\spacing double
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 2
+\tocdepth 1
+\paragraph_separation skip
+\defskip medskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle headings
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Conclusions & future work
+\end_layout
+
+\begin_layout Standard
+A vortex ring generator was designed to release a well-controlled vortex
+ ring with a formation number of approximately 2.
+ The generator allows seeding of the driven gas with acetone for laser-induced
+ fluorescence, but a leak during experiments in the shock tube resulted
+ in undesirable variations in the gas composition of the resultant vortex
+ ring.
+ Improvements in the vortex ring generator filling and operating procedure
+ are necessary to prevent recurrence of this issue in future experiments.
+\end_layout
+
+\begin_layout Standard
+The particle image velocimetry data was likewise contaminated by weak image
+ correlations due to a relatively large inter-frame timing of 50 
+\begin_inset Formula $\si{\micro\second}$
+\end_inset
+
+.
+ It may be possible to modify the pulse-burst laser to operate in a staggered-fr
+ame output mode which would allow for smaller inter-pulse intervals of 10-20
+ 
+\begin_inset Formula $\si{\micro\second}$
+\end_inset
+
+, but this remains to be seen.
+ If such modification is not possible, further experiments will rely on
+ a conventional PIV imaging setup with a dual-cavity laser and a specialized
+ framing camera.
+\end_layout
+
+\begin_layout Standard
+2D simulations showed promising results for the inclusion of a stratified
+ gas interface in the vortex-shock interaction, with shock-deposited circulation
+ close to theoretical predictions.
+ These simulations neglect vortex stretching and are thus of limited predictive
+ value when considering Widnall instability development, but 3D simulations
+ at full resolution have a high computational cost.
+ This cost might be mitigated to some degree by the use of adaptive mesh
+ refinement.
+ Additionally, the aliasing effects observed in 3D must be mitigated by
+ careful choice of mesh topology and boundary conditions.
+\end_layout
+
+\end_body
+\end_document

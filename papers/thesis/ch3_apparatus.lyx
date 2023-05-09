@@ -1,0 +1,1136 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\begin_preamble
+
+%\usepackage[cache=false]{minted}
+%\usepackage{tikz}
+\usepackage{color}
+%\usetikzlibrary{shapes,arrows,calc}
+
+\usepackage[bold]{hhtensor} % options:bold, arrow, uline
+\usepackage{physics}
+\usepackage{siunitx}
+
+\makeevenhead{headings}{}{}{\thepage}
+\makeoddhead{headings}{}{}{\thepage}
+\makeevenfoot{headings}{}{}{}
+\makeoddfoot{headings}{}{}{}
+
+\copypagestyle{chapter}{plain} 
+\makeevenhead{chapter}{}{}{\thepage}
+\makeoddhead{chapter}{}{}{\thepage}
+\makeevenfoot{chapter}{}{}{}
+\makeoddfoot{chapter}{}{}{}
+
+\usepackage{ifthen}
+\renewenvironment{figure}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{figure}
+ }{%
+   \@float{figure}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+
+
+\renewenvironment{table}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{table}
+ }{%
+   \@float{table}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+
+\renewcommand{\maketitle}{%
+    \let\footnotesize\small \let\footnoterule\relax 
+	\setcounter{page}{0}
+	\thispagestyle{empty}%
+	% Cleo wants the title page to start higher 
+	%\null\vskip1in%
+	\begin{center}
+		\LARGE{\textbf{\expandafter{\@title}}}
+% original:	{\Bold\uppercase\expandafter{\@title}}
+	\end{center}
+	\vfill
+	\begin{center}
+		\textrm{By}\\
+		{\textbf{\@author}}\\
+	\end{center}
+	\vfill
+	\begin{center}
+		\textsc{A \expandafter{dissertation} submitted in partial 
+		fulfillment of the \\
+		requirements for the degree of}
+	\end{center}
+	\vfill
+	\begin{center}
+		\textsc{ Doctor of Philosophy \\
+		(\expandafter{Engineering Mechanics})}
+        \end{center}
+	\vfill
+	\begin{center}
+		at the \\
+		\textbf{UNIVERSITY OF WISCONSIN -- MADISON}\\
+		%\@submitdate\\
+		\expandafter{2023}
+	\end{center}\vskip.5in
+	\noindent Date of final oral examination: 05/30/2023\\ %\hspace*{\fill} 
+\vspace{-8bp}\noindent This dissertation is approved by the following members of the Final Oral Committee:\\
+\vspace{-8bp}\hspace{12bp} Riccardo Bonazza, Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} David A. Rothamer, Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} Jennifer A. Franck, Asst. Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} Fabian Waleffe, Professor, Mathematics\\
+\vspace{-8bp}\hspace{12bp} Mario Trujillo, Professor, Mechanical Engineering
+
+
+
+\newpage
+}
+\end_preamble
+\options final
+\use_default_options false
+\begin_modules
+customHeadersFooters
+todonotes
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "biolinum" "default"
+\font_typewriter "beramono" "default"
+\font_math "garamondx-ntxm" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype true
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement t
+\paperfontsize 12
+\spacing double
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 2
+\tocdepth 1
+\paragraph_separation skip
+\defskip medskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle headings
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Experimental apparatus
+\end_layout
+
+\begin_layout Standard
+Initial investigations of the compressible vortex ring formation process
+ were carried out on several testbed platforms using high-speed Schlieren
+ imaging to guide and validate the design of a vortex ring generator.
+ Following the installation and qualification of the vortex ring generator
+ in the Wisconsin Shock Tube, the multifluid vortex-shock interaction process
+ was imaged using high-speed simultaneous planar laser-induced fluorescence
+ and particle image velocimetry.
+\end_layout
+
+\begin_layout Section
+Shock tube facility
+\end_layout
+
+\begin_layout Standard
+The subsequent experiments were conducted in the Wisconsin Shock Tube Laboratory
+'s 
+\begin_inset Formula $\SI{9.1}{m}$
+\end_inset
+
+ vertical shock tube, which fires shock waves downwards from a 
+\begin_inset Formula $\SI{2}{m}$
+\end_inset
+
+ driver section into a test section with a square 
+\begin_inset Formula $25.4\times25.4$
+\end_inset
+
+ cm cross-section.
+ The facility is nominally capable of withstanding pressures up to 
+\begin_inset Formula $\SI{20}{MPa}$
+\end_inset
+
+, although it was operated at less than 
+\begin_inset Formula $\SI{2}{MPa}$
+\end_inset
+
+ for these experiments.
+ It has hosted a wide range of experiments over its more than 20 years in
+ service, including shock mitigation studies for inertial confinement fusion,
+ shock-bubble interactions, and studies of the Richtmyer-Meshkov instability
+ with several membraneless initial conditions.
+ 
+\end_layout
+
+\begin_layout Section
+Vortex ring generation
+\end_layout
+
+\begin_layout Subsection
+Testbed design
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/pix/generator_evolution.png
+	lyxscale 40
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Vortex ring generator design evolution
+\end_layout
+
+\end_inset
+
+Vortex ring generator design evolution.
+ Left: diaphragm mounting flange connected to driver section below and driven
+ section above.
+ Center: laser diaphragm rupture testbed platform.
+ Right: vortex ring generator mounted in end-wall flange prior to installation
+ in shock tube.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vortex-ring-generator-evo"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The design process proceeded in three iterations, starting with proof of
+ concept based on galvanized steel Schedule 40 plumbing connectors purchased
+ from a local hardware store, moving to a low-pressure testbed mimicking
+ the dimensions of the shock tube, and culminating in a high-strength apparatus
+ permanently installed in the shock tube.
+\end_layout
+
+\begin_layout Standard
+Existing literature on vortex generation from the open end of a shock tube
+ lent credence to the basic concept 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Arakeri2004,Poudel2021,Murugan2012"
+literal "false"
+
+\end_inset
+
+, but several operational constraints necessitated a novel design.
+ Prior art generally involves discharge of air-formed vortex rings into
+ the ambient atmosphere without shock interaction, while this research effort
+ is fundamentally motivated by the study of mixing, which necessitates both
+ an initial condition which is unmixed and a diagnostic technique which
+ allows visualization of mixedness.
+ Because of the dimensional limitations of the shock tube facility, the
+ size of the vortex generator was constricted both by the limited vertical
+ space between the end-wall of the shock tube and the concrete floor, as
+ well as the desire to avoid wall effects in a 25 cm square cross section.
+ Temporal uncertainty on the order of 
+\begin_inset Formula $\pm100$
+\end_inset
+
+ ms in the delay between boost tank fast-acting valve actuation and initiation
+ of diaphragm rupture required vortex ring generation to be initiated immediatel
+y after detection of the main shock wave by a pressure transducer.
+ Additionally, tight control of vortex generator rupture timing and pre-rupture
+ gas state and composition was needed to ensure the occurrence of the shock
+ wave–vortex interaction within the imaging window at a predefined imaging
+ time.
+\end_layout
+
+\begin_layout Standard
+These constraints were addressed by several design elements, with novelties
+ including pulsed laser-induced rupture of the vortex ring generator diaphragm
+ and maintenance of initial separation between driven and ambient gas by
+ evacuation of excess acetone-seeded gas via an annular slot encircling
+ the exit orifice.
+\end_layout
+
+\begin_layout Subsection
+Laser-induced diaphragm rupture
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/pix/laserknife.png
+	lyxscale 10
+	height 6cm
+
+\end_inset
+
+
+\begin_inset space \quad{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/pix/rupture.png
+	lyxscale 50
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+(a) Laser cross optics for diaphragm rupture.
+ (b) Ruptured diapragm mounted on vortex ring generator driven section inlet
+ flange.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pulsed lasers allow for inexpensive production of high-energy-density conditions
+ with the aid of focusing optics, with widespread commercial application
+ to material processing.
+ These advancements have been harnessed by fluid dynamicists to provide
+ illumination for most modern flow visualization techniques, with a resultant
+ abundance of high-power pulsed lasers in many shock tube laboratories.
+ Such lasers can be usefully repurposed as a means of rupturing thin diaphragms
+ in a tightly controlled fashion, allowing exact repetition of rupture pressure
+ and shock release timing.
+ For these experiments, the fundamental 1064 nm output of a dual-cavity
+ Nd:YAG Ekspla NL-303D laser was separated by a polarized beamsplitter,
+ focused by a pair of orthogonally-oriented cylindrical lenses, and recombined
+ by another beamsplitter into a 
+\begin_inset Formula $\times$
+\end_inset
+
+ shape directed at the vortex ring generator diaphragm.
+\end_layout
+
+\begin_layout Section
+Flow visualization: lasers and diagnostics
+\end_layout
+
+\begin_layout Section
+Experimental procedures
+\end_layout
+
+\begin_layout Subsection
+Schlieren imaging
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/diagrams/schlieren_setup.svg
+	lyxscale 20
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schlieren imaging apparatus
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A series of 135 experiments were conducted on the testbed platforms depicted
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-ring-generator-evo"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ to design and validate a vortex ring generator using high-speed Schlieren
+ imaging.
+ The cylinder diameter 
+\begin_inset Formula $D_{p}$
+\end_inset
+
+ was constrained by the dimensions of adjacent visualization laser entry
+ windows, leaving the lengths of the driver and driven sections to be determined
+ by experiments.
+ The initial hypothesis was that a driver section with a length of 
+\begin_inset Formula $15.2$
+\end_inset
+
+ cm would allow the vortex ring to reach the limiting formation number 
+\begin_inset Formula $N=4$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Mohseni2002"
+literal "false"
+
+\end_inset
+
+, but a shorter driver length of 8.4 cm was found to produce a sufficiently
+ strong ring without triggering a premature transition to turbulence through
+ the leapfrogging effect induced by the trailing jet.
+\end_layout
+
+\begin_layout Subsection
+Simultaneous high-speed PLIF/PIV
+\end_layout
+
+\begin_layout Standard
+Illumination is provided by a pulse-burst laser system firing at a repetition
+ rate of 
+\begin_inset Formula $\SI{20}{kHz}$
+\end_inset
+
+ throughout the 
+\begin_inset Formula $\SI{10}{ms}$
+\end_inset
+
+ duration of the experiment.
+ The fundamental 
+\begin_inset Formula $\SI{1064}{nm}$
+\end_inset
+
+ laser emission is seeded by a diode-pumped Nd:YVO
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+
+ oscillator laser and intensified by two twice-through Nd:YAG amplifier
+ stages before undergoing frequency-doubling and -quadrupling by nonlinear
+ crystals to produce a co-propagating 532 and 
+\begin_inset Formula $\SI{266}{nm}$
+\end_inset
+
+ laser pulse with average energies of 90 and 39 mJ per pulse at each respective
+ wavelength.
+ The laser beam is focused by a converging spherical and diverging cylindrical
+ lens to produce a laser sheet whose nominal width is 12 cm at its waist
+ in the center of the imaging window.
+ The Mie-scattered TiO
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ particle image is captured by a Photron Fastcam SA-Z camera, while the
+ fluorescence signal is recorded by a Phantom v1211 camera oriented as depicted
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:High-speed-laser-camera-config"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Both cameras are synchronized with the laser oscillator, producing image
+ sequences with 
+\begin_inset Formula $\SI{50}{\micro\second}$
+\end_inset
+
+ inter-frame separation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/diagrams/lasers_cameras.svg
+	lyxscale 15
+	width 12cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+High-speed laser & camera layout
+\end_layout
+
+\end_inset
+
+High-speed laser & camera layout.
+ The imaging window's centerline is 28 cm from the vortex ring generator
+ outlet.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:High-speed-laser-camera-config"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+High-speed PLIF/single-shot PIV
+\end_layout
+
+\begin_layout Section
+Procedure
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/diagrams/MST_diagram.png
+	lyxscale 20
+	height 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/PrelimVortex/plots/diagrams/mst_dimensions.png
+	lyxscale 20
+	height 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/timing/xt.svg
+	lyxscale 50
+	height 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Vortex ring generator apparatus and timing diagram
+\end_layout
+
+\end_inset
+
+(a) Vortex ring generator apparatus embedded in shock tube end-wall flange.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(b) Vortex ring generator dimensions in inches.
+\end_layout
+
+\end_inset
+
+(b) Laser and camera timing diagram overlaid with shock detection times
+ extracted from experimental pressure traces.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All internal volumes within the shock tube are first evacuated to approximately
+ 6 kPa to remove air and other contaminants.
+ The driver section is then filled with 
+\begin_inset Formula $\mathrm{N_{2}}$
+\end_inset
+
+ to 1.5 MPa, and the driven section is filled to atmospheric pressure with
+ 
+\begin_inset Formula $\mathrm{N_{2}}$
+\end_inset
+
+ seeded with 
+\begin_inset Formula $\diameter=300$
+\end_inset
+
+ nm 
+\begin_inset Formula $\mathrm{TiO_{2}}$
+\end_inset
+
+ particles for flow visualization.
+ An acetone bath is held at 293 K and pressurized with argon to 305 kPa,
+ seeding the argon with 8% acetone by volume.
+ A steady stream of acetone-seeded argon is introduced to the driven section
+ of the vortex ring generator, with excess argon removed by the annular
+ vacuum slot encircling the vortex generator outlet.
+ Several seconds prior to the arrival of the shock wave, the vortex ring
+ generator driver is pressurized with argon to 300 kPa.
+ The shock tube driver is then rapidly pressurized to 1.9 MPa, at which point
+ the aluminum diaphragm separating the driver and driven sections ruptures,
+ generating a shock wave of nominal strength 
+\begin_inset Formula $M=1.8$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As the shock wave travels down the driven section of the shock tube, the
+ associated pressure rise is detected by a high-frequency pressure transducer,
+ triggering the laser-induced rupture of the vortex ring generator diaphragm
+ and initiating imaging by the pulse-burst laser and high-speed cameras.
+ The initial propagation of the vortex ring, its acceleration by the shock
+ wave, and its continued propagation following re-shock is then captured
+ during the 10 ms imaging duration.
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+Several obstacles appeared while processing PLIF and PIV images to extract
+ density and velocity fields.
+ Because of a slow leak in the vortex ring generator driven section which
+ was not detected until near the end of the experimental campaign, the argon
+ in that section was contaminated by a varying amount of nitrogen.
+ This made it difficult to perform the iterative correction procedure needed
+ for accurate estimation of the acetone concentration, preventing calculation
+ of the density field.
+ 
+\end_layout
+
+\begin_layout Standard
+The PIV images show the presence of large particle displacements in the
+ up-welling region along the centerline of the entrainment bubble, with
+ pre-shock displacements on the order of 60-80 pixels, and post-shock displaceme
+nts several times larger.
+ Although an attempt was made to take advantage of the theoretically well-descri
+bed vortex-induced velocity field for a displacement estimate, these displacemen
+ts proved too large for a state-of-the-art multi-pass PIV processing procedure
+ with a robust phase correlator and iterative window deformation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/ringpositionvelocity.png
+	width 14cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Vortex core trajectories and velocities extracted from PLIF
+\end_layout
+
+\end_inset
+
+Vortex core trajectories and velocities manually extracted from PLIF image
+ sequences.
+ 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $z_{0}$
+\end_inset
+
+ are the shock-vortex interaction time and vertical location, respectively.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vortex-core-trajectories"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/init.png
+	lyxscale 30
+	width 32col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/shock.png
+	lyxscale 30
+	width 32col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/reshock.png
+	lyxscale 30
+	width 32col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Pre-shock, post-shock, and post-reshock PLIF images
+\end_layout
+
+\end_inset
+
+Pre-shock, post-shock, and post-reshock PLIF images (left to right) of the
+ vortex ring at a fixed vertical station.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pre-post-re-shock-PLIF"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi1.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi2.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi3.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi4.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+PLIF images of the vortex ring prior to and during shock acceleration.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PLIF-SVI"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PIV/PIV.png
+	lyxscale 50
+	width 100col%
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+PIV vectors and particle image of the pre-shock vortex ring
+\end_layout
+
+\end_inset
+
+PIV vectors (left) and particle image (right) of the vortex ring prior to
+ shock acceleration.
+ Green vectors denote correlation strengths 
+\begin_inset Formula $C\geq0.05$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PIV-vectors"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Acetone PLIF intensity variation due to changes in thermodynamic conditions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
