@@ -1,0 +1,660 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\begin_preamble
+\usepackage{setspace}
+%\usepackage[cache=false]{minted}
+%\usepackage{tikz}
+\usepackage{color}
+%\usetikzlibrary{shapes,arrows,calc}
+
+\usepackage[bold]{hhtensor} % options:bold, arrow, uline
+\usepackage{physics}
+\usepackage{siunitx}
+
+
+\makeevenhead{headings}{}{}{\thepage}
+\makeoddhead{headings}{}{}{\thepage}
+\makeevenfoot{headings}{}{}{}
+\makeoddfoot{headings}{}{}{}
+
+\copypagestyle{chapter}{plain} 
+\makeevenhead{chapter}{}{}{\thepage}
+\makeoddhead{chapter}{}{}{\thepage}
+\makeevenfoot{chapter}{}{}{}
+\makeoddfoot{chapter}{}{}{}
+
+\usepackage{ifthen}
+\renewenvironment{figure}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{figure}
+ }{%
+   \@float{figure}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+
+
+\renewenvironment{table}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{table}
+ }{%
+   \@float{table}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+
+\renewcommand{\maketitle}{%
+    \let\footnotesize\small \let\footnoterule\relax 
+	\setcounter{page}{0}
+	\thispagestyle{empty}%
+	% Cleo wants the title page to start higher 
+	%\null\vskip1in%
+	\begin{center}
+		\LARGE{\textbf{\expandafter{\@title}}}
+% original:	{\Bold\uppercase\expandafter{\@title}}
+	\end{center}
+	\vfill
+	\begin{center}
+		\textrm{By}\\
+		{\textbf{\@author}}\\
+	\end{center}
+	\vfill
+	\begin{center}
+		\textsc{A \expandafter{dissertation} submitted in partial 
+		fulfillment of the \\
+		requirements for the degree of}
+	\end{center}
+	\vfill
+	\begin{center}
+		\textsc{ Doctor of Philosophy \\
+		(\expandafter{Engineering Mechanics})}
+        \end{center}
+	\vfill
+	\begin{center}
+		at the \\
+		\textbf{UNIVERSITY OF WISCONSIN -- MADISON}\\
+		%\@submitdate\\
+		\expandafter{2023}
+	\end{center}\vskip.5in
+	\noindent Date of final oral examination: 05/30/2023\\ %\hspace*{\fill} 
+%\begin{singlespace}
+\noindent This dissertation is approved by the following members of the Final Oral Committee:\\
+\vspace{-8bp}\hspace{12bp} Riccardo Bonazza, Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} David A. Rothamer, Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} Jennifer A. Franck, Asst. Professor, Mechanical Engineering\\
+\vspace{-8bp}\hspace{12bp} Fabian Waleffe, Professor, Mathematics\\
+\vspace{-8bp}\hspace{12bp} Mario Trujillo, Professor, Mechanical Engineering
+%\end{singlespace}
+
+
+\newpage
+}
+\end_preamble
+\options final
+\use_default_options false
+\begin_modules
+customHeadersFooters
+todonotes
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "Baskerville"
+\font_sans "biolinum" "default"
+\font_typewriter "beramono" "Menlo"
+\font_math "garamondx-ntxm" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement t
+\paperfontsize 12
+\spacing double
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 2
+\tocdepth 1
+\paragraph_separation skip
+\defskip medskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle headings
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Multifluid Shock-Vortex Interactions
+\end_layout
+
+\begin_layout Author
+Alex Ames
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+frontmatter 
+\backslash
+pagenumbering{Roman}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+listoftodos
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList table
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Standard
+A great deal of effort has been levied in assessing the statistical properties
+ of variable-density mixing layers driven by the Richtmyer-Meshkov and Rayleigh-
+Taylor instabilities in the pursuit of compression efficiency for inertial
+ confinement fusion.
+ In such applications, the predominant contributions to the fat tails of
+ the mixedness distribution are the result of singular engineering features
+ which cannot be boiled away via Fourier decomposition or other convenient
+ means.
+ For example, the fill tube implosion defect manifests as a mushroom-headed
+ jet of cold, opaque material protruding into (and impeding the assembly
+ of) the central hot spot as seen in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fill-tube-implosion"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+; likewise the annuli produced by the vaporized remnants of the capsule
+ support tent.
+ As a matter of design focus, it may be better to characterize these kurtogenic
+ phenomena in isolation rather than allowing them to pollute an otherwise
+ tractable history of multimodal mixing arising from statistically-regular
+ perturbations within the layers of the inertial confinement fusion capsule's
+ shell.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/external/weber2020_hdc_fill_tube.png
+	lyxscale 60
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/external/weber2020_fill_tube_jet.png
+	lyxscale 60
+	width 34col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fill-tube-implosion"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+ICF capsule fill tube assembly
+\end_layout
+
+\end_inset
+
+(a) Fill-tube assembly of a high-density carbon (HDC) inertial confinement
+ fusion capsule.
+ The fill tube extends to the right of the image and is shown penetrating
+ the capsule in the inset X-ray radiograph.
+ (b) Density (top) and electron temperature (bottom) of a simulated ICF
+ capsule implosion at the time of peak compression (
+\begin_inset Quotes eld
+\end_inset
+
+bang time
+\begin_inset Quotes erd
+\end_inset
+
+) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "weber_filltube"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Even in the case of vorticity-driven interfacial mixing arising from interfaces
+ with a statistically-uniform perturbation structure, there is something
+ to be gained by examining the features found at the furthest extents of
+ the mixing layer.
+ Whether from a bubble or a spike, these interpenetrating blobs tend to
+ be roughly axisymmetric, with tips which often develop into the familiar
+ shape of a vortex ring.
+ These rings constitute little engines powered by the impulse of their formation
+, driving bulk transport of conserved quantities away from the interface.
+ As the mixing layer develops, transport from inertial to dissipative scales
+ is in large part driven by vortex stretching whose qualitative effect is
+ readily apparent when comparing 2D & 3D simulations (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Olson2014-SF6-air"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), as the former inherently excludes vortex stretching.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/external/bjo2014_RMI_2D_3D.jpeg
+	lyxscale 50
+	width 95col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $M=1.5$
+\end_inset
+
+ 
+\begin_inset Formula $\mathrm{SF_{6}-air}$
+\end_inset
+
+ RMI simulation in 2D and 3D
+\end_layout
+
+\end_inset
+
+Evolution of SF6-air (black-white) mass fraction during 
+\begin_inset Formula $M=1.5$
+\end_inset
+
+ planar shock/reshock interaction in 3D (top) and 2D (bottom) geometry using
+ the 
+\noun on
+Miranda
+\noun default
+ code 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Olson2014"
+literal "false"
+
+\end_inset
+
+.
+ The leftmost frame is captured 2 ms after shock interaction, and the subsequent
+ frames are 0.4, 1.9, and 6.0 ms after reshock.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Olson2014-SF6-air"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vortex rings have themselves been an object of intense study for decades,
+ attracting theoreticians by the tractability of closed-form description,
+ experimentalists by the ease of generation in laboratory settings, and
+ developers of numerical methods by simplicity of initialization.
+ However, most existing efforts focus on the single-fluid, incompressible
+ case, with a handful of studies exploring multifluid mixing in incompressible
+ geophysical flows, and some single-fluid studies exploring compressibility
+ and shock interaction in the context of noise minimization during supersonic
+ flight as depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:pirozzoli-SVI"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The present work endeavors to describe the behavior of vortex rings during
+ and after shock compression in multifluid cases with baroclinic vorticity
+ deposition on the interface between the ring and its surroundings.
+ It includes experiments on the behavior of vortex rings generated at the
+ open end of a shock tube captured with high-speed Schlieren imaging, experiment
+s on the propagation and interaction of a vortex ring with a planar shock
+ wave, and computations of vortex-interface-shock interactions.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/external/pirozzoli2004_vortex.png
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Interaction of an inclined vortex ring with 
+\begin_inset Formula $M=1.5$
+\end_inset
+
+ planar shock wave in air
+\end_layout
+
+\end_inset
+
+Interaction of an inclined vortex ring with 
+\begin_inset Formula $M=1.5$
+\end_inset
+
+ planar shock wave in air.
+ Dark gray shading represents the vortex ring as identified by 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ criterion; light gray represents a 
+\begin_inset Formula $\div{\vec{u}}=-0.1$
+\end_inset
+
+ isosurface associated with strong acoustic perturbations 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Pirozzoli2004"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pirozzoli-SVI"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "C:/Users/alexa/Documents/Bibtex/library"
+options "aiaa"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
