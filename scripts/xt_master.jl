@@ -9,6 +9,7 @@ using LsqFit
 using Unitful
 using PyThermo
 using OrderedCollections
+using Roots
 
 ##
 runlist = loadmeta(m -> !ismissing(m.timings_path) && !ismissing(m.registration_path))
@@ -127,7 +128,7 @@ function PLIF_cores(runmeta)
             zi = itp_zgrid(core_iz(cores, lr, state))
             for (i, ti) in enumerate(ti)
                 t = runmeta.t_Phantom[ti]
-                x = zi[i]
+                x = xi[i]
                 z = zi[i]
                 corephys[Symbol(lr)][state][ti] = (t=t, x=x, z=z)
             end
