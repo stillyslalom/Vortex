@@ -15,6 +15,7 @@
 \usepackage[bold]{hhtensor} % options:bold, arrow, uline
 \usepackage{physics}
 \usepackage{siunitx}
+\usepackage{refcheck}
 
 \makeevenhead{headings}{}{}{\thepage}
 \makeoddhead{headings}{}{}{\thepage}

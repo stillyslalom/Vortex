@@ -203,41 +203,6 @@ Initial investigations of the compressible vortex ring formation process
 \end_layout
 
 \begin_layout Section
-Shock tube facility
-\end_layout
-
-\begin_layout Standard
-The subsequent experiments were conducted in the Wisconsin Shock Tube Laboratory
-'s 
-\begin_inset Formula $\SI{9.1}{m}$
-\end_inset
-
- vertical shock tube, which fires shock waves downwards from a 
-\begin_inset Formula $\SI{2}{m}$
-\end_inset
-
- driver section into a test section with a square 
-\begin_inset Formula $25.4\times25.4$
-\end_inset
-
- cm cross-section.
- The facility is nominally capable of withstanding pressures up to 
-\begin_inset Formula $\SI{20}{MPa}$
-\end_inset
-
-, although it was operated at less than 
-\begin_inset Formula $\SI{2}{MPa}$
-\end_inset
-
- for these experiments.
- It has hosted a wide range of experiments over its more than 20 years in
- service, including shock mitigation studies for inertial confinement fusion,
- shock-bubble interactions, and studies of the Richtmyer-Meshkov instability
- with several membraneless initial conditions.
- 
-\end_layout
-
-\begin_layout Section
 Vortex ring generation
 \end_layout
 
@@ -313,7 +278,7 @@ Existing literature on vortex generation from the open end of a shock tube
  lent credence to the basic concept 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "Arakeri2004,Poudel2021,Murugan2012"
+key "Arakeri2004,Murugan2012,Poudel2021"
 literal "false"
 
 \end_inset
@@ -386,7 +351,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-(a) Laser cross optics for diaphragm rupture.
+(a) Mounted laser cross forming optics for diaphragm rupture.
  (b) Ruptured diapragm mounted on vortex ring generator driven section inlet
  flange.
 \end_layout
@@ -412,9 +377,14 @@ Pulsed lasers allow for inexpensive production of high-energy-density conditions
  in a tightly controlled fashion, allowing exact repetition of rupture pressure
  and shock release timing.
  For these experiments, the fundamental 1064 nm output of a dual-cavity
- Nd:YAG Ekspla NL-303D laser was separated by a polarized beamsplitter,
- focused by a pair of orthogonally-oriented cylindrical lenses, and recombined
- by another beamsplitter into a 
+ Nd:YAG Ekspla NL-303D laser was expanded by a 3X beam telescope, separated
+ by a polarized beamsplitter, focused by a pair of orthogonally-oriented
+ 
+\begin_inset Formula $f=\SI{200}{\milli\meter}$
+\end_inset
+
+ cylindrical lenses, and recombined by another polarizing beamsplitter into
+ a 
 \begin_inset Formula $\times$
 \end_inset
 
@@ -423,6 +393,152 @@ Pulsed lasers allow for inexpensive production of high-energy-density conditions
 
 \begin_layout Section
 Flow visualization: lasers and diagnostics
+\end_layout
+
+\begin_layout Section
+Shock tube facility
+\end_layout
+
+\begin_layout Standard
+All shock-vortex interaction experiments were conducted in the Wisconsin
+ Shock Tube Laboratory's 
+\begin_inset Formula $\SI{9.1}{m}$
+\end_inset
+
+ vertical shock tube, which fires shock waves downwards from a 
+\begin_inset Formula $\SI{2}{m}$
+\end_inset
+
+ driver section into a test section with a square 
+\begin_inset Formula $25.4\times25.4$
+\end_inset
+
+ cm cross-section.
+ The facility is nominally capable of withstanding pressures up to 
+\begin_inset Formula $\SI{10}{MPa}$
+\end_inset
+
+ with a factor of safety of 2, although it was operated at less than 
+\begin_inset Formula $\SI{2}{MPa}$
+\end_inset
+
+ for these experiments.
+ It has hosted a wide range of experiments over its more than 20 years in
+ service, including shock mitigation studies for inertial confinement fusion,
+ shock-bubble interactions, and studies of the Richtmyer-Meshkov instability
+ with several membraneless initial conditions.
+ The basic configuration of the facility for the present work is similar
+ to its original layout as described by Anderson 
+\emph on
+et al
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Anderson2000"
+literal "false"
+
+\end_inset
+
+, so the following discussion of the apparatus will focus on features particular
+ to these experiments.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/diagrams/WISTL_wiring.svg
+	lyxscale 20
+	width 6.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Block diagram depicting pressure measurement and data acquisition wiring
+ connections in the Wisconsin Shock Tube.
+ Minor elements are omitted or condensed, including pressure transducer
+ signal conditioning as well as relay wiring for electronically-actuated
+ valves located throughout the system.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:WISTL-wiring"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/diagrams/WISTL_tubing.svg
+	lyxscale 20
+	width 5.25in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Block diagram depicting gas delivery and exhaust systems in the Wisconsin
+ Shock Tube.
+ Minor elements are omitted or condensed, including check valves and individual
+ pneumatic and solenoid valves located within manifolds.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:WISTL-plumbing"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -832,304 +948,6 @@ As the shock wave travels down the driven section of the shock tube, the
  The initial propagation of the vortex ring, its acceleration by the shock
  wave, and its continued propagation following re-shock is then captured
  during the 10 ms imaging duration.
-\end_layout
-
-\begin_layout Section
-Results
-\end_layout
-
-\begin_layout Standard
-Several obstacles appeared while processing PLIF and PIV images to extract
- density and velocity fields.
- Because of a slow leak in the vortex ring generator driven section which
- was not detected until near the end of the experimental campaign, the argon
- in that section was contaminated by a varying amount of nitrogen.
- This made it difficult to perform the iterative correction procedure needed
- for accurate estimation of the acetone concentration, preventing calculation
- of the density field.
- 
-\end_layout
-
-\begin_layout Standard
-The PIV images show the presence of large particle displacements in the
- up-welling region along the centerline of the entrainment bubble, with
- pre-shock displacements on the order of 60-80 pixels, and post-shock displaceme
-nts several times larger.
- Although an attempt was made to take advantage of the theoretically well-descri
-bed vortex-induced velocity field for a displacement estimate, these displacemen
-ts proved too large for a state-of-the-art multi-pass PIV processing procedure
- with a robust phase correlator and iterative window deformation.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/ringpositionvelocity.png
-	width 14cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Vortex core trajectories and velocities extracted from PLIF
-\end_layout
-
-\end_inset
-
-Vortex core trajectories and velocities manually extracted from PLIF image
- sequences.
- 
-\begin_inset Formula $t_{0}$
-\end_inset
-
- and 
-\begin_inset Formula $z_{0}$
-\end_inset
-
- are the shock-vortex interaction time and vertical location, respectively.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Vortex-core-trajectories"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/init.png
-	lyxscale 30
-	width 32col%
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/shock.png
-	lyxscale 30
-	width 32col%
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/reshock.png
-	lyxscale 30
-	width 32col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Pre-shock, post-shock, and post-reshock PLIF images
-\end_layout
-
-\end_inset
-
-Pre-shock, post-shock, and post-reshock PLIF images (left to right) of the
- vortex ring at a fixed vertical station.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:pre-post-re-shock-PLIF"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi1.png
-	lyxscale 30
-	width 48col%
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi2.png
-	lyxscale 30
-	width 48col%
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi3.png
-	lyxscale 30
-	width 48col%
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi4.png
-	lyxscale 30
-	width 48col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-PLIF images of the vortex ring prior to and during shock acceleration.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PLIF-SVI"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PIV/PIV.png
-	lyxscale 50
-	width 100col%
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-PIV vectors and particle image of the pre-shock vortex ring
-\end_layout
-
-\end_inset
-
-PIV vectors (left) and particle image (right) of the vortex ring prior to
- shock acceleration.
- Green vectors denote correlation strengths 
-\begin_inset Formula $C\geq0.05$
-\end_inset
-
-.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PIV-vectors"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Acetone PLIF intensity variation due to changes in thermodynamic conditions
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_body

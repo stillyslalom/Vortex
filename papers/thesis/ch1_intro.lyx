@@ -759,7 +759,7 @@ The central portion of the mixing region is the most statistically regular
 \end_layout
 
 \begin_layout Section
-Hydrodynamic instabilities
+Hydrodynamic instabilities driven by baroclinicity
 \end_layout
 
 \begin_layout Standard
@@ -1145,8 +1145,12 @@ where
 \end_inset
 
  persist and continue to propagate.
- Similar behavior was previously observed in large eddy simulations of the
- RMI by Thornber and Zhou 
+ 
+\end_layout
+
+\begin_layout Standard
+Similar self-propagating behavior was previously observed in large eddy
+ simulations of the RMI by Thornber and Zhou 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "thornber2012"
@@ -1213,9 +1217,9 @@ Total nonlinear energy transfer during development of the Richtmyer-Meshkov
 
  as a function of wavenumber and vertical position within the interface
  (top left) corresponding to the mass fraction field (top right).
- The bottom panel (rotated) details the mass fraction and velocity vectors
- in the vicinity of a vortex ring found at the tip of a spike visible in
- the upper left portion of the mass fraction field.
+ The bottom panel (rotated clockwise) details the mass fraction and velocity
+ vectors in the vicinity of a vortex ring found at the tip of a spike visible
+ in the upper left portion of the mass fraction field.
  Reproduced from 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -1248,12 +1252,72 @@ name "fig:Thornber_RMI_vortex"
 
 \end_layout
 
+\begin_layout Standard
+In a similar vein, Kokkinakis 
+\emph on
+et al
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Kokkinakis2020"
+literal "false"
+
+\end_inset
+
+ recently examined the production and propagation of vortical structures
+ during the Richtmyer-Meshkov instability using large-eddy simulations of
+ the interaction of a weak (
+\begin_inset Formula $M=1.25$
+\end_inset
+
+) shock wave with an air-SF₆ interface.
+ They found that the two-dimensional nature of vortical structures reduced
+ turbulent kinetic energy dissipation compared to three-dimensional isotropic
+ turbulence.
+ By maintaining their form over a longer time period, vortex rings significantly
+ reduced the rate of molecular mixing between the two fluids.
+\end_layout
+
+\begin_layout Standard
+This coherent propagation of vortical structures may explain the ability
+ of compressible turbulence models to capture mixing behavior near the extremiti
+es of the mixing zone.
+ The reshock process was found to strengthen vortex rings, but repeated
+ reshock eventually destroyed the large-scale coherence, leading to the
+ development of small-scale vortical structures more typical of isotropic
+ turbulence.
+\end_layout
+
+\begin_layout Standard
+In another case initialized with a large-scale perturbation (a shocked chevron
+ instead of a shocked planar interface), the formation of vortex rings was
+ inhibited, but not prevented, due to competition from Kelvin-Helmholtz-type
+ vortical structures.
+ This observation underscores the influence of initial conditions on the
+ evolution of the flow, as well as the potential for bubble/spike competition
+ & merger processes to inhibit vortex growth.
+\end_layout
+
+\begin_layout Standard
+Kokkinakis also claims that the presence of vortical structures may also
+ be responsible for the reduced accuracy of turbulence models during reshock.
+ Most turbulence models are calibrated based on data from Rayleigh-Taylor
+ or singly-shocked Richtmyer-Meshkov mixing.
+ As such, these models may not accurately represent the complex dynamics
+ associated with the formation and evolution of vortical structures during
+ reshock.
+\end_layout
+
 \begin_layout Section
 Vortex rings
 \end_layout
 
 \begin_layout Standard
-Given the evident importance of vortex rings and vortical structures 
+Given the evident importance of vortex rings and vortical structures in
+ describing and modeling the development of shocked interfaces like those
+ required for inertial confinement fusion, let us now turn to the description
+ of textbook vortex rings formed in incompressible laboratory conditions.
 \end_layout
 
 \begin_layout Subsection
@@ -2180,14 +2244,14 @@ noprefix "false"
 \begin_inset Formula $N=L/D_{p}\approx4$
 \end_inset
 
- as described by Gharib 
+ as described by Gharib, Mohseni, 
 \emph on
 et al
 \emph default
  
 \begin_inset CommandInset citation
 LatexCommand citep
-key "Gharib1998"
+key "Gharib1998,mohseni1998"
 literal "false"
 
 \end_inset

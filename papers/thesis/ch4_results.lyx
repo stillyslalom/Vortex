@@ -205,7 +205,397 @@ Schlieren imaging of ring growth and propagation
 \end_layout
 
 \begin_layout Section
+Schlieren experiments
+\end_layout
+
+\begin_layout Standard
+The early-time development of one such ring is pictured in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Schlieren-vortex-ring"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The first four frames show the release of a planar shock wave and its immediate
+ development into a weak spherical shock followed by a series of acoustic
+ waves.
+ At the same time, the vortex ring detaches from the outlet and rapidly
+ grows to near its quasi-steady-state diameter while entraining additional
+ fluid and vorticity.
+ The vortex core is visible here as two dark regions connected by a thin
+ horizontal filaments.
+ The next four frames show the early near-laminar propagation of the ring,
+ with the vortex core filaments separating slightly from one another as
+ the ring begins to develop azimuthal bending waves.
+ These Widnall-type waves are increasingly apparent in the last four frames,
+ along with a series of weak Kelvin-Helmholtz type waves in the trailing
+ jet region below the vortex.
+ At later times (not depicted), the ring becomes fully turbulent, decelerating
+ sharply due to rapid entrainment of ambient fluid.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/schlieren/vortexformation.png
+	lyxscale 50
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Schlieren images of vortex ring formation
+\end_layout
+
+\end_inset
+
+Schlieren images of vortex ring formation (sequenced left to right, top
+ to bottom).
+ The first image is captured 
+\begin_inset Formula $\SI{700}{\micro\second}$
+\end_inset
+
+ after vortex ring generator diaphragm rupture, with subsequent images taken
+ at 
+\begin_inset Formula $\SI{105}{\micro\second}$
+\end_inset
+
+ intervals.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schlieren-vortex-ring"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Simultaneous high-speed PLIF/PIV
+\end_layout
+
+\begin_layout Standard
+Several obstacles appeared while processing PLIF and PIV images to extract
+ density and velocity fields.
+ Because of a slow leak in the vortex ring generator driven section which
+ was not detected until near the end of the experimental campaign, the argon
+ in that section was contaminated by a varying amount of nitrogen.
+ This made it difficult to perform the iterative correction procedure needed
+ for accurate estimation of the acetone concentration, preventing calculation
+ of the density field.
+ 
+\end_layout
+
+\begin_layout Standard
+The PIV images show the presence of large particle displacements in the
+ up-welling region along the centerline of the entrainment bubble, with
+ pre-shock displacements on the order of 60-80 pixels, and post-shock displaceme
+nts several times larger.
+ Although an attempt was made to take advantage of the theoretically well-descri
+bed vortex-induced velocity field for a displacement estimate, these displacemen
+ts proved too large for a state-of-the-art multi-pass PIV processing procedure
+ with a robust phase correlator and iterative window deformation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/ringpositionvelocity.png
+	width 14cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Vortex core trajectories and velocities extracted from PLIF
+\end_layout
+
+\end_inset
+
+Vortex core trajectories and velocities manually extracted from PLIF image
+ sequences.
+ 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $z_{0}$
+\end_inset
+
+ are the shock-vortex interaction time and vertical location, respectively.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vortex-core-trajectories"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/init.png
+	lyxscale 30
+	width 32col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/shock.png
+	lyxscale 30
+	width 32col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/reshock.png
+	lyxscale 30
+	width 32col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Pre-shock, post-shock, and post-reshock PLIF images
+\end_layout
+
+\end_inset
+
+Pre-shock, post-shock, and post-reshock PLIF images (left to right) of the
+ vortex ring at a fixed vertical station.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pre-post-re-shock-PLIF"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi1.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi2.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi3.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/svi4.png
+	lyxscale 30
+	width 48col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+PLIF images of the vortex ring prior to and during shock acceleration.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PLIF-SVI"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PIV/PIV.png
+	lyxscale 50
+	width 100col%
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+PIV vectors and particle image of the pre-shock vortex ring
+\end_layout
+
+\end_inset
+
+PIV vectors (left) and particle image (right) of the vortex ring prior to
+ shock acceleration.
+ Green vectors denote correlation strengths 
+\begin_inset Formula $C\geq0.05$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PIV-vectors"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status collapsed
+
+\begin_layout Plain Layout
+Acetone PLIF intensity variation due to changes in thermodynamic conditions
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
