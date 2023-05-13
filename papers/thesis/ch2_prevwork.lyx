@@ -189,7 +189,7 @@ todonotes
 \begin_body
 
 \begin_layout Chapter
-Previous Work
+Previous work
 \end_layout
 
 \begin_layout Section
@@ -200,12 +200,398 @@ Vortex rings
 Formation by shock tube
 \end_layout
 
-\begin_layout Subsection
-Evolution of turbulent rings
+\begin_layout Standard
+The formation of vortex rings by shock-driven impulsive discharge from an
+ open-ended tube was first noted by Gawthrop in 1931 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Gawthrop1931"
+literal "false"
+
+\end_inset
+
+ in an investigation of Schlieren imaging techniques for mining detonators.
+ More focused study arrived in 1952 with Elder & De Haas's Schlieren measurement
+s of vortex ring formation and growth at the open end of a conventional
+ shock tube 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "elder1952"
+literal "false"
+
+\end_inset
+
+.
+ Their work included careful measurements of vortex position and core diameter
+ growth at two pressure ratios, but the experimental techniques of the time
+ did not allow for observations beyond basic geometric parameters.
+ 
+\end_layout
+
+\begin_layout Standard
+Sturtevant acquired similar measurements in the late 1970s, and while interpreta
+tion of secondary structures visible in the Schlieren images was greatly
+ aided by then-recent advances in the theory of vortex rings, the underlying
+ flow diagnostic offered little more information than what was available
+ 30 or 50 years prior.
+ The field largely languished until the late 1990s, when the development
+ and widespread availability of inexpensive pulsed lasers and digital cameras
+ facilitated the application of modern flow diagnostics including Rayleigh
+ scattering, planar laser-induced fluorescence (PLIF), and particle image
+ velocimetry (PIV).
+ 
+\end_layout
+
+\begin_layout Standard
+The first particle image velocimetry study of shock tube formation of vortex
+ rings was carried out by Arakeri, Das, 
+\emph on
+et al
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Arakeri2004"
+literal "false"
+
+\end_inset
+
+.
+ They found that the vortex ring circulation plateaued at a nondimensional
+ formation number 
+\begin_inset Formula $U_{p}t/D$
+\end_inset
+
+ of around 2.5, in contrast to the value of 4 given by Gharib for rings formed
+ by a conventional low-speed piston apparatus.
+ Velocity at the exit of the shock tube was found to increase over time
+ to as much as twice the velocity predicted by 1D gas dynamics.
+ This was hypothesized to be due to the underexpanded nature of the post-shock
+ flow within the shock tube, but this hypothesis wouldn’t adequately account
+ for the observed increase over time.
+ The results also confirmed that the pinch-off process could be described
+ as the attainment by the ring of greater translational velocity than the
+ velocity of the discharged jet at the ring’s trailing stagnation point.
+\end_layout
+
+\begin_layout Standard
+Around the same time, Mohseni conducted a theoretical investigation of optimal
+ formation of vortex rings based on idealized gas dynamics relations 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Mohseni2002"
+literal "false"
+
+\end_inset
+
+.
+ His approach posited that optimal pinch-off ought to occur between the
+ time of arrival of the leading and trailing edges of the reflected expansion
+ wave at the open end of the shock tube.
+ The former case would produce maximum circulation, as the discharge velocity
+ would maintain a maximal value of 
+\begin_inset Formula $U_{p}$
+\end_inset
+
+ throughout the formation process.
+\end_layout
+
+\begin_layout Standard
+This idealized case contrasts, of course, with Arakeri's experimental observatio
+ns of time-varying discharge velocity at the shock tube exit.
+ To the credit of theory, Mohseni determined that all existing experimental
+ configurations fell within the limiting idealized cases of expansion wave
+ arrival.
+ To accurately describe those cases, a brief detour into gas dynamics relations
+ is required.
+\end_layout
+
+\begin_layout Standard
+Following Mohseni while hewing to Anderson's notation 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Anderson1990"
+literal "false"
+
+\end_inset
+
+, the pressure jump across a planar shock wave of strength 
+\begin_inset Formula $M$
+\end_inset
+
+ in an ideal gas of adiabatic index 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ is given by
+\begin_inset Formula 
+\begin{equation}
+\frac{p_{2}}{p_{1}}=1+\frac{2\gamma}{\gamma+1}(M^{2}-1)
+\end{equation}
+
+\end_inset
+
+In a shock tube of constant cross section, this shock jump condition is
+ related to the pressure ratio across the diaphragm by the shock tube equation
+\begin_inset Formula 
+\begin{equation}
+\frac{p_{4}}{p_{1}}=\frac{p_{2}}{p_{1}}\left[1-\frac{(\gamma_{4}-1)(a_{1}/a_{4})(p_{2}/p_{1}-1)}{\sqrt{2\gamma_{1}(2\gamma_{1}+(\gamma_{1}+1)(p_{2}/p_{1}-1)}}\right]^{\frac{2\gamma_{4}}{\gamma_{4}-1}}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+, and 
+\begin_inset Formula $\gamma_{i}$
+\end_inset
+
+ are the initial pressure, sound speed, and adiabatic index in the driver
+ and driven sections, respectively.
+ After the diaphragm is ruptured and the shock begins to propagate, a third
+ state (denoted by the subscript 
+\begin_inset Formula $_{3}$
+\end_inset
+
+) arises at the contact surface between the driver and driven gases.
+ The pressure is constant across this interface, but the temperature and
+ density vary.
+ The consequent change in sound speed means that the velocity of the leading
+ expansion wave will change as it crosses the contact surface.
+ This leads to a bifurcation in the arrival time of the leading expansion
+ wave at the open end of the shock tube depending on whether the contact
+ surface has been expelled from the shock tube prior to the expansion wave.
+ The location at which the expansion wave would reach the contact surface
+ in an infinite shock tube is
+\begin_inset Formula 
+\begin{equation}
+X=l_{4}\left(1+\frac{u_{2}}{a_{3}}\right)\left(\frac{1}{a_{4}/u_{2}}+\frac{1}{1+a_{3}/u_{2}}\right)
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $l_{4}$
+\end_inset
+
+ is the length of the driver.
+ Then, with 
+\begin_inset Formula $l_{1}$
+\end_inset
+
+ the length of the driven section, the time of arrival of the leading expansion
+ wave is
+\begin_inset Formula 
+\begin{equation}
+t_{el}=\begin{cases}
+\left(\frac{l_{4}}{a_{4}}+\frac{l_{4}+l_{1}}{a_{3}+u_{3}}\right) & X>l_{1}\\
+\left(\frac{X}{u_{2}}+\frac{l_{1}-X}{a_{2}+u_{2}}\right) & X<l_{1}
+\end{cases}
+\end{equation}
+
+\end_inset
+
+and for the trailing wave and initial shock wave,
+\begin_inset Formula 
+\begin{align}
+t_{et} & =\left(\frac{l_{4}}{a_{3}-u_{3}}+\frac{l_{4}+l_{1}}{a_{4}}\right)\\
+t_{s} & =\frac{l_{1}}{Ma_{1}}
+\end{align}
+
+\end_inset
+
+Then the total length of discharged fluid incorporated into the vortex ring
+ is 
+\begin_inset Formula $L=u_{2}(t_{e}-t_{s})$
+\end_inset
+
+ where 
+\begin_inset Formula $t_{el}<t_{e}<t_{es}$
+\end_inset
+
+, not accounting for the decrease in velocity throughout the expansion wave.
+ Given a shock tube diameter 
+\begin_inset Formula $D$
+\end_inset
+
+, this formulation constrains the allowable shock tube dimensions capable
+ of producing well-formed, near-optimal vortex rings with a formation number
+ 
+\begin_inset Formula $L/D\approx4$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
-Compressibility effects
+Compressibility effects during formation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/external/Dora_2014_compressible_vortex.png
+	lyxscale 60
+	width 90col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Synthetic Schlieren images (shaded proportional to 
+\begin_inset Formula $\grad\rho$
+\end_inset
+
+) of compressible vortex ring formation at various post-formation times
+ for 
+\begin_inset Formula $M=1.61$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Dora2014"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+The idealized treatment given above departs from observations with increased
+ driver pressure ratios due to the presence of vortex-embedded shocklets,
+ counter-rotating vortex rings (CRVRs), and systems of standing shock waves
+ and expansion fans at the shock tube exit.
+ These effects were first systematically explored by Brouillette and Hébert
+ using Schlieren photography across a range of shock tube Mach numbers 
+\begin_inset Formula $1.0<M<2.0$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Brouillette1997"
+literal "false"
+
+\end_inset
+
+.
+ Their observations revealed three Mach-dependent flow regimes that significantl
+y altered the behavior and structure of the resultant vortex rings.
+\end_layout
+
+\begin_layout Standard
+For 
+\begin_inset Formula $M<1.43$
+\end_inset
+
+, the vortex rings are substantially similar to incompressible vortex rings,
+ with minimal influence from compressibility effects.
+ Between 
+\begin_inset Formula $1.43<M<1.6$
+\end_inset
+
+, an embedded shock appears in the recirculation region which distorts the
+ vortex core into an oval shape.
+ Beyond 
+\begin_inset Formula $M=1.6$
+\end_inset
+
+, the Kelvin-Helmoltz shear flow ahead of the leading Mach disk's triple
+ point produces one or more counter-rotating vortex rings in advance of
+ the primary ring.
+ 
+\end_layout
+
+\begin_layout Standard
+These observations were confirmed by particle image velocimetry measurements
+ and simulations primarily by Murugan and colleagues including Dora, Das,
+ and Poudel 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Murugan2010,Murugan2012,Dora2014,Poudel2021"
+literal "false"
+
+\end_inset
+
+, as well as some recent contributions by Qin 
+\emph on
+et al
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Qin2020"
+literal "false"
+
+\end_inset
+
+ and Ahmad 
+\emph on
+et al
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Ahmad2020"
+literal "false"
+
+\end_inset
+
+.
+ One notable limitation of most high-resolution simulations to date is their
+ use of 2D 
+\begin_inset Formula $r-z$
+\end_inset
+
+ axisymmetric geometry, which allows for lower computational cost but neglects
+ the influence of azimuthal instabilities, which may play a significant
+ role in the structure and longevity of embedded shocks.
+\end_layout
+
+\begin_layout Standard
+Unfortunately, despite the proliferation of studies exploring the effects
+ of formation Mach number, no focused study has been performed on vortex
+ ring formation in the case of differing shock tube versus ambient gas compositi
+ons.
+ As previously noted, this work is motivated largely by vortex ring formation
+ in the context of shock-driven mixing, and post-shock Richtmyer-Meshkov-dominat
+ed flows are typically subsonic, with compressibility effects due to density
+ fluctuations arising from RMI mixing processes rather than from the presence
+ of embedded shocks.
+ This presents a clear call for future investigation into this flow regime.
+\begin_inset Note Note
+status open
+
+\begin_layout Subsection
+Evolution of turbulent rings
 \end_layout
 
 \begin_layout Subsection
@@ -215,6 +601,12 @@ Propagation in confined geometry
 \begin_layout Subsection
 Interaction with stratified interfaces
 \end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
 
 \begin_layout Section
 Shock-vortex interactions
@@ -234,6 +626,11 @@ Vorticity production
 
 \begin_layout Subsection
 Past experiments
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
