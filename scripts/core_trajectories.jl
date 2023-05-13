@@ -469,9 +469,7 @@ for k in sort(keys(PS_D_grps), by=(k -> gasorder[k.MST_gas]))
     μ = getfield.(PS_D_grps[k].D_PS_mean_std, :μ)
     ig = isfinite.(μ)
     @show k, any(isnan, μ)
-    # μ = imfilter(μ, KernelFactors.gaussian(1))
     σ = clamp01nan!(getfield.(PS_D_grps[k].D_PS_mean_std, :σ))
-    # σ = imfilter(σ, KernelFactors.gaussian())
     t = t[ig]
     μ = μ[ig]
     σ = σ[ig]
