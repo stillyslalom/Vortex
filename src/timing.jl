@@ -31,17 +31,24 @@ function phantom_timing(runmeta, timings, cine_nframes)
 end
 
 """
-    MST_state(runmeta)
+    MST_state(MST_gas, MST_psig)
 
 Calculate the vortex ring generator gas states for a given run.
 """
-function MST_state(runmeta)
+function MST_state(MST_gas, MST_psig)
     p_ace = Species("acetone", T = 22u"°C").Psat*u"Pa"
-    p_total = (runmeta.MST_psig + 14.5)*u"psi" |> u"Pa"
+    p_total = (MST_psig + 14.5)*u"psi" |> u"Pa"
     χ_ace = p_ace/p_total
-    MSTgas = Mixture([runmeta.MST_gas => 1-χ_ace, "acetone" => χ_ace])
+    MSTgas = Mixture([MST_gas => 1-χ_ace, "acetone" => χ_ace])
     Ma = fzero(1.31) do M
         pressure(PyThermo.ShockTube.driverpressure(MSTgas, MSTgas, M)) - p_total
     end
     sc = PyThermo.ShockTube.shockcalc(MSTgas, MSTgas, Ma)
 end
+
+"""
+    MST_state(runmeta)
+
+Calculate the vortex ring generator gas states for a given run.
+"""
+MST_state(runmeta) = MST_state(runmeta.MST_gas, runmeta.MST_psig)

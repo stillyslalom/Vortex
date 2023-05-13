@@ -1,3 +1,4 @@
+using DrWatson
 @quickactivate "Vortex"
 using Vortex
 using GLMakie, CairoMakie
@@ -5,8 +6,9 @@ using JLD2
 using Measurements
 using LsqFit
 using LaTeXStrings
-using Optim
 using Printf
+using Unitful
+using PyThermo
 
 update_theme!(Theme(fonts = (; regular = "New Roman", bold = "New Roman Bold")))
 ##
@@ -209,7 +211,7 @@ end
 ##
 gbIC = groupby(IClist, [:MST_gas, :MST_psig])
 transform!(gbIC, x -> (; a_med = median([getfield.(x.∫ₗ, :a); getfield.(x.∫ᵣ, :a)])))
-transform!(gbIC, x -> (; a_formula = sqrt(4*MST_state(x[1,:]).driven.nu*runmeta.t_TSI)))
+transform!(gbIC, x -> (; a_formula = sqrt(4*MST_state(x[1,:]).driven.nu*x[1,:].t_TSI)))
 
 IClist.R_TSIpick = map(eachrow(IClist)) do runmeta
     zfits = Dict{Symbol, Vector{Float64}}() #Vector{Float64}[]
@@ -220,6 +222,16 @@ end
 
 IClist.R_∫rω = map(eachrow(IClist)) do r
     (r.∫ᵣ.R - r.∫ₗ.R) / 2
+end
+
+##
+IClist.U_predict_naive = map(eachrow(IClist)) do r
+    R = r.R_TSIpick
+    # R = ustrip(u"m", r.R_∫rω)
+    α = ustrip(u"m", r.a_med) / R
+    ν = MST_state(r).driven.nu
+    t = r.t_TSI
+    r.Γ / (4π*R*u"m") * (log(8/α) - 0.5)
 end
 
 IClist.U_predict = map(eachrow(IClist)) do r
@@ -255,7 +267,6 @@ f
 ## Plot relative prediction error (U_predict - U_fit) / U_fit versus U_fit
 f = Figure(resolution=100 .* (7, 6))
 
-colorset = Dict(unique(IClist.MST_psig) .=> Makie.wong_colors()[1:7])
 for i in 1:2, j in 1:2
     idx = j + 2*(i-1)
     gas, _ = shockICs[idx]
@@ -276,6 +287,61 @@ for i in 1:2, j in 1:2
 end
 save(plotsdir("circulation_jump", "predict_error_versus_U_fit.svg"), f)
 f
+## Predict pre-shock circulation for shocked runs
+PSlist = filter(r -> r.shockrun, good_PIV)
+
+PSlist.U_fit = map(eachrow(PSlist)) do runmeta
+    zfits = runmeta.zfits
+    length(zfits) == 0 && return missing
+    mean(zfit -> zfit[1]*zfit[2]*exp(-zfit[2]*runmeta.t_TSI), values(zfits))
+end
+##
+gbPS = groupby(PSlist, [:MST_gas, :MST_psig])
+transform!(gbPS, x -> (; a_med = median([getfield.(x.∫ₗ, :a); getfield.(x.∫ᵣ, :a)])))
+
+PSlist.R_TSIpick = map(eachrow(PSlist)) do runmeta
+    core = load(datadir("PIV", "cores", runname(runmeta)*".jld2"))
+    isnan(core["leftcore"][1]) || isnan(core["rightcore"][1]) && return nothing
+    R = 1e-3*hypot((core["leftcore"] .- core["rightcore"])...) ./ 2
+end
+
+PSlist.Γ_pred = map(eachrow(PSlist)) do r
+    R = r.R_TSIpick
+    α = ustrip(u"m", r.a_med) / R
+    r.U_fit*u"m/s" * 4π*R*u"m" / (log(8/α) - 0.5 - 1.6*(0.6 - r.At)^2)
+end
+
+## Plot circulation jump (relative to pre-shock prediction) versus time relative to t_SVI
+f = Figure(resolution=100 .* (7, 5))
+ax1 = Axis(f[1, 1], xlabel="post-shock time [ms]", ylabel="ΔΓ [m²/s]", 
+        xminorticksvisible=true, yminorticksvisible=true)
+ΔΓs = Dict{String,Vector{Float64}}()
+for i in 1:2, j in 1:2
+    idx = j + 2*(i-1)
+    gas, psig = shockICs[idx]
+    shocks = gbPS[(MST_gas = gas, MST_psig=psig)]
+    ΔΓ = shocks.Γ .- shocks.Γ_pred
+    ΔΓs[gas] = ustrip.(u"m^2/s", ΔΓ)
+    plot!(ax1, 1e3*(shocks.t_TSI .- shocks.t_SVI), ustrip.(u"m^2/s", ΔΓ), 
+        marker=:dtriangle, label=gas, color=Makie.wong_colors()[idx])
+    hlines!(ax1, ustrip(u"m^2/s", mean(ΔΓ)), color=Makie.wong_colors()[idx], linestyle=:dot, label=gas)
+end
+axislegend(position = :rt, merge=true)
+# Plot ΔΓ distribution versus Atwood number
+ax2 = Axis(f[1, 2], xlabel="Atwood number", 
+        xminorticksvisible=true, yminorticksvisible=true)
+for i in 1:2, j in 1:2
+    idx = j + 2*(i-1)
+    gas, psig = shockICs[idx]
+    ΔΓ = ΔΓs[gas]
+    shocks = gbPS[(MST_gas = gas, MST_psig=psig)]
+    boxplot!(ax2, fill(mean(shocks.At), length(ΔΓ)), ΔΓ, 
+        label=gas, color=Makie.wong_colors()[idx], width=0.07)
+end
+linkyaxes!(ax1, ax2)
+save(plotsdir("circulation_jump", "Delta_Gamma_predicted_versus_At.svg"), f,)
+f
+
 ##
 runmeta = select_run(runlist, "2023-01-19_run9")
 f = Figure()
