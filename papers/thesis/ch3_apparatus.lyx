@@ -197,9 +197,27 @@ Initial investigations of the compressible vortex ring formation process
  were carried out on several testbed platforms using high-speed Schlieren
  imaging to guide and validate the design of a vortex ring generator.
  Following the installation and qualification of the vortex ring generator
- in the Wisconsin Shock Tube, the multifluid vortex-shock interaction process
- was imaged using high-speed simultaneous planar laser-induced fluorescence
- and particle image velocimetry.
+ in the Wisconsin Shock Tube, the interaction between an argon vortex ring
+ and a planar 
+\begin_inset Formula $M=2$
+\end_inset
+
+ shock traveling in ambient nitrogen was imaged using high-speed simultaneous
+ planar laser-induced fluorescence (PLIF) and particle image velocimetry
+ (PIV).
+ The particle displacements during the 
+\begin_inset Formula $\SI{50}{\micro\second}$
+\end_inset
+
+ inter-frame time interval were found to be too large for extraction of
+ valid PIV displacement vectors.
+ To improve the quality of velocity data, a second experimental campaign
+ retained the high-speed PLIF diagnostic while capturing a single PIV image
+ pair at various post-shock times with a dedicated dual-head laser and high-reso
+lution dual-frame camera.
+ The second campaign incorporated a study of Atwood number effects by forming
+ vortex rings from nitrogen, argon, carbon tetrafluoride, and sulfur hexafluorid
+e (N₂, Ar, CF₄, and SF₆).
 \end_layout
 
 \begin_layout Section
@@ -395,6 +413,26 @@ Pulsed lasers allow for inexpensive production of high-energy-density conditions
 Flow visualization: lasers and diagnostics
 \end_layout
 
+\begin_layout Subsection
+Laser-induced fluorescence
+\end_layout
+
+\begin_layout Subsection
+Acetone seeding
+\end_layout
+
+\begin_layout Subsection
+Pulse-burst laser
+\end_layout
+
+\begin_layout Subsection
+PIV laser and particles
+\end_layout
+
+\begin_layout Subsection
+Cameras
+\end_layout
+
 \begin_layout Section
 Shock tube facility
 \end_layout
@@ -449,7 +487,7 @@ literal "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -500,7 +538,7 @@ name "fig:WISTL-wiring"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -542,7 +580,7 @@ name "fig:WISTL-plumbing"
 \end_layout
 
 \begin_layout Section
-Experimental procedures
+Experimental diagnostic configurations
 \end_layout
 
 \begin_layout Subsection
@@ -583,54 +621,12 @@ Schlieren imaging apparatus
 
 \end_layout
 
-\begin_layout Standard
-A series of 135 experiments were conducted on the testbed platforms depicted
- in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Vortex-ring-generator-evo"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- to design and validate a vortex ring generator using high-speed Schlieren
- imaging.
- The cylinder diameter 
-\begin_inset Formula $D_{p}$
-\end_inset
-
- was constrained by the dimensions of adjacent visualization laser entry
- windows, leaving the lengths of the driver and driven sections to be determined
- by experiments.
- The initial hypothesis was that a driver section with a length of 
-\begin_inset Formula $15.2$
-\end_inset
-
- cm would allow the vortex ring to reach the limiting formation number 
-\begin_inset Formula $N=4$
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "Mohseni2002"
-literal "false"
-
-\end_inset
-
-, but a shorter driver length of 8.4 cm was found to produce a sufficiently
- strong ring without triggering a premature transition to turbulence through
- the leapfrogging effect induced by the trailing jet.
-\end_layout
-
 \begin_layout Subsection
 Simultaneous high-speed PLIF/PIV
 \end_layout
 
 \begin_layout Standard
-Illumination is provided by a pulse-burst laser system firing at a repetition
+Illumination was provided by a pulse-burst laser system firing at a repetition
  rate of 
 \begin_inset Formula $\SI{20}{kHz}$
 \end_inset
@@ -644,7 +640,7 @@ Illumination is provided by a pulse-burst laser system firing at a repetition
 \begin_inset Formula $\SI{1064}{nm}$
 \end_inset
 
- laser emission is seeded by a diode-pumped Nd:YVO
+ laser emission was seeded by a diode-pumped Nd:YVO
 \begin_inset script subscript
 
 \begin_layout Plain Layout
@@ -661,21 +657,12 @@ Illumination is provided by a pulse-burst laser system firing at a repetition
 
  laser pulse with average energies of 90 and 39 mJ per pulse at each respective
  wavelength.
- The laser beam is focused by a converging spherical and diverging cylindrical
- lens to produce a laser sheet whose nominal width is 12 cm at its waist
+ The laser beam was focused by a converging spherical and diverging cylindrical
+ lens to produce a laser sheet whose nominal width was 12 cm at its waist
  in the center of the imaging window.
- The Mie-scattered TiO
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-2
-\end_layout
-
-\end_inset
-
- particle image is captured by a Photron Fastcam SA-Z camera, while the
- fluorescence signal is recorded by a Phantom v1211 camera oriented as depicted
- in Figure 
+ The Mie-scattered TiO₂ particle image was captured by a Photron Fastcam
+ SA-Z camera, while the fluorescence signal was recorded by a Phantom v1211
+ camera oriented as depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:High-speed-laser-camera-config"
@@ -686,7 +673,7 @@ noprefix "false"
 \end_inset
 
 .
- Both cameras are synchronized with the laser oscillator, producing image
+ Both cameras were synchronized with the laser oscillator, producing image
  sequences with 
 \begin_inset Formula $\SI{50}{\micro\second}$
 \end_inset
@@ -704,7 +691,19 @@ status open
 \begin_inset Graphics
 	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/diagrams/lasers_cameras.svg
 	lyxscale 15
-	width 12cm
+	width 9.5cm
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/diagrams/thesis_campaign_camera_arrangement.svg
+	lyxscale 15
+	width 6cm
 
 \end_inset
 
@@ -904,50 +903,132 @@ status open
 \end_layout
 
 \begin_layout Standard
-All internal volumes within the shock tube are first evacuated to approximately
- 6 kPa to remove air and other contaminants.
- The driver section is then filled with 
-\begin_inset Formula $\mathrm{N_{2}}$
+Assuming a hot start, where all equipment had already been powered on and
+ checked for functionality and alignment, a detailed experimental procedure
+ for a typical shock-vortex interaction experiment is given below.
+ The configuration of the data acquisition system and shock tube apparatus
+ are detailed in Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:WISTL-wiring"
+plural "false"
+caps "false"
+noprefix "false"
+
 \end_inset
 
- to 1.5 MPa, and the driven section is filled to atmospheric pressure with
- 
-\begin_inset Formula $\mathrm{N_{2}}$
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:WISTL-plumbing"
+plural "false"
+caps "false"
+noprefix "false"
+
 \end_inset
 
- seeded with 
-\begin_inset Formula $\diameter=300$
+.
+\end_layout
+
+\begin_layout Paragraph
+Main diaphragm replacement
+\end_layout
+
+\begin_layout Standard
+The main shock tube driver section flange bolts were removed using a pneumatic
+ impact wrench, after which the driver was lifted clear of the ruptured
+ diaphragm by a gantry crane.
+ The ruptured 18 gauge steel diaphragm was then removed and replaced with
+ a fresh diaphragm.
+ The driver section was lowered onto the diaphragm mounting ring, and the
+ flange bolts were re-tightened.
+ The boost tanks were filled to 1500 psig (10 MPa) and the fast acting valves
+ were exercised to verify full range of motion.
+\end_layout
+
+\begin_layout Paragraph
+Vortex ring generator diaphragm replacement and realignment of optical diagnosti
+cs
+\end_layout
+
+\begin_layout Standard
+The side access flange was removed with an impact wrench, allowing physical
+ access to the test section.
+ After manually removing large steel diaphragm fragments, a portable vacuum
+ was used to remove dust and small fragments.
+ The visualization window and the laser entry port were cleaned with lens
+ paper and lens cleaning solution.
+ The alignment of the visualization laser sheet was verified by firing the
+ PIV laser in continuous-pulse mode onto a pre-marked alignment card, with
+ adjustments made as necessary.
+ The side access flange was then replaced and secured with the impact wrench.
+\end_layout
+
+\begin_layout Standard
+The miniature shock tube (MST) driver and diaphragm assembly were removed,
+ the infrared rupture laser was re-aligned, and the MST mounting flange
+ was temporarily covered with a vacuum-rated plug.
+ The main shock tube was then evacuated to approximately 1 psia (about 7
+ kPa) to remove air and other contaminants.
+ The MST diaphragm flange and the rupture laser entry port were dismounted,
+ the remnants of the MST tape diaphragm were removed, and the rupture laser
+ window was cleaned with isopropanol.
+ A fresh 
+\begin_inset Formula $3.8\times3.8$
+\end_inset
+
+ cm section of mylar diaphragm tape was then applied to the diaphragm flange.
+ The laser entry port and the diaphragm flange were re-fastened, and the
+ driven section of the shock tube was filled nitrogen at 100 standard liters
+ per minute.
+ Once the driven section reached atmospheric pressure, the MST vacuum plug
+ was removed and replaced with the MST driver assembly, and the MST driver
+ and driven section gas lines were re-connected.
+\end_layout
+
+\begin_layout Paragraph
+Shock-vortex interaction
+\end_layout
+
+\begin_layout Standard
+The shock tube driver was filled to an intermediate pressure of 200 psig
+ (1.5 MPa) to avoid excess stress on the diaphragm due to delays during PIV
+ seed injection, which took a variable amount of time to reach uniformity.
+ Nitrogen seeded with 
+\begin_inset Formula $\diameter\approx300$
 \end_inset
 
  nm 
 \begin_inset Formula $\mathrm{TiO_{2}}$
 \end_inset
 
- particles for flow visualization.
- An acetone bath is held at 293 K and pressurized with argon to 305 kPa,
- seeding the argon with 8% acetone by volume.
- A steady stream of acetone-seeded argon is introduced to the driven section
- of the vortex ring generator, with excess argon removed by the annular
- vacuum slot encircling the vortex generator outlet.
- Several seconds prior to the arrival of the shock wave, the vortex ring
- generator driver is pressurized with argon to 300 kPa.
- The shock tube driver is then rapidly pressurized to 1.9 MPa, at which point
- the aluminum diaphragm separating the driver and driven sections ruptures,
- generating a shock wave of nominal strength 
-\begin_inset Formula $M=1.8$
-\end_inset
-
-.
+ particles was injected into the test section at 30 standard liters per
+ minute, while excess unseeded gas was vented from the shock tube to an
+ external vent line to maintain equilibrium with atmospheric pressure.
+ The PIV laser was fired in continuous-pulse mode to verify sufficient seed
+ density.
+ Once density was sufficient, the nitrogen flow rate was reduced to 10 SLPM,
+ and the main driver was filled to 300 psig (2.2 MPa), approximately 85%
+ of the diaphragm rupture pressure.
 \end_layout
 
 \begin_layout Standard
-As the shock wave travels down the driven section of the shock tube, the
- associated pressure rise is detected by a high-frequency pressure transducer,
- triggering the laser-induced rupture of the vortex ring generator diaphragm
- and initiating imaging by the pulse-burst laser and high-speed cameras.
+The MST driver was evacuated to approximately 1 psia and filled to test
+ pressure, typically 20-25 psig (240-275 kPa) with vortex ring gas (N₂,
+ Ar, CF₄, or SF₆).
+ This gas was then introduced into the MST driven section at 3 SLPM for
+ 60 seconds, with evacuation of excess gas via the annular slot at the upper
+ end of the driver.
+ The fast-acting valves were then actuated to rapidly increase the pressure
+ in the main driver to the point of diaphragm rupture.
+ The coalescence and propagation of the resulting shock wave was captured
+ by 10 high-frequency pressure transducers.
+ A transducer located 2.07 meters from the diaphragm was used to initiate
+ the laser-induced rupture of the MST diaphragm and trigger optical diagnostics
+ after appropriate delays.
  The initial propagation of the vortex ring, its acceleration by the shock
- wave, and its continued propagation following re-shock is then captured
- during the 10 ms imaging duration.
+ wave, and its continued propagation following re-shock were then captured
+ during the 10 ms high-speed imaging duration.
 \end_layout
 
 \end_body

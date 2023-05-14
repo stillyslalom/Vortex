@@ -200,12 +200,50 @@ Vortex ring generator development
 Optimization of miniature shock tube 
 \end_layout
 
-\begin_layout Subsection
-Schlieren imaging of ring growth and propagation
+\begin_layout Standard
+A series of 135 experiments were conducted on the testbed platforms depicted
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-ring-generator-evo"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ to design and validate a vortex ring generator using high-speed Schlieren
+ imaging.
+ The cylinder diameter 
+\begin_inset Formula $D_{p}$
+\end_inset
+
+ was constrained by the dimensions of adjacent visualization laser entry
+ windows, leaving the lengths of the driver and driven sections to be determined
+ by experiments.
+ The initial hypothesis was that a driver section with a length of 
+\begin_inset Formula $15.2$
+\end_inset
+
+ cm would allow the vortex ring to reach the limiting formation number 
+\begin_inset Formula $N=4$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Mohseni2002"
+literal "false"
+
+\end_inset
+
+, but a shorter driver length of 8.4 cm was found to produce a sufficiently
+ strong ring without triggering a premature transition to turbulence through
+ the leapfrogging effect induced by the trailing jet.
 \end_layout
 
-\begin_layout Section
-Schlieren experiments
+\begin_layout Subsection
+Schlieren imaging of ring growth and propagation
 \end_layout
 
 \begin_layout Standard
@@ -243,7 +281,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -305,11 +343,12 @@ Simultaneous high-speed PLIF/PIV
 \end_layout
 
 \begin_layout Standard
-Several obstacles appeared while processing PLIF and PIV images to extract
- density and velocity fields.
- Because of a slow leak in the vortex ring generator driven section which
- was not detected until near the end of the experimental campaign, the argon
- in that section was contaminated by a varying amount of nitrogen.
+Following the conclusion of the preliminary shock-vortex interaction experimenta
+l campaign, several obstacles appeared while processing high-speed PLIF
+ and PIV image sequences to extract density and velocity fields.
+ Because of a slow leak in the miniature shock tube (MST) driven section
+ which was not detected until near the end of the experimental campaign,
+ the argon in that section was contaminated by a varying amount of nitrogen.
  This made it difficult to perform the iterative correction procedure needed
  for accurate estimation of the acetone concentration, preventing calculation
  of the density field.
@@ -317,14 +356,14 @@ Several obstacles appeared while processing PLIF and PIV images to extract
 \end_layout
 
 \begin_layout Standard
-The PIV images show the presence of large particle displacements in the
- up-welling region along the centerline of the entrainment bubble, with
- pre-shock displacements on the order of 60-80 pixels, and post-shock displaceme
-nts several times larger.
+The PIV image sequences exhibit large particle displacements in the up-welling
+ region along the centerline of the entrainment bubble, with pre-shock displacem
+ents on the order of 60-80 pixels, and post-shock displacements several
+ times larger.
  Although an attempt was made to take advantage of the theoretically well-descri
 bed vortex-induced velocity field for a displacement estimate, these displacemen
 ts proved too large for a state-of-the-art multi-pass PIV processing procedure
- with a robust phase correlator and iterative window deformation.
+ with robust phase correlation and iterative window deformation.
 \end_layout
 
 \begin_layout Standard
@@ -388,6 +427,37 @@ name "fig:Vortex-core-trajectories"
 \end_layout
 
 \begin_layout Standard
+The vortex core trajectories depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-core-trajectories"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ reveal significant variability in the pre-shock velocity, which may be
+ attributed in part to varying species composition (and acoustic impedance)
+ in the MST driven section.
+ This variation is likely linked to the previously noted nitrogen contamination.
+ Additionally, the velocity data exhibits point-to-point scatter due to
+ the amplification of measurement noise when numerically differentiating
+ trajectories.
+\end_layout
+
+\begin_layout Standard
+Regardless of the variability of initial conditions, shock acceleration
+ fails to significantly disrupt the ring's propagation.
+ After reshock, the vortex ring continues propagating at a velocity closely
+ matching its pre-shock state until it is decelerated by rarefaction wave.
+ This continuation of movement and lack of ring fragmentation, despite being
+ twice subjected to acceleration by relatively strong shock waves, indicates
+ a troubling resiliency from the perspective of mixing minimization in the
+ outer extents of the Richtmyer-Meshkov instability.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -397,7 +467,7 @@ status open
 \begin_inset Graphics
 	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/init.png
 	lyxscale 30
-	width 32col%
+	width 33col%
 
 \end_inset
 
@@ -405,7 +475,7 @@ status open
 \begin_inset Graphics
 	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/shock.png
 	lyxscale 30
-	width 32col%
+	width 33col%
 
 \end_inset
 
@@ -413,7 +483,7 @@ status open
 \begin_inset Graphics
 	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/PLIF/reshock.png
 	lyxscale 30
-	width 32col%
+	width 33col%
 
 \end_inset
 
@@ -433,7 +503,7 @@ Pre-shock, post-shock, and post-reshock PLIF images
 
 \end_inset
 
-Pre-shock, post-shock, and post-reshock PLIF images (left to right) of the
+Pre-shock, post-shock, and post-reshock PLIF images (left to right) of a
  vortex ring at a fixed vertical station.
  
 \begin_inset CommandInset label
@@ -453,6 +523,42 @@ name "fig:pre-post-re-shock-PLIF"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:pre-post-re-shock-PLIF"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ provides further evidence of the robust nature of shock-accelerated vortex
+ rings.
+ As evident from the pre-shock, post-shock, and post-reshock PLIF images,
+ the core radius and diameter of the ring appear to be largely consistent
+ across all stages.
+ This suggests that the shock acceleration does not significantly distort
+ the ring's structure, reinforcing previous observations of vortex ring
+ resilience.
+\end_layout
+
+\begin_layout Standard
+A noticeable spatial discontinuity in the PLIF intensity can be seen towards
+ the bottom of the frames (
+\begin_inset Formula $z\approx18$
+\end_inset
+
+ cm), reflecting a reduction in the concentration of the argon/acetone mixture
+ in the driven section due to nitrogen contamination.
+ Temporally, a significant reduction in PLIF signal is observed upon reshock.
+ While continued mixing with bulk nitrogen may be partially responsible
+ for this decrease, it is primarily due to reductions in acetone's photon
+ absorption cross-section and fluorescence quantum yield at the elevated
+ temperatures experienced at re-shock.
 \end_layout
 
 \begin_layout Standard
@@ -504,7 +610,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-PLIF images of the vortex ring prior to and during shock acceleration.
+PLIF images of a vortex ring prior to and during shock acceleration.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -523,6 +629,43 @@ name "fig:PLIF-SVI"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PLIF-SVI"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, a sequence of PLIF images captures the interaction of a vortex ring with
+ a shock wave.
+ Although shock interaction doesn't significantly disrupt propagation as
+ noted above, shock-deposited vorticity is evidently sufficient to alter
+ the dynamics of fluid (dis)entrainment by the ring.
+ The most striking consequence of vorticity deposition is the production
+ of curling wisps of argon that begin to protrude downwards and outwards
+ from the ring following the shock interaction as a consequence of equatorial
+ vorticity deposition.
+ Additionally, compression of the ring along the shock axis (proportional
+ to the density jump across the shock 
+\begin_inset Formula $\rho_{2}/\rho_{1}$
+\end_inset
+
+) is readily apparent.
+ However, the ring's structure 
+\begin_inset Quotes eld
+\end_inset
+
+inflates
+\begin_inset Quotes erd
+\end_inset
+
+ and regains its pre-shock volume as time progresses.
 \end_layout
 
 \begin_layout Standard
@@ -586,11 +729,202 @@ name "fig:PIV-vectors"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+The disappointingly poor particle image velocimetry vectors produced from
+ a high-speed PIV image sequence are shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PIV-vectors"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The primary limitation of this data is the correlation algorithm's inability
+ to generate valid displacement vectors anywhere but where vortex-induced
+ velocity is small, 
+\emph on
+i.e.
+ 
+\emph default
+in the regions furthest from the ring.
+ This prevented any measurement of ring velocity or circulation statistics.
+ Additionally, the small field of view and limited sensor size of the high-speed
+ camera restricted even this paltry examination to only a portion of the
+ ring and its surroundings.
+\end_layout
+
+\begin_layout Standard
+Also notable is the presence of dark oval regions in the raw image corresponding
+ to each vortex core.
+ The low particle density in those regions is due to centrifugal ejection
+ of seed particles by the rapidly-spinning vortex cores.
+ Separately, the absence of light in the bottom left corner of the image
+ results from obstructed propagation of the laser sheet.
+\end_layout
+
+\begin_layout Standard
+These limitations spurred the use of dual-frame, high-resolution PIV for
+ the subsequent experimental campaign to provide a more comprehensive view
+ of the vortex ring dynamics, trading quantity for quality and overcoming
+ the constraints experienced in this initial set of experiments.
+\end_layout
+
+\begin_layout Section
+High-speed PLIF/dual-frame PIV
+\end_layout
+
+\begin_layout Standard
+Following the simultaneous high-speed PLIF/PIV campaign described previously,
+ a series of modifications were made to the experimental apparatus to improve
+ repeatability of the initial conditions.
+ First and foremost was the replacement of the analog regulator used to
+ control pressure in the gas supply upstream of the acetone seeding cylinders
+ with an Alicat digital pressure and mass flow controller.
+ This provided improved stability of the acetone reservoir pressure across
+ varying flow rates, reducing variability of acetone mole fraction in the
+ heavy carrier gas.
+ Additionally, the digital mass flow readout allowed precise metering of
+ the gas mixture into the driven section of the MST.
+ Evacuation and fill control of the MST was transitioned from several in-line
+ ball and needle valves to a unified gas supply manifold, and computer-controlle
+d solenoid valves replaced a system of check valves, allowing for full evacuatio
+n of the MST driver prior to gas fill.
+\end_layout
+
+\begin_layout Standard
+The scope of inquiry was broadened from the initial campaign to study Atwood
+ number effects by varying the density of the vortex ring gas.
+ Because of supply chain interruptions provoked by Russia's invasion of
+ Ukraine, krypton and xenon were not available to be used as heavy gases,
+ necessitating a search for equivalent replacements.
+ The main requirements were:
+\end_layout
+
+\begin_layout Enumerate
+high molecular weight
+\end_layout
+
+\begin_layout Enumerate
+non-toxicity
+\end_layout
+
+\begin_layout Enumerate
+non-susceptibility to pyrolysis at post-shock temperatures
+\end_layout
+
+\begin_layout Enumerate
+low cost
+\end_layout
+
+\begin_layout Standard
+Carbon tetrafluoride (CF₄) proved a suitable replacement for krypton, with
+ a molecular weight of 88.0 g/mol compared to 83.8 for krypton.
+ Sulfur hexafluoride (SF₆) substituted for xenon, with molecular weights
+ of 146.1 and 131.3, respectively.
+ The main downside of these fluorinated gases was, and is, their significant
+ contribution to the greenhouse effect, reflecting infrared radiation 7400
+ (for CF₄) and 22800 (for SF₆) times more effectively than an equivalent
+ mass of CO₂.
+ Fortunately, the volumes of greenhouse gas involved in the present study
+ were relatively minimal, as the heavy gases were only used to form small
+ vortex rings.
+\end_layout
+
+\begin_layout Standard
+As the MST was originally designed to produce well-formed argon vortex rings,
+ the newly-introduced heavy gases presented experimental design challenges
+ due to the strong dependence of discharge velocity and Reynolds number
+ on molecular weight.
+ An initial condition study without shock interaction was performed with
+ equivalent vortex Reynolds numbers 
+\begin_inset Formula $\Gamma/\nu$
+\end_inset
+
+ of 
+\begin_inset Formula $\sim3.5\times10^{5}$
+\end_inset
+
+ for each vortex ring gas by varying driver pressure ratio, but the reduced
+ propagation velocity for CF₄ and SF₆ would have placed the vortex below
+ the imaging window at the shock arrival time.
+ Indeed, a higher driver pressure ratio was required for CF₄ and SF₆ than
+ for Ar to deliver a propagation velocity sufficient to allow acquisition
+ of multiple post-shock PLIF images.
+\end_layout
+
+\begin_layout Standard
+In addition to the high-density gases, the Atwood number study included
+ nitrogen vortex rings as a 
+\begin_inset Formula $A\approx0$
+\end_inset
+
+ reference case without baroclinic production from density gradients.
+ This case had the added benefit of providing the best comparison to existing
+ literature, virtually all of which involves the propagation and shock interacti
+on of vortex rings formed from ambient air.
+\end_layout
+
+\begin_layout Subsection
+Vortex ring development
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/discharge_profiles/shockconds.svg
+	lyxscale 60
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
 status collapsed
 
 \begin_layout Plain Layout
-Acetone PLIF intensity variation due to changes in thermodynamic conditions
+Simulated miniature shock tube discharge velocity profiles and pinch-off
+ formation number
+\end_layout
+
+\end_inset
+
+Top: miniature shock tube discharge velocity (
+\begin_inset Formula $u_{p}$
+\end_inset
+
+) profiles extracted from 1D discontinuous Galerkin simulation of shock
+ and expansion wave propagation.
+ Dotted vertical lines indicate 
+\begin_inset Formula $u_{p}\leq0.7\max(u_{p})$
+\end_inset
+
+, corresponding to vortex ring pinch-off time.
+ Bottom: vortex ring formation number 
+\begin_inset Formula $L/D$
+\end_inset
+
+.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Trixi-discharge-formation-number"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -598,12 +932,566 @@ Acetone PLIF intensity variation due to changes in thermodynamic conditions
 
 \end_layout
 
-\begin_layout Section
-Vortex ring development
+\end_inset
+
+
 \end_layout
 
-\begin_layout Section
+\begin_layout Standard
+Due to the elevated location of the imaging window relative to the vortex
+ ring generator outlet, the discharge velocity from the outlet for each
+ gas and pressure ratio could not be directly measured from particle image
+ velocimetry, leaving it to be inferred from simulations.
+ These calculations were performed with Trixi.jl 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Trixi2020"
+literal "false"
+
+\end_inset
+
+, a discontinuous Galerkin framework originally written for astrophysical
+ self-gravitating gas dynamics using the Julia programming language.
+ Trixi offers several mesh discretizations for multiple sets of governing
+ equations including magnetohydrodynamics, shallow water equations, lattice
+ Boltzmann equations, and the compressible multicomponent Euler equations.
+ The present simulations were performed on a 1D Cartesian mesh containing
+ 
+\begin_inset Formula $2^{8}$
+\end_inset
+
+ 3rd-order Lobatto-Legendre basis elements.
+ A resolution sensitivity study was performed against simulations with 
+\begin_inset Formula $2^{9}$
+\end_inset
+
+ and 
+\begin_inset Formula $2^{10}$
+\end_inset
+
+ elements, with no meaningful change in results.
+ Utility functions relating to the simulation of multicomponent shock tube
+ problems were encapsulated into an open-source package, 
+\begin_inset CommandInset href
+LatexCommand href
+name "TrixiShockTube.jl"
+target "https://github.com/stillyslalom/TrixiShockTube.jl"
+literal "false"
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/stillyslalom/TrixiShockTube.jl"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, to aid in reproducibility and provide an easy-to-use shock tube calculation
+ interface for other experimentalists.
+\end_layout
+
+\begin_layout Standard
+Based on the vortex ring formation measurements of Arakeri 
+\emph on
+et al 
+\emph default
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Arakeri2004"
+literal "false"
+
+\end_inset
+
+, vortex ring pinch-off was estimated to occur at the instant when the discharge
+ velocity 
+\begin_inset Formula $u_{p}$
+\end_inset
+
+ fell to less than 
+\begin_inset Formula $0.7\max(u_{p})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/PLIF_core_trajectories/core_diameter.svg
+	lyxscale 60
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/PLIF_core_trajectories/normalized_core_diameter.svg
+	lyxscale 60
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/circulation_jump/U_predict_fit_versus_time.svg
+	lyxscale 60
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/circulation_jump/predict_error_versus_U_fit.svg
+	lyxscale 60
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Shock-vortex interaction
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/xt/2023-01-19_run10_xt.png
+	lyxscale 60
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/PLIF_core_trajectories/2023-01-23_run6.png
+	lyxscale 20
+	width 3.25in
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/PLIF_core_trajectories/2023-01-20_run12.png
+	lyxscale 20
+	width 3.25in
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/PLIF_core_trajectories/2023-01-11_run7.png
+	lyxscale 20
+	width 3.25in
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/PLIF_core_trajectories/2023-01-18_run12.png
+	lyxscale 20
+	width 3.25in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/trajectory_PLIF/2023-01-20_run4.png
+	lyxscale 60
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/vortex_ROI/2023-01-23_run4.png
+	lyxscale 20
+	width 3.25in
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/vortex_ROI/2023-01-20_run5.png
+	lyxscale 20
+	width 3.25in
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/vortex_ROI/2023-01-11_run5.png
+	lyxscale 20
+	width 3.25in
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/vortex_ROI/2023-01-18_run6.png
+	lyxscale 20
+	width 3.25in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/circulation_jump/Delta_Gamma_predicted_versus_At.svg
+	lyxscale 60
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/circulation_jump/Gamma_IC_shock.svg
+	lyxscale 60
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/circulation_jump/Delta_Gamma_versus_At.svg
+	lyxscale 60
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/PLIF_core_trajectories/postshock_diameter.svg
+	lyxscale 60
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
