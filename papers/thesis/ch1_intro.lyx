@@ -1578,13 +1578,13 @@ assuming purely-azimuthal vorticity
  each following the general form
 \begin_inset Formula 
 \begin{equation}
-U=\frac{\Gamma}{4\pi R}\left[\ln\frac{8}{\alpha}-\frac{1}{2}+A\right]
+U=\frac{\Gamma}{4\pi R}\left[\ln\frac{8}{\alpha}-\frac{1}{2}+\phi\right]\label{eq:vortex-velocity}
 \end{equation}
 
 \end_inset
 
 where 
-\begin_inset Formula $A$
+\begin_inset Formula $\phi$
 \end_inset
 
  varies according to the assumed distribution of vorticity within the ring
@@ -1635,7 +1635,7 @@ name "tab:Ring-translational-velocity-factors"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $A$
+\begin_inset Formula $\phi$
 \end_inset
 
 
@@ -1938,7 +1938,7 @@ literal "false"
 \end_inset
 
 ), the relative merit of each of the proposed forms of 
-\begin_inset Formula $A$
+\begin_inset Formula $\phi$
 \end_inset
 
  is largely a matter of judgment for the practicing experimentalist.
@@ -1981,7 +1981,7 @@ literal "false"
  radius is approximately
 \begin_inset Formula 
 \begin{equation}
-a^{2}=(R_{2}^{2}-R^{2})
+a^{2}=(R_{2}^{2}-R^{2})\label{eq:vortex_a_squared}
 \end{equation}
 
 \end_inset

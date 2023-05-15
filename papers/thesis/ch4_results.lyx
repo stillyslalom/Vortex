@@ -339,6 +339,428 @@ name "fig:Schlieren-vortex-ring"
 \end_layout
 
 \begin_layout Section
+Simulations of shock-vortex-interface interaction
+\end_layout
+
+\begin_layout Standard
+In lieu of (or as a precursor to) costly apparatus development, large eddy
+ simulations offer a flexible, detailed means of investigating complex compressi
+ble flows.
+ To that end, a mature hydrodynamics code was used to simulate the interaction
+ of a vortex ring with a stratified interface, followed by shock acceleration,
+ across a range of conditions.
+\end_layout
+
+\begin_layout Subsection
+
+\noun on
+Miranda
+\noun default
+ physics
+\end_layout
+
+\begin_layout Standard
+
+\noun on
+Miranda
+\noun default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Cook2007a"
+literal "false"
+
+\end_inset
+
+ describes the evolution of compressible flows considering the conservation
+ of mass, momentum, and energy for 
+\begin_inset Formula $N$
+\end_inset
+
+ miscible fluids:
+\begin_inset Formula 
+\begin{align*}
+\pdv{\rho Y_{i}}{t}+\div\left[\rho Y_{i}\vec{u}+\vec{J}_{i}\right] & =0\\
+\pdv{\rho\vec{u}}{t}+\div\left[\rho\vec{u}\vec{u}+p\vec{I}-\vec{\tau}\right] & =0\\
+\pdv{E}{t}+\div\left[(E+p)\vec{u}-\vec{\tau}\vdot\vec{u}+\vec{q}\right] & =0
+\end{align*}
+
+\end_inset
+
+with 
+\begin_inset Formula $\rho$
+\end_inset
+
+, 
+\begin_inset Formula $p$
+\end_inset
+
+, and 
+\begin_inset Formula $\vec{u}$
+\end_inset
+
+ representing density, pressure, and velocity, diffusive mass flux 
+\begin_inset Formula $\vec{J}_{i}$
+\end_inset
+
+ for the 
+\begin_inset Formula $i_{\mathrm{th}}$
+\end_inset
+
+ species of mass fraction 
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+, viscous stress tensor 
+\begin_inset Formula $\vec{\tau}$
+\end_inset
+
+, total energy given by 
+\begin_inset Formula $E=\rho(e+\frac{1}{2}\vec{u}^{2})$
+\end_inset
+
+, and the heat conduction flux 
+\begin_inset Formula $\vec{q}$
+\end_inset
+
+.
+ Instead of applying a large eddy simulation (LES) filter to the governing
+ equations, 
+\noun on
+Miranda
+\noun default
+ instead imposes artificial fluid properties (viscosity, conductivity, and
+ diffusivity) designed to damp out high-wavenumber modes in the conserved
+ vector and scalar fields while maintaining physical behavior in the inertial
+ range.
+ This selectivity is enforced by the Gaussian-filtered application of a
+ biharmonic operator, with spatial derivatives for the governing equations
+ and polyharmonic operators taken from Lele's work on compact finite difference
+ schemes with spectral-like resolving power 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Lele1992"
+literal "false"
+
+\end_inset
+
+.
+ Advancement in time is conducted by a five-step, fourth-order low-storage
+ Runge-Kutta method.
+ 
+\end_layout
+
+\begin_layout Subsection
+Modeling
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/visit/N2_Ar_rho_omega_combined.png
+	lyxscale 20
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Vortex-interface-shock interaction: argon into nitrogen, 
+\begin_inset Formula $M=1.8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Density (left) and vorticity (right) prior to, during, and following vortex-inte
+rface-shock interaction of an argon vortex ring formed by 
+\begin_inset Formula $M=1.25$
+\end_inset
+
+ discharge with a formation number of 2 with a 
+\begin_inset Formula $M=1.8$
+\end_inset
+
+ shock wave traveling downwards in nitrogen.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/visit/N2_SF6_combined.png
+	lyxscale 20
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Vortex-interface-shock interaction: 
+\begin_inset Formula $\mathrm{SF_{6}}$
+\end_inset
+
+ into nitrogen, 
+\begin_inset Formula $M=1.8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Volume fraction (left) and vorticity overlaid with isocontours of velocity
+ magnitude (right) prior to, during, and following vortex-interface-shock
+ interaction of a 
+\begin_inset Formula $\mathrm{SF_{6}}$
+\end_inset
+
+ vortex ring formed by 
+\begin_inset Formula $M=1.25$
+\end_inset
+
+ discharge with a formation number of 2 with a 
+\begin_inset Formula $M=1.8$
+\end_inset
+
+ shock wave traveling downwards in nitrogen.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Because of the importance of the trailing jet on the early evolution of
+ compressible vortex rings, it does not suffice to simply initialize a vortex
+ ring 
+\emph on
+in situ
+\emph default
+ from analytical models of the velocity profile.
+ However, the vortex ring's behavior is relatively insensitive to small
+ variations in the velocity profile 
+\begin_inset Formula $U_{p}(t)$
+\end_inset
+
+ of the generator 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Shusser2006a"
+literal "false"
+
+\end_inset
+
+, and radial variation in the velocity profile is known from experiments
+ on axial jets to be well-described by arctangents 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Danaila2008"
+literal "false"
+
+\end_inset
+
+.
+ With these facts in mind, the vortex ring is initialized using a prescribed
+ inlet velocity profile
+\begin_inset Formula 
+\begin{align*}
+H(\eta,n_{0},\delta\eta) & =\frac{1}{2}\left[1+\tanh\left(\frac{\eta-\eta_{0}}{\delta\eta}\right)\right]\\
+f(r) & =1-H(r,D_{p}/2,\delta_{b}D_{p}/4)\\
+g(t) & =H(t,0,\tau_{1}/2)(1-H(t,t_{2},\tau_{2}/2))\\
+U(r,t) & =U_{p}f(r)g(t)
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $H$
+\end_inset
+
+ is a smeared step function, 
+\begin_inset Formula $D_{p}$
+\end_inset
+
+ is the piston diameter, 
+\begin_inset Formula $\delta_{b}$
+\end_inset
+
+ is the boundary layer thickness, 
+\begin_inset Formula $\tau_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tau_{2}$
+\end_inset
+
+ are the ramp-up and ramp-down timescales associated with shock and rarefaction
+ wave arrival, 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ is the formation time 
+\begin_inset Formula $N_{f}D_{p}/U_{p}$
+\end_inset
+
+, and 
+\begin_inset Formula $U_{p}$
+\end_inset
+
+ is the post-shock velocity prescribed by 1D gas dynamics for a given Mach
+ number.
+ 
+\end_layout
+
+\begin_layout Subsection
+Results
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/miranda/N2_Ar_trajectory.svg
+	lyxscale 50
+	width 48col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/miranda/N2_SF6_trajectory.svg
+	lyxscale 50
+	width 48col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Simulated vortex trajectory, velocity, and circulation
+\end_layout
+
+\end_inset
+
+Vortex trajectory (top), velocity (center), and circulation (bottom) during
+ simulated vortex-interface-shock interaction; left: 
+\begin_inset Formula $\mathrm{N_{2}/Ar}$
+\end_inset
+
+, right: 
+\begin_inset Formula $\mathrm{N_{2}/SF_{6}}$
+\end_inset
+
+.
+ The dotted lines in the circulation plots denote the predicted post-shock
+ circulation 
+\begin_inset Formula $\Gamma_{v}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Simulations were conducted in 2D 
+\begin_inset Formula $r-z$
+\end_inset
+
+ cylindrical axisymmetric geometry, reducing computational resource requirements
+ to approximately 800 CPU core hours per simulation on either the 
+\noun on
+RzTopaz
+\noun default
+ or 
+\noun on
+RzTrona
+\noun default
+ clusters at Lawrence Livermore National Laboratory.
+ A 3D simulation was attempted, but resolution-dependent aliasing effects
+ appeared after 5000 CPU hours, demanding increased resolution and higher-yet
+ resource requirements.
+ The 2D simulations were unable to model the development of the Widnall
+ instability or the turbulent wake shed from the vortex ring, resulting
+ in overprediction of the vortex velocity and underprediction of its size.
+ However, the vortex formation and shock-vortex interactions were well-captured,
+ with circulation from shock-deposited vorticity agreeing surprisingly well
+ with the bubble model described by Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Gamma-picone-boris"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ with the addition an ellipticity correction term, giving 
+\begin_inset Formula 
+\begin{equation}
+\Gamma_{v}\approx\Gamma_{\mathrm{PB}}H/D\label{eq:Gamma_vortex_shock}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Simultaneous high-speed PLIF/PIV
 \end_layout
 
@@ -348,7 +770,8 @@ l campaign, several obstacles appeared while processing high-speed PLIF
  and PIV image sequences to extract density and velocity fields.
  Because of a slow leak in the miniature shock tube (MST) driven section
  which was not detected until near the end of the experimental campaign,
- the argon in that section was contaminated by a varying amount of nitrogen.
+ the argon which formed the vortex ring was contaminated by a varying amount
+ of nitrogen.
  This made it difficult to perform the iterative correction procedure needed
  for accurate estimation of the acetone concentration, preventing calculation
  of the density field.
@@ -409,7 +832,7 @@ Vortex core trajectories and velocities manually extracted from PLIF image
  
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Vortex-core-trajectories"
+name "fig:prelim-vortex-core-trajectories"
 
 \end_inset
 
@@ -430,7 +853,7 @@ name "fig:Vortex-core-trajectories"
 The vortex core trajectories depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Vortex-core-trajectories"
+reference "fig:prelim-vortex-core-trajectories"
 plural "false"
 caps "false"
 noprefix "false"
@@ -649,7 +1072,7 @@ noprefix "false"
  the dynamics of fluid (dis)entrainment by the ring.
  The most striking consequence of vorticity deposition is the production
  of curling wisps of argon that begin to protrude downwards and outwards
- from the ring following the shock interaction as a consequence of equatorial
+ from the ring following shock interaction as a consequence of equatorial
  vorticity deposition.
  Additionally, compression of the ring along the shock axis (proportional
  to the density jump across the shock 
@@ -702,7 +1125,7 @@ PIV vectors and particle image of the pre-shock vortex ring
 
 \end_inset
 
-PIV vectors (left) and particle image (right) of the vortex ring prior to
+PIV vectors (left) and particle image (right) of a vortex ring prior to
  shock acceleration.
  Green vectors denote correlation strengths 
 \begin_inset Formula $C\geq0.05$
@@ -768,7 +1191,7 @@ Also notable is the presence of dark oval regions in the raw image corresponding
 These limitations spurred the use of dual-frame, high-resolution PIV for
  the subsequent experimental campaign to provide a more comprehensive view
  of the vortex ring dynamics, trading quantity for quality and overcoming
- the constraints experienced in this initial set of experiments.
+ the constraints encountered in this initial set of experiments.
 \end_layout
 
 \begin_layout Section
@@ -779,12 +1202,12 @@ High-speed PLIF/dual-frame PIV
 Following the simultaneous high-speed PLIF/PIV campaign described previously,
  a series of modifications were made to the experimental apparatus to improve
  repeatability of the initial conditions.
- First and foremost was the replacement of the analog regulator used to
- control pressure in the gas supply upstream of the acetone seeding cylinders
- with an Alicat digital pressure and mass flow controller.
- This provided improved stability of the acetone reservoir pressure across
- varying flow rates, reducing variability of acetone mole fraction in the
- heavy carrier gas.
+ First and foremost was the replacement of an analog regulator used to control
+ pressure in the gas supply upstream of the acetone seeding cylinders with
+ an Alicat digital pressure and mass flow controller.
+ This improved stability of the acetone reservoir pressure across varying
+ flow rates, reducing variability of acetone mole fraction in the heavy
+ carrier gas.
  Additionally, the digital mass flow readout allowed precise metering of
  the gas mixture into the driven section of the MST.
  Evacuation and fill control of the MST was transitioned from several in-line
@@ -852,6 +1275,18 @@ As the MST was originally designed to produce well-formed argon vortex rings,
  Indeed, a higher driver pressure ratio was required for CF₄ and SF₆ than
  for Ar to deliver a propagation velocity sufficient to allow acquisition
  of multiple post-shock PLIF images.
+ A full tabulation of the MST vortex ring generation properties for all
+ tested conditions is given in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Vortex-ring-generator-conditions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -868,6 +1303,13 @@ on of vortex rings formed from ambient air.
 
 \begin_layout Subsection
 Vortex ring development
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Vortex-ring-development"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1023,7 +1465,3251 @@ literal "false"
 \end_inset
 
 .
+ Using this approximation, the formation number varied from 1.61 to 5.12 across
+ all tested conditions, and from 2.44 to 4.52 for the shock-vortex interaction
+ initial conditions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Vortex ring generator conditions for initial condition study
+\end_layout
+
+\end_inset
+
+Vortex ring generator conditions for initial condition study.
+ Bold rows correspond to initial conditions used for shock-vortex interactions.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Vortex-ring-generator-conditions"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="18" columns="9">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ring gas
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{4}$
+\end_inset
+
+ [psig]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{4}$
+\end_inset
+
+ [kPa]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $L/D$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{4}/p_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{{Re}}_{D}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+% acetone
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $W_{s}L$
+\end_inset
+
  
+\begin_inset Formula $\mathrm{[\mu s]}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{N_{2}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+20.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+241.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2.44
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2.38
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.06
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.86E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.112
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+680
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Ar
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+35.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+344.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.55
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.40
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.20
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2.36E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.078
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+690
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Ar
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+30.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+310.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.22
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.06
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.20
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2.20E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.087
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+710
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ar
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+20.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+241.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2.51
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2.38
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.20
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.80E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.112
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+760
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Ar
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+10.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+172.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1.61
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1.70
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.21
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1.22E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.157
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+840
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{CF_{4}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+5.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+137.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1.30
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1.36
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.49
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1.54E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.196
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1340
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{CF_{4}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+10.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+172.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2.12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1.70
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2.51E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.157
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1275
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{CF_{4}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+15.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+206.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2.80
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2.04
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.28E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.131
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1225
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{CF_{4}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+20.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+241.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.40
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2.38
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.51
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.91E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.112
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1185
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{CF_{4}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+25.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+275.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+3.94
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2.72
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.51
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+4.45E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.098
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1150
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{CF_{4}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+30.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+310.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+4.45
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.06
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.51
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+4.94E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.087
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1125
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{SF_{6}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+5.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+137.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1.47
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1.36
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2.28E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.196
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1720
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{SF_{6}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+10.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+172.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2.41
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1.70
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.78E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.157
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1645
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{SF_{6}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+15.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+206.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.18
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2.04
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.66
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+5.00E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.131
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1590
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{SF_{6}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+20.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+241.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.88
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2.38
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.66
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+6.00E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.112
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1540
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{SF_{6}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+25.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+275.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+4.52
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2.72
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.66
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+6.86E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.098
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1500
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{{SF_{6}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+30.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+310.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+5.12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.06
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.66
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+7.60E+05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.087
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1465
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1047,8 +4733,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+Evolution of vortex ring diameter 
+\begin_inset Formula $D=2R$
+\end_inset
 
-\end_layout
+ extracted from PLIF images
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:D-vs-t"
 
 \end_inset
 
@@ -1058,6 +4750,71 @@ status open
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The evolution of the vortex ring diameter extracted from PLIF image sequences
+ is displayed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:D-vs-t"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Determination of the vortex core locations 
+\begin_inset Formula $(x_{c},z_{c})$
+\end_inset
+
+ is based on the local minimum within the high-intensity region corresponding
+ to each core.
+ The ring diameter is calculated as 
+\begin_inset Formula $D=\sqrt{(x_{c,r}-x_{c,l})^{2}+(z_{c,r}-z_{c,l})^{2}}$
+\end_inset
+
+, where the 
+\begin_inset Formula $l$
+\end_inset
+
+ and 
+\begin_inset Formula $r$
+\end_inset
+
+ subscripts indicate the left and right cores.
+ The shaded bands indicate 
+\begin_inset Formula $\pm1$
+\end_inset
+
+ standard deviation from mean diameter calculated at each time instant across
+ all runs for a given set of formation conditions.
+ Immediately noteworthy is the strong dependence of the ring growth rate
+ on the rupture pressure ratio 
+\begin_inset Formula $p_{4}/p_{1}$
+\end_inset
+
+ due to the correlated increase in formation and Reynolds numbers, as well
+ as significant increases in diameter growth variability at higher pressure
+ ratios.
+ It's also worth nothing that the ring core measurement procedure failed
+ at the highest pressure ratio cases shortly after ring formation for both
+ 
+\begin_inset Formula $\mathrm{{CF_{4}}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathrm{SF_{6}}$
+\end_inset
+
+ due to ring fragmentation which prevented identification of well-defined
+ vortex cores.
 \end_layout
 
 \begin_layout Standard
@@ -1081,8 +4838,18 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+Evolution of nondimensional vortex ring diameter 
+\begin_inset Formula $D^{\star}=D/D_{p}$
+\end_inset
 
-\end_layout
+ versus nondimensional time 
+\begin_inset Formula $t^{\star}=tu_{p}/D$
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:nondim-D-vs-t"
 
 \end_inset
 
@@ -1092,6 +4859,52 @@ status open
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Adopting a standard nondimensionalization 
+\begin_inset Formula $D^{\star}=D/D_{p}$
+\end_inset
+
+ and 
+\begin_inset Formula $t^{\star}=tu_{p}/D_{p}$
+\end_inset
+
+ for ring diameter and post-formation time, the nondimensional ring growth
+ is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:nondim-D-vs-t"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Across all tested conditions, the ring first appears in the imaging window
+ around 
+\begin_inset Formula $t^{\star}\approx10$
+\end_inset
+
+, indicating the suitability of this nondimensionalization in collapsing
+ these data.
+ This scaling sharply reduces differences in growth rate across rupture
+ pressure ratios, although 
+\begin_inset Formula $D^{\star}$
+\end_inset
+
+ still varies by 
+\begin_inset Formula $\sim20\%$
+\end_inset
+
+ at early times.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1115,8 +4928,18 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+Discrepancy between circulation-predicted propagation velocity (
+\begin_inset Formula $\diamond$
+\end_inset
 
-\end_layout
+) and measured propagation velocity (
+\begin_inset Formula $\times$
+\end_inset
+
+) as a function of time 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:circulation-propagation-velocity-vs-t"
 
 \end_inset
 
@@ -1126,6 +4949,143 @@ status open
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because of the single-shot nature of dual-frame PIV, velocity fields could
+ only be measured at one instant per experiment.
+ As the principal aim of these experiments was the measurement of changes
+ in vortex parameters following shock interaction, it was necessary to infer
+ pre-shock velocity and circulation measurements for each shock-vortex interacti
+on experiment.
+ Adopting the standard velocity-circulation correlation given in Equation
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:vortex-velocity"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, an Atwood-dependent correction factor 
+\begin_inset Formula $\phi$
+\end_inset
+
+ was sought from the initial condition PLIF & PIV data.
+ Vorticity 
+\begin_inset Formula $\omega$
+\end_inset
+
+ was calculated for each PIV data set with the finite-difference coefficients
+ of Bickley 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Bickley1948"
+literal "false"
+
+\end_inset
+
+.
+ The vortex parameter integrals described by Equations 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Gamma_vortex"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:z_vortex_center"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ were discretized in the vicinity of the vortex to determine circulation
+ 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+, ring radius 
+\begin_inset Formula $R$
+\end_inset
+
+, and core radius 
+\begin_inset Formula $a$
+\end_inset
+
+ as follows:
+\begin_inset Formula 
+\begin{align}
+\Gamma & =\sum_{i,j}\omega_{i,j}\dd{A}\label{eq:discretized_Gamma}\\
+R & =\frac{1}{\Gamma}\sum_{i,j}\omega_{i,j}r_{i}\dd{A}\\
+R_{2}^{2} & =\frac{1}{\Gamma}\sum_{i,j}\omega_{i,j}r_{i}^{2}\dd{A}\\
+z_{c} & =\frac{1}{\Gamma}\sum_{i,j}\omega_{i,j}z_{j}\dd{A}\label{eq:discretized_z_c}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+with 
+\begin_inset Formula $\dd{A}=\Delta x\Delta z$
+\end_inset
+
+.
+ The relative error between circulation-predicted and PLIF-measured velocity
+ was minimized by adopting a correction factor 
+\begin_inset Formula 
+\begin{equation}
+\phi=-1.6(0.6-A)^{2}
+\end{equation}
+
+\end_inset
+
+The predicted and measured velocities (and their discrepancy) for each experimen
+t are shown as a function of time in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:circulation-propagation-velocity-vs-t"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The same data are presented in terms of relative error versus propagation
+ velocity in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:circulation-propagation-velocity-error"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Although this correction factor formulation minimizes average error for
+ each set of conditions, the prediction error for individual experiments
+ remains significant – as much as 35% in some high-pressure-ratio, high-Atwood
+ cases.
+ The degree to which this discrepancy reflects experimental measurement
+ error versus systematic error in the assumed form of the correction factor
+ is presently unknown.
 \end_layout
 
 \begin_layout Standard
@@ -1149,6 +5109,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+Relative error between circulation-predicted velocity and measured propagation
+ velocity as a function of propagation velocity
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:circulation-propagation-velocity-error"
+
+\end_inset
+
 
 \end_layout
 
@@ -1164,6 +5132,549 @@ status open
 
 \begin_layout Subsection
 Shock-vortex interaction
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Shock jump conditions for nominal planar shock wave propagating in ambient
+ nitrogen
+\end_layout
+
+\end_inset
+
+Shock jump conditions for nominal 
+\begin_inset Formula $M=2.05$
+\end_inset
+
+ planar shock wave propagating in ambient nitrogen.
+ The superscript indices correspond to gas dynamics conventions.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Shock-jump-conditions"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="5">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Region
+\begin_inset Formula $^{\mathrm{index}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p$
+\end_inset
+
+ [MPa]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T$
+\end_inset
+
+ [K]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\rho$
+\end_inset
+
+ 
+\begin_inset Formula $\mathrm{[kg/m^{3}}]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $c_{s}$
+\end_inset
+
+ [m/s]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Driver
+\begin_inset Formula $^{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.908
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+292.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+45.35
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+348.4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Driven
+\begin_inset Formula $^{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+292.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.153
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+348.4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Shocked
+\begin_inset Formula $^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.4735
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+504.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.154
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+456.5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Reflected
+\begin_inset Formula $^{5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.632
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+753.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7.249
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+552.4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wave speeds and post-shock velocity for 
+\begin_inset Formula $M=2.05$
+\end_inset
+
+ planar shock wave propagating in ambient nitrogen
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Wave-speeds"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Velocity [m/s]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $M$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Incident shock
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+714.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.05
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Reflected shock
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+804.0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.761
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Post-shock 
+\begin_inset Formula $u_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+453.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[-]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Shock waves were generated for each experiment by rupturing an 18 gauge
+ (1.2 mm thick) cold-rolled steel diaphragm disc.
+ Due to minor run-to-run variation in diaphragm rupture mechanics and day-to-day
+ fluctuations in ambient pressure, the incident shock Mach number varied
+ around 
+\begin_inset Formula $M=2.05\pm0.02$
+\end_inset
+
+.
+ The thermodynamic state in bulk nitrogen during each phase of a typical
+ shock experiment is given in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Shock-jump-conditions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and typical wave speeds are given in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Wave-speeds"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Note that the driver pressure corresponds to idealized driver pressure
+ for a shock tube of constant cross section, while the Wisconsin Shock Tube
+ uses a large-diameter driver which increases the effective driver pressure
+ by approximately 30% due to cross-sectional constriction from the driver
+ to the driven sections.
 \end_layout
 
 \begin_layout Standard
@@ -1187,8 +5698,25 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
 
+\begin_layout Plain Layout
+Pressure trace recorded by high-frequency pressure transducers
 \end_layout
+
+\end_inset
+
+Pressure trace recorded by high-frequency pressure transducers (top) and
+ 
+\begin_inset Formula $x-t$
+\end_inset
+
+ diagram of shock wave propagation (bottom) corresponding to shock detections
+ indicated by dashed lines in top frame
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Pressure-trace"
 
 \end_inset
 
@@ -1198,6 +5726,154 @@ status open
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A pressure trace recorded by high-frequency pressure transducers for a typical
+ experiment is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pressure-trace"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The shock detection threshold is taken as 10 psig (169 kPa), with detection
+ times indicated by dashed lines.
+ The 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate is measured downwards from the diaphragm location to match conventio
+n for 
+\begin_inset Formula $x-t$
+\end_inset
+
+ diagrams rather than matching the vortex-centered coordinate system used
+ elsewhere in this work.
+ Note that PT9 (the second-to-last pressure transducer) was excluded from
+ all pressure trace calculations due to occasional crosstalk with other
+ channels which produced premature shock detections.
+ Although the measured reshock pressure matches a 1D gas dynamics prediction
+ fairly well (1.48 
+\emph on
+vs.
+ 
+\emph default
+1.63 MPa), peak pressures nearly twice the reshock pressure are produced
+ after reshock by a compression wave, providing additional motivation for
+ the adoption of conservative safety factors when designing mechanical component
+s for shock tube service.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/trajectory_PLIF/2023-01-20_run4.png
+	lyxscale 40
+	height 6cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/trajectory_PLIF/PLIF-pole-velocity-jump.png
+	lyxscale 60
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Average spanwise PLIF intensity versus post-rupture time and ring translational
+ velocity jump extracted from PLIF
+\end_layout
+
+\end_inset
+
+Average spanwise PLIF intensity versus post-rupture time for a typical shock
+ wave-argon vortex ring interaction experiment (left), and ring translational
+ velocity jump extracted from least-squares linear fit to ring leading pole
+ 
+\begin_inset Formula $z-$
+\end_inset
+
+location (right).
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Average-spanwise-PLIF"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An early attempt to extract pre- and post-shock vortex ring position & velocity
+ data from PLIF image sequences involved calculating the spanwise (
+\begin_inset Formula $x-$
+\end_inset
+
+direction) average intensity from each PLIF image and marking the 
+\begin_inset Formula $z-$
+\end_inset
+
+location of the vortex ring's leading pole as the first row with an average
+ intensity greater than 10% of the maximum average intensity.
+ These locations are indicated by (+) symbols in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Average-spanwise-PLIF"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The corresponding pre- and post-shock velocities were extracted by linear
+ least-squares fit to the 10 
+\begin_inset Formula $z-$
+\end_inset
+
+locations immediately prior to and following shock interaction.
+ These data exhibited significant variation in the measured pre-shock velocity
+ due to the presence of unsteady disentrainment plumes along the leading
+ edge of the vortex ring.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1249,6 +5925,30 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Typical vortex core trajectories before and after shock interaction for
+ each test condition
+\end_layout
+
+\end_inset
+
+Typical vortex core trajectories before and after shock interaction for
+ each test condition.
+ Solid lines are least-squares curve fits to 
+\begin_inset Formula $z(t)=\nicefrac{u_{0}}{k}(1-\exp(-kt))$
+\end_inset
+
+.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:vortex-core-trajectories"
+
+\end_inset
+
 
 \end_layout
 
@@ -1263,6 +5963,73 @@ status open
 \end_layout
 
 \begin_layout Standard
+To provide a clearer view of vortex ring ring trajectories, the ring core
+ identification procedure described in 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+S
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Vortex-ring-development"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ was carried out for each shock-vortex interaction.
+ Typical trajectories for each vortex ring gas are depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:vortex-core-trajectories"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, including solid lines determined by least-squares fits to
+\begin_inset Formula 
+\begin{equation}
+z(t)=\frac{u_{0}}{k}\left[1-\exp(-kt)\right]
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $k$
+\end_inset
+
+ is a ring deceleration coefficient and 
+\begin_inset Formula $u_{0}$
+\end_inset
+
+ is the estimated initial propagation velocity, which is assumed to decay
+ exponentially as
+\begin_inset Formula 
+\begin{equation}
+z^{\prime}(t)=u_{0}\exp(-kt)
+\end{equation}
+
+\end_inset
+
+A significant mismatch between the position of the left and right cores
+ develops at late times for both high-Atwood cases, indicating skewed propagatio
+n which marks the beginning of vortex ring instability development.
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1270,7 +6037,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename gfx/trajectory_PLIF/2023-01-20_run4.png
+	filename gfx/circulation_jump/Delta_Gamma_predicted_versus_At.svg
 	lyxscale 60
 	width 5.5in
 
@@ -1283,8 +6050,20 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+Shock-induced circulation jump 
+\begin_inset Formula $\Delta\Gamma$
+\end_inset
 
-\end_layout
+ with pre-shock circulation estimated from pre-shock propagation velocity.
+ 
+\begin_inset Formula $\Delta\Gamma$
+\end_inset
+
+ is presented with respect to post-shock time on the left and grouped in
+ box & whisker plots for each Atwood number on the right.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Delta-Gamma-velocity-estimate"
 
 \end_inset
 
@@ -1294,6 +6073,65 @@ status open
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using these core trajectories, the pre-shock circulation 
+\begin_inset Formula $\Gamma_{-}$
+\end_inset
+
+ was estimated per the previously-described procedure for each experiment
+ immediately prior to shock acceleration.
+ The post-shock circulation 
+\begin_inset Formula $\Gamma_{+}$
+\end_inset
+
+ was calculated directly following Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:discretized_Gamma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Although the overall trend of circulation deposition 
+\begin_inset Formula $\Delta\Gamma=\Gamma_{+}-\Gamma_{-}$
+\end_inset
+
+ 
+\emph on
+vs.
+
+\emph default
+ Atwood number broadly matches the Picone-Boris correlation (
+\begin_inset Formula $\propto\log\rho_{b}/\rho_{a}$
+\end_inset
+
+ per Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Gamma-picone-boris"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), circulation deposition is 
+\emph on
+negative
+\emph default
+ for the low Atwood number cases.
+ This behavior was not observed in simulations, and lacks an obvious explanation.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1345,6 +6183,51 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Vorticity overlaid with vortex core positions and core dimensions
+\end_layout
+
+\end_inset
+
+Vorticity overlaid with vortex core positions and core dimensions as identified
+ by Equations 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:discretized_Gamma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:discretized_z_c"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for each vortex ring gas immediately after shock interaction.
+ Red and blue (+) symbols indicate the left and right core positions, and
+ the radius of the surrounding circles matches the measured core radius
+ 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vortex-ROI"
+
+\end_inset
+
 
 \end_layout
 
@@ -1359,37 +6242,102 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename gfx/circulation_jump/Delta_Gamma_predicted_versus_At.svg
-	lyxscale 60
-	width 5.5in
+Two potential culprits are apparent upon inspection of the post-shock vorticity
+ fields in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-ROI"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
+.
+ The first is mechanical stripping of vorticity within the vortex core by
+ the shock-deposited baroclinic vorticity, as evidenced by the curling tails
+ of vorticity corresponding to the wisps of ejected vortex ring gas identified
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PLIF-SVI"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
+.
+ However, these wisps remained within the circulation integration window
+ until late time, and no significant time-varying trend is visible for 
+\begin_inset Formula $\Delta\Gamma$
+\end_inset
 
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Delta-Gamma-velocity-estimate"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Additionally, baroclinic deposition could not play a significant role in
+ the zero-Atwood case of a nitrogen ring propagating into ambient nitrogen.
+ A likelier explanation is opposite-sign vorticity deposition by shock curvature
+, with shock curvature due both to the acoustic impedance mismatch between
+ the vortex and its surroundings as well as the strong velocity gradients
+ in the vicinity of the vortex core.
+ This mechanism was first identified by Truesdell 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Truesdell1952"
+literal "false"
+
+\end_inset
+
+ for the case of a curved steady shock in an ideal uniform flow.
+ Using Crocco's theorem 
+\begin_inset Formula $(\vec{u}\cross\vec{\omega}=T\grad S)$
+\end_inset
+
+ to relate the entropy gradient to the vorticity, Truesdell found that 
+\begin_inset Formula 
+\[
+\delta\omega=-\frac{\mu^{2}}{1+\mu}U_{s}K
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\mu=\rho_{2}/\rho_{1}-1$
+\end_inset
+
+ is the normalized density jump across the shock, 
+\begin_inset Formula $K$
+\end_inset
+
+ is the curvature of the shock, and 
+\begin_inset Formula $U_{s}$
+\end_inset
+
+ is the local velocity tangent to the shock in a frame of reference co-moving
+ with the shock.
+ This expression is unfortunately invalid for non-uniform variable-density
+ flows such as those present in multifluid shock-vortex interactions.
+ Although subsequent investigators including Kevlahan 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Kevlahan1997"
+literal "false"
+
+\end_inset
+
+ have delivered significant analytical advances for vorticity production
+ during unsteady shock-turbulence interaction, a unified description of
+ baroclinic and shock curvature effects remains elusive.
 \end_layout
 
 \begin_layout Standard
@@ -1413,6 +6361,26 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Vortex circulation evolution measured during initial propagation and after
+ shock interaction
+\end_layout
+
+\end_inset
+
+Vortex circulation evolution measured during initial propagation (black)
+ and after shock interaction (red) for each vortex ring gas.
+ Black lines represent least-squares linear fits to the pre-shock data.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vortex-circulation-evolution"
+
+\end_inset
+
 
 \end_layout
 
@@ -1447,8 +6415,21 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+Shock-induced circulation jump 
+\begin_inset Formula $\Delta\Gamma$
+\end_inset
 
-\end_layout
+ with pre-shock circulation estimated from circulation data from initial
+ condition experiments.
+ 
+\begin_inset Formula $\Delta\Gamma$
+\end_inset
+
+ is presented with respect to post-shock time on the left and grouped in
+ box & whisker plots for each Atwood number on the right.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Delta-Gamma-circulation-estimate"
 
 \end_inset
 
@@ -1458,6 +6439,79 @@ status open
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To strengthen confidence in the finding of circulation reduction upon shock
+ interaction for both low-Atwood number cases, a simple secondary means
+ of estimating 
+\begin_inset Formula $\Delta\Gamma$
+\end_inset
+
+ was developed.
+ This amounted to establishing circulation evolution 
+\begin_inset Formula $\tilde{\Gamma}_{-}(t)$
+\end_inset
+
+ for each species as a linear fit to initial condition data (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-circulation-evolution"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) and calculating the circulation jump at the TSI imaging time 
+\begin_inset Formula $t_{TSI}$
+\end_inset
+
+ as 
+\begin_inset Formula $\Delta\Gamma=\Gamma_{+}-\tilde{\Gamma}_{-}(t_{TSI})$
+\end_inset
+
+.
+ The resulting circulation jump data is depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Delta-Gamma-circulation-estimate"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ in the same form as Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Delta-Gamma-velocity-estimate"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Strikingly, this approach produced significantly higher estimates of the
+ circulation jump for the high-
+\begin_inset Formula $A$
+\end_inset
+
+ cases, suggesting undiscovered systematic error in at least one of the
+ methods of circulation jump estimation.
+ However, the low-
+\begin_inset Formula $A$
+\end_inset
+
+ cases still produced reduced circulation upon shock interaction.
+ Additional experimental and computational work is likely required to untangle
+ and fully describe this finding.
 \end_layout
 
 \begin_layout Standard
@@ -1481,6 +6535,13 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+Vortex relative diameter evolution following shock interaction 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vortex-diameter-evolution"
+
+\end_inset
+
 
 \end_layout
 
@@ -1491,441 +6552,29 @@ status open
 
 \end_inset
 
+Finally, the vortex diameter was calculated as a function of post-shock
+ time in the same manner as the earlier calculation of vortex ring diameter
+ growth during initial propagation.
+ The immediate reduction in diameter compared to the pre-shock value 
+\begin_inset Formula $D^{-}$
+\end_inset
 
-\end_layout
-
-\begin_layout Section
-Comparison to simulation
-\end_layout
-
-\begin_layout Standard
-In lieu of (or as a precursor to) costly apparatus development, large eddy
- simulations offer a flexible, detailed means of investigating complex compressi
-ble flows.
- To that end, a mature hydrodynamics code was used to simulate the interaction
- of a vortex ring with a stratified interface, followed by shock acceleration,
- across a range of conditions.
-\end_layout
-
-\begin_layout Subsection
-
-\noun on
-Miranda
-\noun default
- physics
-\end_layout
-
-\begin_layout Standard
-
-\noun on
-Miranda
-\noun default
- 
+ agrees with earlier computational studies of strong shock-vortex interactions
+ in air 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "Cook2007a"
+key "Pirozzoli2004"
 literal "false"
 
 \end_inset
 
- describes the evolution of compressible flows considering the conservation
- of mass, momentum, and energy for 
-\begin_inset Formula $N$
+, although the reduction for SF₆ is preceded by a large increase likely
+ due to especially-strong baroclinic vorticity deposition at the outer equator
+ of these high-
+\begin_inset Formula $A$
 \end_inset
 
- miscible fluids:
-\begin_inset Formula 
-\begin{align*}
-\pdv{\rho Y_{i}}{t}+\div\left[\rho Y_{i}\vec{u}+\vec{J}_{i}\right] & =0\\
-\pdv{\rho\vec{u}}{t}+\div\left[\rho\vec{u}\vec{u}+p\vec{I}-\vec{\tau}\right] & =0\\
-\pdv{E}{t}+\div\left[(E+p)\vec{u}-\vec{\tau}\vdot\vec{u}+\vec{q}\right] & =0
-\end{align*}
-
-\end_inset
-
-with 
-\begin_inset Formula $\rho$
-\end_inset
-
-, 
-\begin_inset Formula $p$
-\end_inset
-
-, and 
-\begin_inset Formula $\vec{u}$
-\end_inset
-
- representing density, pressure, and velocity, diffusive mass flux 
-\begin_inset Formula $\vec{J}_{i}$
-\end_inset
-
- for the 
-\begin_inset Formula $i_{\mathrm{th}}$
-\end_inset
-
- species of mass fraction 
-\begin_inset Formula $Y_{i}$
-\end_inset
-
-, viscous stress tensor 
-\begin_inset Formula $\vec{\tau}$
-\end_inset
-
-, total energy given by 
-\begin_inset Formula $E=\rho(e+\frac{1}{2}\vec{u}^{2})$
-\end_inset
-
-, and the heat conduction flux 
-\begin_inset Formula $\vec{q}$
-\end_inset
-
-.
- Instead of applying a large eddy simulation (LES) filter to the governing
- equations, 
-\noun on
-Miranda
-\noun default
- instead imposes artificial fluid properties (viscosity, conductivity, and
- diffusivity) designed to damp out high-wavenumber modes in the conserved
- vector and scalar fields while maintaining physical behavior in the inertial
- range.
- This selectivity is enforced by the Gaussian-filtered application of a
- biharmonic operator, with spatial derivatives for the governing equations
- and polyharmonic operators taken from Lele's work on compact finite difference
- schemes with spectral-like resolving power 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "Lele1992"
-literal "false"
-
-\end_inset
-
-.
- Advancement in time is conducted by a five-step, fourth-order low-storage
- Runge-Kutta method.
- 
-\end_layout
-
-\begin_layout Subsection
-Modeling
-\end_layout
-
-\begin_layout Standard
-Because of the importance of the trailing jet on the early evolution of
- compressible vortex rings, it does not suffice to simply initialize a vortex
- ring 
-\emph on
-in situ
-\emph default
- from analytical models of the velocity profile.
- However, the vortex ring's behavior is relatively insensitive to small
- variations in the velocity profile 
-\begin_inset Formula $U_{p}(t)$
-\end_inset
-
- of the generator 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "Shusser2006a"
-literal "false"
-
-\end_inset
-
-, and radial variation in the velocity profile is known from experiments
- on axial jets to be well-described by arctangents 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "Danaila2008"
-literal "false"
-
-\end_inset
-
-.
- With these facts in mind, the vortex ring is initialized using a prescribed
- inlet velocity profile
-\begin_inset Formula 
-\begin{align*}
-H(\eta,n_{0},\delta\eta) & =\frac{1}{2}\left[1+\tanh\left(\frac{\eta-\eta_{0}}{\delta\eta}\right)\right]\\
-f(r) & =1-H(r,D_{p}/2,\delta_{b}D_{p}/4)\\
-g(t) & =H(t,0,\tau_{1}/2)(1-H(t,t_{2},\tau_{2}/2))\\
-U(r,t) & =U_{p}f(r)g(t)
-\end{align*}
-
-\end_inset
-
-where 
-\begin_inset Formula $H$
-\end_inset
-
- is a smeared step function, 
-\begin_inset Formula $D_{p}$
-\end_inset
-
- is the piston diameter, 
-\begin_inset Formula $\delta_{b}$
-\end_inset
-
- is the boundary layer thickness, 
-\begin_inset Formula $\tau_{1}$
-\end_inset
-
- and 
-\begin_inset Formula $\tau_{2}$
-\end_inset
-
- are the ramp-up and ramp-down timescales associated with shock and rarefaction
- wave arrival, 
-\begin_inset Formula $t_{2}$
-\end_inset
-
- is the formation time 
-\begin_inset Formula $N_{f}D_{p}/U_{p}$
-\end_inset
-
-, and 
-\begin_inset Formula $U_{p}$
-\end_inset
-
- is the post-shock velocity prescribed by 1D gas dynamics for a given Mach
- number.
- 
-\end_layout
-
-\begin_layout Subsection
-Results
-\end_layout
-
-\begin_layout Standard
-Simulations were conducted in 2D 
-\begin_inset Formula $r-z$
-\end_inset
-
- cylindrical axisymmetric geometry, reducing computational resource requirements
- to approximately 800 CPU core hours per simulation on either the 
-\noun on
-RzTopaz
-\noun default
- or 
-\noun on
-RzTrona
-\noun default
- clusters at Lawrence Livermore National Laboratory.
- A 3D simulation was attempted, but resolution-dependent aliasing effects
- appeared after 5000 CPU hours, demanding increased resolution and higher-yet
- resource requirements.
- The 2D simulations were unable to model the development of the Widnall
- instability or the turbulent wake shed from the vortex ring, resulting
- in overprediction of the vortex velocity and underprediction of its size.
- However, the vortex formation and shock-vortex interactions were well-captured,
- with circulation from shock-deposited vorticity agreeing surprisingly well
- with the bubble model described by Eq.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:Gamma-picone-boris"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- with the addition an ellipticity correction term, giving 
-\begin_inset Formula 
-\begin{equation}
-\Gamma_{v}\approx\Gamma_{\mathrm{PB}}H/D\label{eq:Gamma_vortex_shock}
-\end{equation}
-
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/miranda/N2_Ar_trajectory.svg
-	lyxscale 50
-	width 48col%
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/miranda/N2_SF6_trajectory.svg
-	lyxscale 50
-	width 48col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Simulated vortex trajectory, velocity, and circulation
-\end_layout
-
-\end_inset
-
-Vortex trajectory (top), velocity (center), and circulation (bottom) during
- simulated vortex-interface-shock interaction; left: 
-\begin_inset Formula $\mathrm{N_{2}/Ar}$
-\end_inset
-
-, right: 
-\begin_inset Formula $\mathrm{N_{2}/SF_{6}}$
-\end_inset
-
-.
- The dotted lines in the circulation plots denote the predicted post-shock
- circulation 
-\begin_inset Formula $\Gamma_{v}$
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/visit/N2_Ar_rho_omega_combined.png
-	lyxscale 20
-	width 100col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Vortex-interface-shock interaction: argon into nitrogen, 
-\begin_inset Formula $M=1.8$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-Density (left) and vorticity (right) prior to, during, and following vortex-inte
-rface-shock interaction of an argon vortex ring formed by 
-\begin_inset Formula $M=1.25$
-\end_inset
-
- discharge with a formation number of 2 with a 
-\begin_inset Formula $M=1.8$
-\end_inset
-
- shock wave traveling downwards in nitrogen.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/visit/N2_SF6_combined.png
-	lyxscale 20
-	width 100col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Vortex-interface-shock interaction: 
-\begin_inset Formula $\mathrm{SF_{6}}$
-\end_inset
-
- into nitrogen, 
-\begin_inset Formula $M=1.8$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-Volume fraction (left) and vorticity overlaid with isocontours of velocity
- magnitude (right) prior to, during, and following vortex-interface-shock
- interaction of a 
-\begin_inset Formula $\mathrm{SF_{6}}$
-\end_inset
-
- vortex ring formed by 
-\begin_inset Formula $M=1.25$
-\end_inset
-
- discharge with a formation number of 2 with a 
-\begin_inset Formula $M=1.8$
-\end_inset
-
- shock wave traveling downwards in nitrogen.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+ vortex rings.
 \end_layout
 
 \end_body

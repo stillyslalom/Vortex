@@ -1013,9 +1013,9 @@ The shock tube driver was filled to an intermediate pressure of 200 psig
 \end_layout
 
 \begin_layout Standard
-The MST driver was evacuated to approximately 1 psia and filled to test
- pressure, typically 20-25 psig (240-275 kPa) with vortex ring gas (N₂,
- Ar, CF₄, or SF₆).
+The MST driver was evacuated to approximately 1 psia and then filled to
+ test pressure, typically 20-25 psig (240-275 kPa) with vortex ring gas
+ (N₂, Ar, CF₄, or SF₆).
  This gas was then introduced into the MST driven section at 3 SLPM for
  60 seconds, with evacuation of excess gas via the annular slot at the upper
  end of the driver.
