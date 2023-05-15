@@ -192,6 +192,10 @@ todonotes
 Experimental apparatus
 \end_layout
 
+\begin_layout Paragraph
+Overview of experiments: 
+\end_layout
+
 \begin_layout Standard
 Initial investigations of the compressible vortex ring formation process
  were carried out on several testbed platforms using high-speed Schlieren
@@ -410,27 +414,372 @@ Pulsed lasers allow for inexpensive production of high-energy-density conditions
 \end_layout
 
 \begin_layout Section
-Flow visualization: lasers and diagnostics
+Flow visualization: experimental diagnostics
 \end_layout
 
 \begin_layout Subsection
 Laser-induced fluorescence
 \end_layout
 
-\begin_layout Subsection
-Acetone seeding
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/external/Thurber_S_f_vs_temperature.png
+	lyxscale 60
+	height 5.5cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/external/Thurber_FQY_vs_pressure.png
+	lyxscale 60
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Relative temperature and pressure dependence of acetone fluorescence signal
+ and fluorescence quantum yield
+\end_layout
+
+\end_inset
+
+Relative temperature dependence of acetone fluorescence signal at atmospheric
+ pressure (left), and pressure dependence of fluorescence quantum yield
+ for 
+\begin_inset Formula $\lambda=266$
+\end_inset
+
+ nm excitation at 
+\begin_inset Formula $300$
+\end_inset
+
+ K 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Thurber1740"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Acetone vapor has emerged as a tracer species of choice for concentration
+ measurements in most shock tube mixing experiments during recent decades.
+ The photophysical mechanisms which drive acetone fluorescence upon excitation
+ by ultraviolet light are fairly well-understood, with thorough experimental
+ investigation of pressure and temperature dependence by Thurber 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Thurber1740,Thurber1999,Thurber1998"
+literal "false"
+
+\end_inset
+
+.
+ For non-saturating excitation, Thurber gives the fluorescence signal as
+\begin_inset Formula 
+\begin{equation}
+S_{f}(p,T)=\eta_{\mathrm{opt}}\frac{E}{hc/\lambda}n_{\mathrm{abs}}(p,T)\sigma(T)\Phi(p,T)\dd{V_{c}}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\eta_{\mathrm{opt}}$
+\end_inset
+
+ is the efficiency of the collection optics, 
+\begin_inset Formula $E$
+\end_inset
+
+ is the incident laser fluence into the differential collection volume 
+\begin_inset Formula $\dd{V_{c}}$
+\end_inset
+
+, 
+\begin_inset Formula $hc/\lambda$
+\end_inset
+
+ is the energy per photon at the excitation wavelength 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, 
+\begin_inset Formula $n_{\mathrm{abs}}$
+\end_inset
+
+ is the acetone molecular number density, and 
+\begin_inset Formula $\sigma(T)$
+\end_inset
+
+ and 
+\begin_inset Formula $\Phi(p,T)$
+\end_inset
+
+ are the absorption cross section and fluorescence quantum yield (FQY) of
+ acetone at the thermodynamic state within the collection volume.
+ The absorption cross section and FQY also exhibit dependence on 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, but the present series of experiments exclusively used 266 nm excitation.
+ Most of these terms cannot be directly measured throughout the experimental
+ volume, so mixing experiments have traditionally used a correction procedure
+ which relies on measurement of fluorescence signal in a uniform region
+ of known acetone concentration.
+ With the reference signal level denoted by the subscript 0, the relative
+ signal at some point 
+\begin_inset Formula $\xi$
+\end_inset
+
+ along the laser path is
+\begin_inset Formula 
+\begin{equation}
+\frac{S(\xi)}{S_{0}}=\frac{n\sigma\Phi}{n_{0}\sigma_{0}\Phi_{0}}\frac{E}{E_{0}}=\frac{n\sigma\Phi}{n_{0}\sigma_{0}\Phi_{0}}\exp\left(-\int_{\xi_{0}}^{\xi}n\sigma\dd{\xi}\right)\label{eq:relative_fluorescence_signal}
+\end{equation}
+
+\end_inset
+
+If 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ and 
+\begin_inset Formula $\Phi$
+\end_inset
+
+ are known, Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:relative_fluorescence_signal"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ can be solved for acetone number density directly by integration.
+ However, in shock-driven mixing experiments where temperature can vary
+ significantly along the beam path, an iterative temperature correction
+ procedure is required as described by Herzog 
+\emph on
+et al
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Herzog2019iterative"
+literal "false"
+
+\end_inset
+
+.
+ In the present series of experiments, the thermodynamic state varies significan
+tly within the vortex ring due to adiabatic cooling in the rapidly-spinning
+ vortex cores, and no uniform reference signal is available for acetone,
+ making quantitative estimates of species concentration quite challenging.
 \end_layout
 
 \begin_layout Subsection
-Pulse-burst laser
+Particle image velocimetry
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/registration/2023-01-20_target1.png
+	width 70text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Representative result of PLIF-PIV target image registration
+\end_layout
+
+\end_inset
+
+Representative result of PLIF-PIV target image registration procedure.
+ The image from the PLIF camera is shaded violet, and the image from the
+ PIV camera is shaded green.
+ Overlapping bright regions appear white.
+ The skewed perspective of the PIV camera's field of view is marked by a
+ red frame.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PLIF-PIV-registration"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Using two images of tracer particles acquired by a single camera with inter-fram
+e separation 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+, particle image velocimetry (PIV) relies on windowed spatial correlation
+ estimates of average particle displacement to determine the velocity components
+ within some planar region of a flow.
+ Advanced variants of PIV involving two or more cameras allow for measurement
+ of out-of-plane displacements, but these variants are challenged by the
+ presence of refractive index gradients present in variable-density flows.
+ An up-to-date description of best practices for conventional dual-frame
+ PIV is given by Scharnowski 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Scharnowski2020"
+literal "false"
+
+\end_inset
+
+, and a complete overview of the background, equipment, techniques, and
+ post-processing required for PIV measurements is presented by Raffel 
+\emph on
+et al
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Raffel2007a"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Displacement vector fields for the present experiments were calculated with
+ 
+\noun on
+Prana
+\noun default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "PranaManual"
+literal "false"
+
+\end_inset
+
+, an open-source academic PIV code developed primarily at Purdue and Virginia
+ Tech.
+ Prior to PIV processing, each image was background-subtracted and subjected
+ to absolute intensity thresholding to reduce contamination by damaged pixels
+ on the camera sensor.
+ A multi-pass iterative algorithm with interrogation window deformation
+ and robust phase correlation 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Eckstein2008"
+literal "false"
+
+\end_inset
+
+ was used to better capture the large velocity gradients produced by the
+ shock wave and vortex cores.
+ The final interrogation window size was 32 x 32 pixels, with 50% overlap
+ between adjacent windows.
+\end_layout
+
+\begin_layout Standard
+The resulting vector fields were subjected to a masking procedure based
+ on local median correlation strength to eliminate spurious vectors in regions
+ with low laser intensity or insufficient seed density.
+ Remaining outlier vectors were identified by local median velocity filtering
+ (excluding previously-identified spurious vectors) in a 
+\begin_inset Formula $5\times5$
+\end_inset
+
+ window with a threshold of 25 m/s.
+ Outlier vectors within the concave hull of valid vectors were replaced
+ by triangulating the valid vector field coordinates and performing linear
+ barycentric interpolation of the velocity components on the resulting triangles.
 \end_layout
 
 \begin_layout Subsection
-PIV laser and particles
+Combined PLIF-PIV
 \end_layout
 
-\begin_layout Subsection
-Cameras
+\begin_layout Standard
+To correct the perspective distortion produced by the misalignment of the
+ PLIF and PIV cameras, image registration was performed using manually-selected
+ control points located at the corners of a planar checkerboard target placed
+ in the center of the imaging window.
+ These control points were used to calculate a least-squares estimate of
+ the perspective transformation matrix mapping from PIV to PLIF pixel coordinate
+s.
+ PIV displacement vector magnitudes were additionally corrected to remove
+ bias from pixel skew and rotation.
+ An example of the registration procedure's output is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PLIF-PIV-registration"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Section
@@ -504,6 +853,16 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Pressure measurement and data acquisition wiring connections in the Wisconsin
+ Shock Tube
+\end_layout
+
+\end_inset
+
 Block diagram depicting pressure measurement and data acquisition wiring
  connections in the Wisconsin Shock Tube.
  Minor elements are omitted or condensed, including pressure transducer
@@ -555,6 +914,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Gas delivery and exhaust systems in the Wisconsin Shock Tube
+\end_layout
+
+\end_inset
+
 Block diagram depicting gas delivery and exhaust systems in the Wisconsin
  Shock Tube.
  Minor elements are omitted or condensed, including check valves and individual
@@ -621,13 +989,48 @@ Schlieren imaging apparatus
 
 \end_layout
 
+\begin_layout Standard
+Schlieren images of the formation and development of vortex rings from the
+ open end of a shock tube were acquired by a Phantom v1211 high-speed camera
+ operating at 49,000 frames per second.
+ Illumination of the imaging region was produced by temporarily over-driving
+ an air-cooled Luminus CBT-120-G light-emitting diode to deliver higher
+ fluence than what would be allowed by steady-state thermal operating limits
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Wilson2015"
+literal "false"
+
+\end_inset
+
+.
+ The LED output was constricted by a 1 mm metal pinhole, then collimated
+ and focused by a pair of 
+\begin_inset Formula $f=50$
+\end_inset
+
+ cm spherical lenses placed parallel to the imaging region.
+ Optical streaks (
+\emph on
+Schlieren
+\emph default
+) were produced by a knife-edge placed at the focal point of the second
+ spherical lens prior to collection by a 50 mm 
+\begin_inset Formula $f/2$
+\end_inset
+
+ Nikon lens.
+\end_layout
+
 \begin_layout Subsection
 Simultaneous high-speed PLIF/PIV
 \end_layout
 
 \begin_layout Standard
-Illumination was provided by a pulse-burst laser system firing at a repetition
- rate of 
+Illumination was provided by a pulse-burst laser system built by Professor
+ David Rothamer.
+ The laser was configured to fire at a repetition rate of 
 \begin_inset Formula $\SI{20}{kHz}$
 \end_inset
 
@@ -661,8 +1064,24 @@ Illumination was provided by a pulse-burst laser system firing at a repetition
  lens to produce a laser sheet whose nominal width was 12 cm at its waist
  in the center of the imaging window.
  The Mie-scattered TiO₂ particle image was captured by a Photron Fastcam
- SA-Z camera, while the fluorescence signal was recorded by a Phantom v1211
- camera oriented as depicted in Figure 
+ SA-Z camera.
+ The laser-induced fluorescence signal was recorded by a Phantom v1211 high-spee
+d camera operating at 20,000 frames per second.
+ The camera was equipped with a 50 mm 
+\begin_inset Formula $f/1.2$
+\end_inset
+
+ Nikon lens, with a Schott BG39 band-pass ultraviolet transmission filter
+ and a band-stop filter centered at 
+\begin_inset Formula $530$
+\end_inset
+
+ nm to reduce transmission of 
+\begin_inset Formula $532$
+\end_inset
+
+ nm light scattered from the PIV tracer particles.
+ The cameras were oriented as depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:High-speed-laser-camera-config"
@@ -672,9 +1091,8 @@ noprefix "false"
 
 \end_inset
 
-.
- Both cameras were synchronized with the laser oscillator, producing image
- sequences with 
+, and both cameras were synchronized with the laser oscillator, producing
+ image sequences with 
 \begin_inset Formula $\SI{50}{\micro\second}$
 \end_inset
 
@@ -747,6 +1165,33 @@ name "fig:High-speed-laser-camera-config"
 
 \begin_layout Subsection
 High-speed PLIF/single-shot PIV
+\end_layout
+
+\begin_layout Standard
+For the final experimental campaign, the second harmonic output of the pulse-bur
+st laser was discarded into a beam dump by a dichroic mirror, leaving only
+ the fourth harmonic.
+ The resulting 266 nm light was combined with the 532 nm output of a dual-cavity
+ Ekspla NL303-D Nd:YAG laser using another dichroic mirror, then shaped
+ into a diverging laser sheet as previously described.
+ This configuration permitted only one PIV image pair to be acquired per
+ experiment, but with a much smaller inter-frame time (
+\begin_inset Formula $\SI{3}{\micro\second}$
+\end_inset
+
+) which sharply reduced the number of particle correlations lost to out-of-plane
+ motion.
+ The PIV images were acquired by a TSI 630094 camera with a 29 MP (
+\begin_inset Formula $6600\times4400$
+\end_inset
+
+ pixel) interline transfer CCD sensor equipped with a 105 mm 
+\begin_inset Formula $f/11$
+\end_inset
+
+ Nikon lens.
+ The PLIF imaging configuration was unchanged from the previous set of experimen
+ts.
 \end_layout
 
 \begin_layout Section
@@ -980,7 +1425,7 @@ The miniature shock tube (MST) driver and diaphragm assembly were removed,
  cm section of mylar diaphragm tape was then applied to the diaphragm flange.
  The laser entry port and the diaphragm flange were re-fastened, and the
  driven section of the shock tube was filled nitrogen at 100 standard liters
- per minute.
+ per minute (SLPM).
  Once the driven section reached atmospheric pressure, the MST vacuum plug
  was removed and replaced with the MST driver assembly, and the MST driver
  and driven section gas lines were re-connected.
@@ -1002,9 +1447,9 @@ The shock tube driver was filled to an intermediate pressure of 200 psig
 \begin_inset Formula $\mathrm{TiO_{2}}$
 \end_inset
 
- particles was injected into the test section at 30 standard liters per
- minute, while excess unseeded gas was vented from the shock tube to an
- external vent line to maintain equilibrium with atmospheric pressure.
+ particles was injected into the test section at 30 SLPM, while excess unseeded
+ gas was vented from the shock tube to an external vent line to maintain
+ equilibrium with atmospheric pressure.
  The PIV laser was fired in continuous-pulse mode to verify sufficient seed
  density.
  Once density was sufficient, the nitrogen flow rate was reduced to 10 SLPM,

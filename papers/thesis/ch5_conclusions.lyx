@@ -193,6 +193,19 @@ Conclusions & future work
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Redo conclusions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 A vortex ring generator was designed to release a well-controlled vortex
  ring with a formation number of approximately 2.
  The generator allows seeding of the driven gas with acetone for laser-induced

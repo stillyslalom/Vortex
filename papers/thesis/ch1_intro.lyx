@@ -710,7 +710,7 @@ noprefix "false"
  shell, and other departures from the idealized spherical capsule form 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "Clark2018,weber_filltube"
+key "weber_filltube,Clark2018"
 literal "false"
 
 \end_inset
@@ -1276,7 +1276,7 @@ literal "false"
  turbulent kinetic energy dissipation compared to three-dimensional isotropic
  turbulence.
  By maintaining their form over a longer time period, vortex rings significantly
- reduced the rate of molecular mixing between the two fluids.
+ reduced the local rate of molecular mixing between the two fluids.
 \end_layout
 
 \begin_layout Standard
@@ -1304,8 +1304,8 @@ Kokkinakis also claims that the presence of vortical structures may also
  be responsible for the reduced accuracy of turbulence models during reshock.
  Most turbulence models are calibrated based on data from Rayleigh-Taylor
  or singly-shocked Richtmyer-Meshkov mixing.
- As such, these models may not accurately represent the complex dynamics
- associated with the formation and evolution of vortical structures during
+ As such, these models may not accurately represent the dynamics associated
+ with the formation and evolution of coherent vortical structures during
  reshock.
 \end_layout
 

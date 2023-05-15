@@ -281,7 +281,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1604,7 +1604,11 @@ Ring gas
 \begin_inset Text
 
 \begin_layout Plain Layout
-% acetone
+Acetone 
+\begin_inset Formula $\chi$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -6050,6 +6054,19 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Shock-induced circulation jump 
+\begin_inset Formula $\Delta\Gamma$
+\end_inset
+
+ with pre-shock circulation estimated from pre-shock propagation velocity
+\end_layout
+
+\end_inset
+
 Shock-induced circulation jump 
 \begin_inset Formula $\Delta\Gamma$
 \end_inset
@@ -6305,9 +6322,9 @@ literal "false"
 
  to relate the entropy gradient to the vorticity, Truesdell found that 
 \begin_inset Formula 
-\[
+\begin{equation}
 \delta\omega=-\frac{\mu^{2}}{1+\mu}U_{s}K
-\]
+\end{equation}
 
 \end_inset
 
@@ -6415,6 +6432,20 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Shock-induced circulation jump 
+\begin_inset Formula $\Delta\Gamma$
+\end_inset
+
+ with pre-shock circulation estimated from circulation data from initial
+ condition experiments
+\end_layout
+
+\end_inset
+
 Shock-induced circulation jump 
 \begin_inset Formula $\Delta\Gamma$
 \end_inset
@@ -6535,7 +6566,17 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Vortex relative diameter evolution following shock interaction 
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Vortex ring diameter evolution following shock interaction
+\end_layout
+
+\end_inset
+
+Vortex ring diameter evolution following shock interaction, with diameter
+ normalized by pre-shock diameter 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Vortex-diameter-evolution"
@@ -6555,11 +6596,17 @@ name "fig:Vortex-diameter-evolution"
 Finally, the vortex diameter was calculated as a function of post-shock
  time in the same manner as the earlier calculation of vortex ring diameter
  growth during initial propagation.
- The immediate reduction in diameter compared to the pre-shock value 
+ The post-shock diameter measurement 
+\begin_inset Formula $D$
+\end_inset
+
+ was normalized by the pre-shock value 
 \begin_inset Formula $D^{-}$
 \end_inset
 
- agrees with earlier computational studies of strong shock-vortex interactions
+ for each experiment.
+ The immediate reduction in diameter compared to the pre-shock value agrees
+ with earlier computational studies of strong shock-vortex interactions
  in air 
 \begin_inset CommandInset citation
 LatexCommand citep

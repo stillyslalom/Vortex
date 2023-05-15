@@ -605,32 +605,230 @@ Interaction with stratified interfaces
 \end_inset
 
 
-\begin_inset Note Note
-status open
+\end_layout
 
 \begin_layout Section
 Shock-vortex interactions
 \end_layout
 
-\begin_layout Subsection
-Sound generation
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/external/cetegen_SVI.png
+	lyxscale 20
+	width 100text%
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Subsection
-Vortex deformation
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Planar Rayleigh scattering images of vortex ring-shock interaction.
 \end_layout
 
-\begin_layout Subsection
-Vorticity production
-\end_layout
+\end_inset
 
-\begin_layout Subsection
-Past experiments
+Planar Rayleigh scattering images of vortex ring-shock interaction.
+ The vortex ring initially propagates downwards and the shock wave upwards.
+ The first image (a) is prior to shock interaction, the second (b) is taken
+ 
+\begin_inset Formula $\SI{32}{\micro\second}$
+\end_inset
+
+ after interaction and includes the shock wave in the upper portion of the
+ image, and the third image (c) is taken at 
+\begin_inset Formula $\SI{45}{\micro\second}$
+\end_inset
+
+, shortly after the shock departed the field of view.
+ Modified to fit row-major format from 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Cetegen1995"
+literal "false"
+
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Cetegen-Planar-Rayleigh-scattering"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The first (and until the completion of this work, the only) published experiment
+al investigation of the interaction between multifluid vortex rings and
+ planar shock waves was conducted in 1995 by Cetegen and Hermanson 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Cetegen1995"
+literal "false"
+
+\end_inset
+
+, using an apparatus primarily designed for shock-induced mixing measurements
+ of inhomogeneous jets for supersonic combustion applications 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Hermanson2000"
+literal "false"
+
+\end_inset
+
+.
+ They observed the post-shock development of propane vortex rings propagating
+ into ambient air 
+\begin_inset Formula $(A=0.23$
+\end_inset
+
+) prior to acceleration by 
+\begin_inset Formula $M=1.21$
+\end_inset
+
+ and 
+\begin_inset Formula $M=1.44$
+\end_inset
+
+ planar shock waves using planar laser Rayleigh scattering.
+ The low signal-to-noise ratios typical of Rayleigh scattering measurements
+ mostly limited their observations to qualitative descriptions of large-scale
+ features, arriving at a conclusion that mixing between the vortex ring
+ and ambient fluid was most enhanced by the stronger 
+\begin_inset Formula $M=1.44$
+\end_inset
+
+ shock wave.
+ A reproduction of their Rayleigh scattering images is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Cetegen-Planar-Rayleigh-scattering"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Cetegen describes several features in the text which are not apparent in
+ the low-quality scanned microfilm images available from the publisher.
+ Research librarians were unable to locate a higher-quality version, and
+ private correspondence with Cetegen indicated that the original images
+ had been lost.
+\end_layout
+
+\begin_layout Standard
+Experimental investigation of homogeneous vortex-weak shock interactions
+ were conducted using Schlieren photography by Minota 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Minota1993"
+literal "false"
+
+\end_inset
+
+, Tokugawa 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Tokugawa1997Scattering"
+literal "false"
+
+\end_inset
+
+, and Ukai 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Ukai2016"
+literal "false"
+
+\end_inset
+
+, motivated principally by the study of noise reduction for automotive and
+ aerospace applications.
+ Their observations of shock wave distortion and secondary acoustic wave
+ production were generally confirmed by numerical studies of homogeneous
+ vortex-shock interactions by a large number of investigators including
+ Inoue 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Inoue1999"
+literal "false"
+
+\end_inset
+
+, Ding 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Ding2001"
+literal "false"
+
+\end_inset
+
+, Rault 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Rault2003"
+literal "false"
+
+\end_inset
+
+, Pirozzoli 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Pirozzoli2004"
+literal "false"
+
+\end_inset
+
+, Singh 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Singh2018"
+literal "false"
+
+\end_inset
+
+, and Kundu 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Kundu2022"
+literal "false"
+
+\end_inset
+
+.
+ To the author's knowledge, no computational study of inhomogeneous vortex-shock
+ interactions has been conducted to date.
 \end_layout
 
 \begin_layout Section
@@ -841,6 +1039,10 @@ where
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
 status open
 
@@ -853,8 +1055,9 @@ Shock-bubble interaction: reshock behavior
 
 \end_layout
 
-\begin_layout Section
-Vortices in high-energy-density settings
+\end_inset
+
+
 \end_layout
 
 \end_body
