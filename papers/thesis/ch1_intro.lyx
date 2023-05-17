@@ -710,7 +710,7 @@ noprefix "false"
  shell, and other departures from the idealized spherical capsule form 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "Clark2018,weber_filltube"
+key "weber_filltube,Clark2018"
 literal "false"
 
 \end_inset
@@ -1276,7 +1276,7 @@ literal "false"
  turbulent kinetic energy dissipation compared to three-dimensional isotropic
  turbulence.
  By maintaining their form over a longer time period, vortex rings significantly
- reduced the rate of molecular mixing between the two fluids.
+ reduced the local rate of molecular mixing between the two fluids.
 \end_layout
 
 \begin_layout Standard
@@ -1304,8 +1304,8 @@ Kokkinakis also claims that the presence of vortical structures may also
  be responsible for the reduced accuracy of turbulence models during reshock.
  Most turbulence models are calibrated based on data from Rayleigh-Taylor
  or singly-shocked Richtmyer-Meshkov mixing.
- As such, these models may not accurately represent the complex dynamics
- associated with the formation and evolution of vortical structures during
+ As such, these models may not accurately represent the dynamics associated
+ with the formation and evolution of coherent vortical structures during
  reshock.
 \end_layout
 
@@ -1578,13 +1578,13 @@ assuming purely-azimuthal vorticity
  each following the general form
 \begin_inset Formula 
 \begin{equation}
-U=\frac{\Gamma}{4\pi R}\left[\ln\frac{8}{\alpha}-\frac{1}{2}+A\right]
+U=\frac{\Gamma}{4\pi R}\left[\ln\frac{8}{\alpha}-\frac{1}{2}+\phi\right]\label{eq:vortex-velocity}
 \end{equation}
 
 \end_inset
 
 where 
-\begin_inset Formula $A$
+\begin_inset Formula $\phi$
 \end_inset
 
  varies according to the assumed distribution of vorticity within the ring
@@ -1635,7 +1635,7 @@ name "tab:Ring-translational-velocity-factors"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $A$
+\begin_inset Formula $\phi$
 \end_inset
 
 
@@ -1938,7 +1938,7 @@ literal "false"
 \end_inset
 
 ), the relative merit of each of the proposed forms of 
-\begin_inset Formula $A$
+\begin_inset Formula $\phi$
 \end_inset
 
  is largely a matter of judgment for the practicing experimentalist.
@@ -1981,7 +1981,7 @@ literal "false"
  radius is approximately
 \begin_inset Formula 
 \begin{equation}
-a^{2}=(R_{2}^{2}-R^{2})
+a^{2}=(R_{2}^{2}-R^{2})\label{eq:vortex_a_squared}
 \end{equation}
 
 \end_inset

@@ -15,7 +15,7 @@
 \usepackage[bold]{hhtensor} % options:bold, arrow, uline
 \usepackage{physics}
 \usepackage{siunitx}
-\usepackage{refcheck}
+%\usepackage{refcheck}
 
 \makeevenhead{headings}{}{}{\thepage}
 \makeoddhead{headings}{}{}{\thepage}
@@ -98,7 +98,6 @@
 \newpage
 }
 \end_preamble
-\options final
 \use_default_options false
 \begin_modules
 customHeadersFooters
@@ -170,7 +169,7 @@ todonotes
 \rightmargin 1in
 \bottommargin 1in
 \secnumdepth 2
-\tocdepth 1
+\tocdepth 2
 \paragraph_separation skip
 \defskip medskip
 \is_math_indent 0
@@ -239,6 +238,39 @@ listoftodos
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Abstract
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Acknowledgments
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset toc
 LatexCommand tableofcontents
 
@@ -257,6 +289,19 @@ LatexCommand tableofcontents
 
 \begin_layout Standard
 \begin_inset FloatList table
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Nomenclature
+\end_layout
 
 \end_inset
 
@@ -345,7 +390,7 @@ As a ray of light propagates through transparent optical media, its path
  Schlieren and shadowgraphic imaging harness these deviations to capture
  the gradient and curvature, respectively, of the refractive index fields
  of inhomogeneous gases along a collimated beam path.
- The operating principles of each method are captured by the optical Eikonal
+ The operating principles of both methods are captured by the optical Eikonal
  equation 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -434,13 +479,13 @@ Shadowgraphy relies on beam-steering caused by local variation in the refractive
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
