@@ -180,7 +180,7 @@ f = Figure(resolution=(600, 400))
 ax = Axis(f[1, 1], xlabel = L"$x$ [m]", ylabel = L"$t$ [ms]", 
     xminorticksvisible=true, yminorticksvisible=true)
 hm = heatmap!(ax, xx, 1e3 .* tt, p ./ 1e5, 
-    colormap = :viridis, colorrange = (1, 2.5))
+    colormap = :viridis, colorrange = (1, 2.5), rasterize=1)
 contour!(ax, xx, 1e3 .* ICconds_20p5.t, ICconds_20p5.data[:rho2], 
     levels = [1e-1], 
     linewidth = 1.5, color = :black, linealpha = 0.5)
@@ -199,5 +199,5 @@ bracket!(ax, 0, 0, x_ambient, 0, text="Driven", orientation=:down,
     color=:white, textcolor=:white)
 bracket!(ax, x_ambient, 0, 0.45, 0, text="Ambient", orientation=:down, 
     color=:white, textcolor=:white)
-save(plotsdir("discharge_profiles", "xt_diagram.png"), f)
+save(plotsdir("discharge_profiles", "xt_diagram.svg"), f)
 f
