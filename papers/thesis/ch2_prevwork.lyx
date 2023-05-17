@@ -210,8 +210,8 @@ literal "false"
 
 \end_inset
 
- in an investigation of Schlieren imaging techniques for mining detonators.
- More focused study arrived in 1952 with Elder & De Haas's Schlieren measurement
+ in an investigation of schlieren imaging techniques for mining detonators.
+ More focused study arrived in 1952 with Elder & De Haas's schlieren measurement
 s of vortex ring formation and growth at the open end of a conventional
  shock tube 
 \begin_inset CommandInset citation
@@ -229,11 +229,18 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Sturtevant acquired similar measurements in the late 1970s, and while interpreta
-tion of secondary structures visible in the Schlieren images was greatly
- aided by then-recent advances in the theory of vortex rings, the underlying
- flow diagnostic offered little more information than what was available
- 30 or 50 years prior.
+Sturtevant acquired similar measurements in the late 1970s 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Sturtevant1981"
+literal "false"
+
+\end_inset
+
+, and while interpretation of secondary structures visible in the schlieren
+ images was greatly aided by then-recent advances in the theory of vortex
+ rings, the underlying flow diagnostic offered little more information than
+ what was available 30 or 50 years prior.
  The field largely languished until the late 1990s, when the development
  and widespread availability of inexpensive pulsed lasers and digital cameras
  facilitated the application of modern flow diagnostics including Rayleigh
@@ -246,9 +253,10 @@ tion of secondary structures visible in the Schlieren images was greatly
 The first particle image velocimetry study of shock tube formation of vortex
  rings was carried out by Arakeri, Das, 
 \emph on
-et al
-\emph default
+et al.
  
+\emph default
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Arakeri2004"
@@ -315,7 +323,7 @@ literal "false"
 
 \end_inset
 
-, the pressure jump across a planar shock wave of strength 
+, the pressure jump across a planar shock wave of Mach number 
 \begin_inset Formula $M$
 \end_inset
 
@@ -454,7 +462,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Synthetic Schlieren images (shaded proportional to 
+Synthetic schlieren images (shaded proportional to 
 \begin_inset Formula $\grad\rho$
 \end_inset
 
@@ -490,7 +498,7 @@ The idealized treatment given above departs from observations with increased
  counter-rotating vortex rings (CRVRs), and systems of standing shock waves
  and expansion fans at the shock tube exit.
  These effects were first systematically explored by Brouillette and Hébert
- using Schlieren photography across a range of shock tube Mach numbers 
+ using schlieren photography across a range of shock tube Mach numbers 
 \begin_inset Formula $1.0<M<2.0$
 \end_inset
 
@@ -543,9 +551,10 @@ literal "false"
 
 , as well as some recent contributions by Qin 
 \emph on
-et al
-\emph default
+et al.
  
+\emph default
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Qin2020"
@@ -555,9 +564,10 @@ literal "false"
 
  and Ahmad 
 \emph on
-et al
-\emph default
+et al.
  
+\emph default
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Ahmad2020"
@@ -749,7 +759,7 @@ noprefix "false"
 
 \begin_layout Standard
 Experimental investigation of homogeneous vortex-weak shock interactions
- were conducted using Schlieren photography by Minota 
+ were conducted using schlieren photography by Minota 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Minota1993"
@@ -973,7 +983,7 @@ literal "false"
 ce tracer molecules.
  Consequently, experimental study of shock-bubble interactions has largely
  relied on Mie-scattered images of the bubble film and path-integrated technique
-s including shadowgraphy and Schlieren imaging.
+s including shadowgraphy and schlieren imaging.
 \end_layout
 
 \begin_layout Standard

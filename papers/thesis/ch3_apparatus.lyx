@@ -198,7 +198,7 @@ Overview of experiments:
 
 \begin_layout Standard
 Initial investigations of the compressible vortex ring formation process
- were carried out on several testbed platforms using high-speed Schlieren
+ were carried out on several testbed platforms using high-speed schlieren
  imaging to guide and validate the design of a vortex ring generator.
  Following the installation and qualification of the vortex ring generator
  in the Wisconsin Shock Tube, the interaction between an argon vortex ring
@@ -596,9 +596,10 @@ noprefix "false"
  significantly along the beam path, an iterative temperature correction
  procedure is required as described by Herzog 
 \emph on
-et al
-\emph default
+et al.
  
+\emph default
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Herzog2019iterative"
@@ -691,9 +692,10 @@ literal "false"
 , and a complete overview of the background, equipment, techniques, and
  post-processing required for PIV measurements is presented by Raffel 
 \emph on
-et al
-\emph default
+et al.
  
+\emph default
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Raffel2007a"
@@ -817,9 +819,10 @@ All shock-vortex interaction experiments were conducted in the Wisconsin
  The basic configuration of the facility for the present work is similar
  to its original layout as described by Anderson 
 \emph on
-et al
-\emph default
+et al.
  
+\emph default
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Anderson2000"
@@ -952,7 +955,7 @@ Experimental diagnostic configurations
 \end_layout
 
 \begin_layout Subsection
-Schlieren imaging
+schlieren imaging
 \end_layout
 
 \begin_layout Standard
@@ -976,7 +979,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Schlieren imaging apparatus
+schlieren imaging apparatus
 \end_layout
 
 \end_inset
@@ -990,7 +993,7 @@ Schlieren imaging apparatus
 \end_layout
 
 \begin_layout Standard
-Schlieren images of the formation and development of vortex rings from the
+schlieren images of the formation and development of vortex rings from the
  open end of a shock tube were acquired by a Phantom v1211 high-speed camera
  operating at 49,000 frames per second.
  Illumination of the imaging region was produced by temporarily over-driving
@@ -1013,7 +1016,7 @@ literal "false"
  cm spherical lenses placed parallel to the imaging region.
  Optical streaks (
 \emph on
-Schlieren
+schlieren
 \emph default
 ) were produced by a knife-edge placed at the focal point of the second
  spherical lens prior to collection by a 50 mm 

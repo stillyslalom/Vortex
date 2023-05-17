@@ -213,7 +213,7 @@ noprefix "false"
 
 \end_inset
 
-; likewise the annuli produced by the vaporized remnants of the capsule
+; likewise for the annuli produced by the vaporized remnants of the capsule
  support tent.
  As a matter of design focus, it may be better to characterize these kurtogenic
  phenomena in isolation rather than allowing them to pollute an otherwise
@@ -470,7 +470,7 @@ noprefix "false"
  and after shock compression in multifluid cases with baroclinic vorticity
  deposition on the interface between the ring and its surroundings.
  It includes experiments on the behavior of vortex rings generated at the
- open end of a shock tube captured with high-speed Schlieren imaging, experiment
+ open end of a shock tube captured with high-speed schlieren imaging, experiment
 s on the propagation and interaction of a vortex ring with a planar shock
  wave, and computations of vortex-interface-shock interactions.
  
@@ -923,9 +923,9 @@ literal "false"
 .
  In Meshkov's experiments, the initial shape of the interfacial perturbations
  was enforced by a thin nitrocellulose membrane , but the fragmentation
- of this membrane saps the strength of the shock wave and disturbs the post-shoc
-k evolution of the interface.
- Additionally, the presence of a solid membrane presents severe difficulties
+ of this membrane disturbs the post-shock evolution of the interface and
+ may sap the strength of the shock wave.
+ Additionally, the presence of membrane fragments presents severe difficulties
  for quantitative flow visualization techniques.
  As a result, subsequent workers have adopted a variety of membrane-free
  interfaces involving oscillating pistons, retractable corrugated sheets,
@@ -934,7 +934,17 @@ k evolution of the interface.
 etc.
 
 \emph default
- 
+ One such twice-interface is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Balakumar-reshock"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, with simultaneous application of multiple modern flow diagnostics.
 \end_layout
 
 \begin_layout Standard
@@ -981,6 +991,13 @@ Pre- and post-reshock
 LatexCommand citep
 key "Balakumar2012"
 literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Balakumar-reshock"
 
 \end_inset
 
@@ -1255,7 +1272,8 @@ name "fig:Thornber_RMI_vortex"
 \begin_layout Standard
 In a similar vein, Kokkinakis 
 \emph on
-et al
+et al.
+
 \emph default
  
 \begin_inset CommandInset citation
@@ -1401,6 +1419,13 @@ status open
 \begin_layout Plain Layout
 Vortex ring geometry in (a) Cartesian and (b) axisymmetric cylindrical coordinat
 es
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vortex-ring-geometry"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1419,7 +1444,17 @@ al
 \begin_inset Formula $\theta$
 \end_inset
 
--direction often neglected except when investigating vortex swirl or instability.
+-direction often neglected as depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-ring-geometry"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ except when investigating vortex swirl or instability.
  The principal ring radius is indicated by 
 \begin_inset Formula $R$
 \end_inset
@@ -1516,16 +1551,23 @@ Analytical solutions are available for the limiting cases, but intermediate
 \begin_inset Formula $\alpha$
 \end_inset
 
- require numerical solution of an integral equation
+ require numerical solution of an integral equation for the streamfunction
+ 
+\begin_inset Formula $\psi$
+\end_inset
+
+:
 \begin_inset Formula 
 \begin{align}
-\psi(r,z) & =-\frac{1}{2}Ur^{2}+\frac{\Omega}{2\pi}\iint_{A}G(r,\hat{r},z-\hat{z})\dd{\hat{r}}\dd{\hat{z}}\\
-\qq{where}G & =\frac{1}{2}r\hat{r}^{2}\int_{-\pi}^{\pi}\frac{\cos\hat{\lambda}\dd{\hat{\lambda}}}{[r^{2}+\hat{r}^{2}-2r\hat{r}\cos\hat{\lambda}+(z-\hat{z})^{2}]^{1/2}}
+\psi(r,z) & =-\frac{1}{2}Ur^{2}+\frac{\Omega}{2\pi}\iint_{A}G(r,\tilde{r},z-\tilde{z})\dd{\tilde{r}}\dd{\tilde{z}}\\
+\qq{where}G & =\frac{1}{2}r\tilde{r}^{2}\int_{-\pi}^{\pi}\frac{\cos\tilde{\theta}\dd{\tilde{\theta}}}{[r^{2}+\tilde{\theta}^{2}-2r\tilde{r}\cos\tilde{\theta}+(z-\tilde{z})^{2}]^{1/2}}
 \end{align}
 
 \end_inset
 
-giving a unique vortex core boundary curve 
+where tildes indicate auxiliary variables of integration over a cylindrical
+ domain.
+ This procedures gives a unique vortex core boundary curve 
 \begin_inset Formula $\partial A$
 \end_inset
 
@@ -2218,8 +2260,8 @@ noprefix "false"
 
 \end_inset
 
- is an open-ended piston which impulsively attains a constant piston velocity
- 
+ is a fluid-filled, open-ended cylinder driven at one end by a piston which
+ impulsively attains a constant piston velocity 
 \begin_inset Formula $U_{p}$
 \end_inset
 
@@ -2244,14 +2286,18 @@ noprefix "false"
 \begin_inset Formula $N=L/D_{p}\approx4$
 \end_inset
 
- as described by Gharib, Mohseni, 
-\emph on
-et al
-\emph default
- 
+ as described by Gharib 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "Gharib1998,mohseni1998"
+key "Gharib1998"
+literal "false"
+
+\end_inset
+
+ and Mohseni 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mohseni1998"
 literal "false"
 
 \end_inset

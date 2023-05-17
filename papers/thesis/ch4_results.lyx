@@ -212,7 +212,7 @@ noprefix "false"
 
 \end_inset
 
- to design and validate a vortex ring generator using high-speed Schlieren
+ to design and validate a vortex ring generator using high-speed schlieren
  imaging.
  The cylinder diameter 
 \begin_inset Formula $D_{p}$
@@ -243,7 +243,7 @@ literal "false"
 \end_layout
 
 \begin_layout Subsection
-Schlieren imaging of ring growth and propagation
+schlieren imaging of ring growth and propagation
 \end_layout
 
 \begin_layout Standard
@@ -302,12 +302,12 @@ status open
 status open
 
 \begin_layout Plain Layout
-Schlieren images of vortex ring formation
+schlieren images of vortex ring formation
 \end_layout
 
 \end_inset
 
-Schlieren images of vortex ring formation (sequenced left to right, top
+schlieren images of vortex ring formation (sequenced left to right, top
  to bottom).
  The first image is captured 
 \begin_inset Formula $\SI{700}{\micro\second}$
@@ -1445,7 +1445,8 @@ target "https://github.com/stillyslalom/TrixiShockTube.jl"
 \begin_layout Standard
 Based on the vortex ring formation measurements of Arakeri 
 \emph on
-et al 
+et al.
+ 
 \emph default
 
 \begin_inset CommandInset citation
