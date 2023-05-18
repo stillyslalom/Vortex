@@ -244,8 +244,27 @@ literal "false"
  The field largely languished until the late 1990s, when the development
  and widespread availability of inexpensive pulsed lasers and digital cameras
  facilitated the application of modern flow diagnostics including Rayleigh
- scattering, planar laser-induced fluorescence (PLIF), and particle image
- velocimetry (PIV).
+ scattering, planar laser-induced fluorescence (PLIF)
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Abbrev"
+symbol "PLIF"
+description "Planar laser-induced fluorescence"
+literal "false"
+
+\end_inset
+
+, and particle image velocimetry (PIV)
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Abbrev"
+symbol "PIV"
+description "Particle image velocimetry"
+literal "false"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -267,7 +286,7 @@ literal "false"
 .
  They found that the vortex ring circulation plateaued at a nondimensional
  formation number 
-\begin_inset Formula $U_{p}t/D$
+\begin_inset Formula $U_{p}t/D_{p}$
 \end_inset
 
  of around 2.5, in contrast to the value of 4 given by Gharib for rings formed
@@ -315,6 +334,75 @@ ns of time-varying discharge velocity at the shock tube exit.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/discharge_profiles/xt_diagram.png
+	lyxscale 70
+	width 12cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+x-t diagram for M=1.2 shock wave in argon propagating into ambient nitrogen
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $x-t$
+\end_inset
+
+ pressure diagram for 
+\begin_inset Formula $M=1.2$
+\end_inset
+
+ shock wave generated in an argon-filled shock tube propagating into ambient
+ nitrogen.
+ Pressure history provided by 1D discontinuous Galerkin computation.
+ Circled numbers indicate gas dynamics state indices, and the circled (R)
+ marks the rarefaction fan.
+ Black lines indicate the contact surface (left) and argon-nitrogen interface
+ (right).
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:x-t-pressure"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Following Mohseni while hewing to Anderson's notation 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -343,7 +431,7 @@ In a shock tube of constant cross section, this shock jump condition is
  related to the pressure ratio across the diaphragm by the shock tube equation
 \begin_inset Formula 
 \begin{equation}
-\frac{p_{4}}{p_{1}}=\frac{p_{2}}{p_{1}}\left[1-\frac{(\gamma_{4}-1)(a_{1}/a_{4})(p_{2}/p_{1}-1)}{\sqrt{2\gamma_{1}(2\gamma_{1}+(\gamma_{1}+1)(p_{2}/p_{1}-1)}}\right]^{\frac{2\gamma_{4}}{\gamma_{4}-1}}
+\frac{p_{4}}{p_{1}}=\frac{p_{2}}{p_{1}}\left[1-\frac{(\gamma_{4}-1)(c_{1}/c_{4})(p_{2}/p_{1}-1)}{\sqrt{2\gamma_{1}(2\gamma_{1}+(\gamma_{1}+1)(p_{2}/p_{1}-1)}}\right]^{\frac{2\gamma_{4}}{\gamma_{4}-1}}
 \end{equation}
 
 \end_inset
@@ -353,23 +441,52 @@ where
 \end_inset
 
 , 
-\begin_inset Formula $a_{i}$
+\begin_inset Formula $c_{i}$
 \end_inset
 
 , and 
 \begin_inset Formula $\gamma_{i}$
 \end_inset
 
- are the initial pressure, sound speed, and adiabatic index in the driver
- and driven sections, respectively.
+ are the initial pressure, sound speed
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$c$"
+description "Sound speed"
+literal "true"
+
+\end_inset
+
+, and adiabatic index
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$\\gamma$"
+description "Adiabatic index"
+literal "true"
+
+\end_inset
+
+ in the driver and driven sections, respectively.
  After the diaphragm is ruptured and the shock begins to propagate, a third
  state (denoted by the subscript 
 \begin_inset Formula $_{3}$
 \end_inset
 
 ) arises at the contact surface between the driver and driven gases.
- The pressure is constant across this interface, but the temperature and
- density vary.
+ The pressure is constant across this interface (note states 2 and 3 in
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:x-t-pressure"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), but the temperature and density vary.
  The consequent change in sound speed means that the velocity of the leading
  expansion wave will change as it crosses the contact surface.
  This leads to a bifurcation in the arrival time of the leading expansion
@@ -419,19 +536,32 @@ Then the total length of discharged fluid incorporated into the vortex ring
 \begin_inset Formula $L=u_{2}(t_{e}-t_{s})$
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$L$"
+description "Length of discharged fluid slug"
+literal "true"
+
+\end_inset
+
  where 
 \begin_inset Formula $t_{el}<t_{e}<t_{es}$
 \end_inset
 
 , not accounting for the decrease in velocity throughout the expansion wave.
+ Although the expulsion of fluid from the shock tube can be treated as 1D,
+ the resulting vortex ring formation process is quasi-2D and depends on
+ the diameter of the expelled fluid slug.
  Given a shock tube diameter 
-\begin_inset Formula $D$
+\begin_inset Formula $D_{p}$
 \end_inset
 
 , this formulation constrains the allowable shock tube dimensions capable
  of producing well-formed, near-optimal vortex rings with a formation number
  
-\begin_inset Formula $L/D\approx4$
+\begin_inset Formula $L/D_{p}\approx4$
 \end_inset
 
 .
@@ -480,6 +610,13 @@ literal "false"
 \end_inset
 
 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Synthetic-schlieren-images"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -495,8 +632,18 @@ literal "false"
 
 The idealized treatment given above departs from observations with increased
  driver pressure ratios due to the presence of vortex-embedded shocklets,
- counter-rotating vortex rings (CRVRs), and systems of standing shock waves
- and expansion fans at the shock tube exit.
+ counter-rotating vortex rings (CRVRs)
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Abbrev"
+symbol "CRVR"
+description "Counter-rotating vortex ring"
+literal "false"
+
+\end_inset
+
+, and systems of standing shock waves and expansion fans at the shock tube
+ exit.
  These effects were first systematically explored by Brouillette and Hébert
  using schlieren photography across a range of shock tube Mach numbers 
 \begin_inset Formula $1.0<M<2.0$
@@ -526,16 +673,29 @@ For
 \begin_inset Formula $1.43<M<1.6$
 \end_inset
 
-, an embedded shock appears in the recirculation region which distorts the
- vortex core into an oval shape.
+, an embedded vortex-induced shock appears in the recirculation region which
+ distorts the vortex core into an oval shape.
  Beyond 
 \begin_inset Formula $M=1.6$
 \end_inset
 
-, the Kelvin-Helmoltz shear flow ahead of the leading Mach disk's triple
- point produces one or more counter-rotating vortex rings in advance of
- the primary ring.
- 
+, the Kelvin-Helmoltz shear flow produced by the slipstream ahead of the
+ leading Mach disk's triple point produces one or more counter-rotating
+ vortex rings in advance of the primary ring.
+ These compressibility-induced features are denoted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Synthetic-schlieren-images"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The presence of the Mach disk (and thus the production of counter-rotating
+ vortex rings) appears to be largely driven by the duration and amplitude
+ of the peak over-pressure state at the shock tube exit.
 \end_layout
 
 \begin_layout Standard
@@ -1025,8 +1185,28 @@ where
 \begin_inset Formula $u_{p}$
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$u_p$"
+description "Post-shock particle velocity"
+literal "true"
+
+\end_inset
+
  is the post-shock particle velocity, 
 \begin_inset Formula $W_{i}$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$W_i$"
+description "Incident shock wave speed"
+literal "true"
+
 \end_inset
 
  is the incident shock wave speed, 
