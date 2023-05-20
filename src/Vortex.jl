@@ -36,7 +36,7 @@ export PranaData, PranaPass, vector_replacement, VectorStatus, vector_infill
 export PEAK1, PEAK2, INTERP, FAILED # vector status enum
 export push1
 export MST_state
-export vorticity
+export vorticity, vortex_integrals
 
 function loadmeta(f=(_ -> true))
     filter!(f, DataFrame(XLSX.readtable(datadir("meta.xlsx"), "Sheet1")))

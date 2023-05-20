@@ -51,7 +51,7 @@ end
     centerpoint = (core["leftcore"] .+ core["rightcore"]) ./ 2
 
     PIV = load(datadir("PIV", "registered", runname(runmeta)*".jld2"))
-    ω = vorticity(PIV["u"], PIV["v"], step(runmeta.grid.x), step(runmeta.grid.z))
+    ω = Vortex.vorticity(PIV["u"], PIV["v"], step(runmeta.grid.x), step(runmeta.grid.z))
 
     i_x = findfirst(x -> x > core["xlims"][1], PIV["x"]):findlast(x -> x < core["xlims"][2], PIV["x"])
     i_y = findfirst(y -> y > core["ylims"][1], PIV["y"]):findlast(y -> y < core["ylims"][2], PIV["y"])
@@ -134,7 +134,7 @@ f
 f = Figure(resolution=100 .* (7, 5))
 ax1 = Axis(f[1, 1], xlabel="post-shock time [ms]", ylabel="ΔΓ [m²/s]", 
         xminorticksvisible=true, yminorticksvisible=true)
-ΔΓs = Dict{String,Vector{Float64}}()
+ΔΓtrend = Dict{String,Vector{Float64}}()
 for i in 1:2, j in 1:2
     idx = j + 2*(i-1)
     gas, psig = shockICs[idx]
@@ -143,7 +143,7 @@ for i in 1:2, j in 1:2
     shocks = gdf[(MST_gas = gas, MST_psig=psig, shockrun=true)]
     cf = Γ_fits[gas]
     ΔΓ = shocks.Γ .- Γ_model.(1e3*shocks.t_TSI, Ref(cf))*u"m^2/s"
-    ΔΓs[gas] = ustrip.(u"m^2/s", ΔΓ)
+    ΔΓtrend[gas] = ustrip.(u"m^2/s", ΔΓ)
     plot!(ax1, 1e3*(shocks.t_TSI .- shocks.t_SVI), ustrip.(u"m^2/s", ΔΓ), 
         marker=:dtriangle, label=gas, color=Makie.wong_colors()[idx])
     hlines!(ax1, ustrip(u"m^2/s", mean(ΔΓ)), color=Makie.wong_colors()[idx], linestyle=:dot, label=gas)
@@ -157,7 +157,7 @@ ax2 = Axis(f[1, 2], xlabel="Atwood number",
 for i in 1:2, j in 1:2
     idx = j + 2*(i-1)
     gas, psig = shockICs[idx]
-    ΔΓ = ΔΓs[gas]
+    ΔΓ = ΔΓtrend[gas]
     shocks = gdf[(MST_gas = gas, MST_psig=psig, shockrun=true)]
     ρvortex = [PyThermo.density(MST_state(s).driven) for s in eachrow(shocks)]
     ρambient = PyThermo.density(Species("N2", P=14.3u"psi", T=19u"°C"))
@@ -315,13 +315,13 @@ end
 f = Figure(resolution=100 .* (7, 5))
 ax1 = Axis(f[1, 1], xlabel="post-shock time [ms]", ylabel="ΔΓ [m²/s]", 
         xminorticksvisible=true, yminorticksvisible=true)
-ΔΓs = Dict{String,Vector{Float64}}()
+ΔΓpred = Dict{String,Vector{Float64}}()
 for i in 1:2, j in 1:2
     idx = j + 2*(i-1)
     gas, psig = shockICs[idx]
     shocks = gbPS[(MST_gas = gas, MST_psig=psig)]
     ΔΓ = shocks.Γ .- shocks.Γ_pred
-    ΔΓs[gas] = ustrip.(u"m^2/s", ΔΓ)
+    ΔΓpred[gas] = ustrip.(u"m^2/s", ΔΓ)
     plot!(ax1, 1e3*(shocks.t_TSI .- shocks.t_SVI), ustrip.(u"m^2/s", ΔΓ), 
         marker=:dtriangle, label=gas, color=Makie.wong_colors()[idx])
     hlines!(ax1, ustrip(u"m^2/s", mean(ΔΓ)), color=Makie.wong_colors()[idx], linestyle=:dot, label=gas)
@@ -333,7 +333,7 @@ ax2 = Axis(f[1, 2], xlabel="Atwood number",
 for i in 1:2, j in 1:2
     idx = j + 2*(i-1)
     gas, psig = shockICs[idx]
-    ΔΓ = ΔΓs[gas]
+    ΔΓ = ΔΓpred[gas]
     shocks = gbPS[(MST_gas = gas, MST_psig=psig)]
     boxplot!(ax2, fill(mean(shocks.At), length(ΔΓ)), ΔΓ, 
         label=gas, color=Makie.wong_colors()[idx], width=0.07)
@@ -341,6 +341,12 @@ end
 linkyaxes!(ax1, ax2)
 save(plotsdir("circulation_jump", "Delta_Gamma_predicted_versus_At.svg"), f,)
 f
+
+## Plot normalized predicted and measured circulation jump versus Atwood number
+f = Figure(resolution=100 .* (7, 5))
+ax1 = Axis(f[1, 1], xlabel="Atwood number", ylabel=L"\Delta\Gamma/\Gamma_{-}", 
+        xminorticksvisible=true, yminorticksvisible=true)
+
 
 ##
 runmeta = select_run(runlist, "2023-01-19_run9")
