@@ -506,6 +506,18 @@ rface-shock interaction of an argon vortex ring formed by
 \end_inset
 
  shock wave traveling downwards in nitrogen.
+ Calculations are performed with 
+\noun on
+Miranda.
+\noun default
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Miranda-Ar-SIVI"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -568,6 +580,18 @@ Volume fraction (left) and vorticity overlaid with isocontours of velocity
 \end_inset
 
  shock wave traveling downwards in nitrogen.
+ Calculations are performed with 
+\noun on
+Miranda.
+\noun default
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Miranda-SF6-SIVI"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -715,6 +739,13 @@ Vortex trajectory (top), velocity (center), and circulation (bottom) during
 \end_inset
 
 .
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Miranda-Delta-Gamma"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -741,9 +772,36 @@ RzTrona
  A 3D simulation was attempted, but resolution-dependent aliasing effects
  appeared after 5000 CPU hours, demanding increased resolution and higher-yet
  resource requirements.
- The 2D simulations were unable to model the development of the Widnall
- instability or the turbulent wake shed from the vortex ring, resulting
- in overprediction of the vortex velocity and underprediction of its size.
+ Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Miranda-Ar-SIVI"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Miranda-SF6-SIVI"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ depict the propagation of argon and SF₆ vortex rings, respectively, through
+ a gravitationally stable interface between argon or SF₆ and nitrogen, followed
+ by acceleration by a planar shock wave.
+ The 2D 
+\noun on
+Miranda 
+\noun default
+simulations were unable to model the development of the Widnall instability
+ or the turbulent wake shed from the vortex ring, resulting in overprediction
+ of the vortex velocity and underprediction of its size.
  However, the vortex formation and shock-vortex interactions were well-captured,
  with circulation from shock-deposited vorticity 
 \begin_inset Formula $\Delta\Gamma$
@@ -759,7 +817,17 @@ literal "true"
 
 \end_inset
 
- agreeing surprisingly well with the bubble model described by Eq.
+ (denoted by the dotted line in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Miranda-Delta-Gamma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) agreeing surprisingly well with the bubble model described by Eq.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1213,9 +1281,9 @@ Also notable is the presence of dark oval regions in the raw image corresponding
 \end_layout
 
 \begin_layout Standard
-These limitations spurred the use of dual-frame, high-resolution PIV for
- the subsequent experimental campaign to provide a more comprehensive view
- of the vortex ring dynamics, trading quantity for quality and overcoming
+These limitations spurred the use of single-acquisition, dual-frame, high-resolu
+tion PIV for the subsequent experimental campaign to provide a more comprehensiv
+e view of the vortex ring dynamics, trading quantity for quality and overcoming
  the constraints encountered in this initial set of experiments.
 \end_layout
 
@@ -1504,6 +1572,18 @@ literal "false"
  Using this approximation, the formation number varied from 1.61 to 5.12 across
  all tested conditions, and from 2.44 to 4.52 for the shock-vortex interaction
  initial conditions.
+ The discharge profiles and pinch-off times for the shock-vortex initial
+ conditions are depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Trixi-discharge-formation-number"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1563,9 +1643,8 @@ literal "true"
 
 \begin_layout Plain Layout
 \begin_inset Tabular
-<lyxtabular version="3" rows="18" columns="9">
+<lyxtabular version="3" rows="18" columns="8">
 <features booktabs="true" tabularvalignment="middle">
-<column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -1580,18 +1659,6 @@ literal "true"
 
 \begin_layout Plain Layout
 Ring gas
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $p_{4}$
-\end_inset
-
- [psig]
 \end_layout
 
 \end_inset
@@ -1677,7 +1744,7 @@ Acetone
 \end_inset
 
  
-\begin_inset Formula $\mathrm{[\mu s]}$
+\begin_inset Formula $\mathrm{[\si{\micro\second}]}$
 \end_inset
 
 
@@ -1708,17 +1775,6 @@ Acetone
 \end_inset
 
 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-20.5
 \end_layout
 
 \end_inset
@@ -1820,28 +1876,6 @@ Acetone
 \noun off
 \color none
 Ar
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
-35.5
 \end_layout
 
 \end_inset
@@ -2041,28 +2075,6 @@ Ar
 \uwave off
 \noun off
 \color none
-30.5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
 310.3
 \end_layout
 
@@ -2217,17 +2229,6 @@ Ar
 \begin_layout Plain Layout
 
 \series bold
-20.5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
 241.3
 \end_layout
 
@@ -2319,28 +2320,6 @@ Ar
 \noun off
 \color none
 Ar
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
-10.5
 \end_layout
 
 \end_inset
@@ -2543,28 +2522,6 @@ Ar
 \uwave off
 \noun off
 \color none
-5.5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
 137.9
 \end_layout
 
@@ -2725,28 +2682,6 @@ Ar
 \end_inset
 
 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
-10.5
 \end_layout
 
 \end_inset
@@ -2949,28 +2884,6 @@ Ar
 \uwave off
 \noun off
 \color none
-15.5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
 206.8
 \end_layout
 
@@ -3131,28 +3044,6 @@ Ar
 \end_inset
 
 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
-20.5
 \end_layout
 
 \end_inset
@@ -3344,17 +3235,6 @@ Ar
 \begin_layout Plain Layout
 
 \series bold
-25.5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
 275.8
 \end_layout
 
@@ -3449,28 +3329,6 @@ Ar
 \end_inset
 
 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
-30.5
 \end_layout
 
 \end_inset
@@ -3673,28 +3531,6 @@ Ar
 \uwave off
 \noun off
 \color none
-5.5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
 137.9
 \end_layout
 
@@ -3855,28 +3691,6 @@ Ar
 \end_inset
 
 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
-10.5
 \end_layout
 
 \end_inset
@@ -4079,28 +3893,6 @@ Ar
 \uwave off
 \noun off
 \color none
-15.5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
 206.8
 \end_layout
 
@@ -4261,28 +4053,6 @@ Ar
 \end_inset
 
 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
-20.5
 \end_layout
 
 \end_inset
@@ -4474,17 +4244,6 @@ Ar
 \begin_layout Plain Layout
 
 \series bold
-25.5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
 275.8
 \end_layout
 
@@ -4579,28 +4338,6 @@ Ar
 \end_inset
 
 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
-30.5
 \end_layout
 
 \end_inset
@@ -4873,7 +4610,7 @@ is based on the local minimum within the high-intensity region corresponding
  due to the correlated increase in formation and Reynolds numbers, as well
  as significant increases in diameter growth variability at higher pressure
  ratios.
- It's also worth nothing that the ring core measurement procedure failed
+ It's also worth noting that the ring core measurement procedure failed
  at the highest pressure ratio cases shortly after ring formation for both
  
 \begin_inset Formula $\mathrm{{CF_{4}}}$
@@ -5117,7 +4854,8 @@ with
 
 .
  The relative error between circulation-predicted and PLIF-measured velocity
- was minimized by adopting a correction factor 
+ was minimized by adopting an empirical vorticity distribution correction
+ factor 
 \begin_inset Formula 
 \begin{equation}
 \phi=-1.6(0.6-A)^{2}
@@ -5126,7 +4864,7 @@ with
 \end_inset
 
 The predicted and measured velocities (and their discrepancy) for each experimen
-t are shown as a function of time in 
+t are shown as a function of time in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:circulation-propagation-velocity-vs-t"
@@ -5793,7 +5531,7 @@ Pressure trace recorded by high-frequency pressure transducers (top) and
 \end_inset
 
  diagram of shock wave propagation (bottom) corresponding to shock detections
- indicated by dashed lines in top frame
+ indicated by dashed lines in top frame.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Pressure-trace"
@@ -5814,8 +5552,8 @@ name "fig:Pressure-trace"
 \end_layout
 
 \begin_layout Standard
-A pressure trace recorded by high-frequency pressure transducers for a typical
- experiment is shown in Figure 
+Pressure traces recorded by high-frequency pressure transducers for a typical
+ experiment are shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Pressure-trace"
@@ -5826,9 +5564,9 @@ noprefix "false"
 \end_inset
 
 .
- The shock detection threshold is taken as 10 psig (169 kPa), with detection
- times indicated by dashed lines.
- The 
+ The shock detection threshold is taken as 169 kPa, with detection times
+ indicated by dashed lines.
+ Note that the 
 \begin_inset Formula $x$
 \end_inset
 
@@ -5910,6 +5648,7 @@ Average spanwise PLIF intensity versus post-rupture time for a typical shock
 \end_inset
 
 location (right).
+ Vertical black line indicates the shock-vortex interaction time.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -5936,7 +5675,8 @@ An early attempt to extract pre- and post-shock vortex ring position & velocity
 \begin_inset Formula $x-$
 \end_inset
 
-direction) average intensity from each PLIF image and marking the 
+direction in vortex-centered coordinates) average intensity from each PLIF
+ image and marking the 
 \begin_inset Formula $z-$
 \end_inset
 
@@ -6052,8 +5792,8 @@ name "fig:vortex-core-trajectories"
 \end_layout
 
 \begin_layout Standard
-To provide a clearer view of vortex ring ring trajectories, the ring core
- identification procedure described in 
+To provide a clearer view of vortex ring trajectories, the ring core identificat
+ion procedure described in 
 \begin_inset ERT
 status collapsed
 
@@ -6253,6 +5993,10 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
 \begin_inset Graphics
 	filename gfx/vortex_ROI/2023-01-23_run4.png
 	lyxscale 20
@@ -6291,6 +6035,21 @@ status open
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/collages/vorticity.svg
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
@@ -6304,8 +6063,12 @@ Vorticity overlaid with vortex core positions and core dimensions
 
 \end_inset
 
-Vorticity overlaid with vortex core positions and core dimensions as identified
- by Equations 
+Vorticity overlaid with vortex core positions and core dimensions normalized
+ by ring radius 
+\begin_inset Formula $R$
+\end_inset
+
+ as identified by Equations 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:discretized_Gamma"
@@ -6327,9 +6090,9 @@ noprefix "false"
 
  for each vortex ring gas immediately after shock interaction.
  Red and blue (+) symbols indicate the left and right core positions, and
- the radius of the surrounding circles matches the measured core radius
- 
-\begin_inset Formula $a$
+ the radius of the surrounding circles matches the normalized measured core
+ radius 
+\begin_inset Formula $a/R$
 \end_inset
 
 .
@@ -6354,18 +6117,7 @@ name "fig:Vortex-ROI"
 \end_layout
 
 \begin_layout Standard
-Two potential culprits are apparent upon inspection of the post-shock vorticity
- fields in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Vortex-ROI"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
+Two potential culprits were evaluated for the observed behavior.
  The first is mechanical stripping of vorticity within the vortex core by
  the shock-deposited baroclinic vorticity, as evidenced by the curling tails
  of vorticity corresponding to the wisps of ejected vortex ring gas identified
@@ -6399,6 +6151,16 @@ noprefix "false"
  Additionally, baroclinic deposition could not play a significant role in
  the zero-Atwood case of a nitrogen ring propagating into ambient nitrogen.
  A likelier explanation is opposite-sign vorticity deposition by shock curvature
+, visible in the low-Atwood cases in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-ROI"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
 , with shock curvature due both to the acoustic impedance mismatch between
  the vortex and its surroundings as well as the strong velocity gradients
  in the vicinity of the vortex core.
@@ -6418,7 +6180,7 @@ literal "false"
 
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
-prefix "Vortex"
+prefix "Fluids"
 symbol "$S$"
 description "Entropy"
 literal "true"
@@ -6604,7 +6366,12 @@ noprefix "false"
 
 \end_inset
 
-) and calculating the circulation jump at the PIV imaging time 
+), where the 
+\begin_inset Formula $_{-}$
+\end_inset
+
+ subscript denotes the pre-shock state, and calculating the circulation
+ jump at the PIV imaging time 
 \begin_inset Formula $t_{\mathrm{{PIV}}}$
 \end_inset
 
@@ -6710,8 +6477,18 @@ Finally, the vortex diameter was calculated as a function of post-shock
 \end_inset
 
  for each experiment.
- The immediate reduction in diameter compared to the pre-shock value agrees
- with earlier computational studies of strong shock-vortex interactions
+ The immediate reduction in diameter compared to the pre-shock value in
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-diameter-evolution"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ agrees with earlier computational studies of strong shock-vortex interactions
  in air 
 \begin_inset CommandInset citation
 LatexCommand citep

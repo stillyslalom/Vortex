@@ -341,9 +341,20 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename gfx/discharge_profiles/xt_diagram.png
+	filename gfx/discharge_profiles/xt_diagram.svg
 	lyxscale 70
 	width 12cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/diagrams/shocktube_cartoon.svg
+	lyxscale 30
+	width 90col%
 
 \end_inset
 
@@ -363,7 +374,7 @@ x-t diagram for M=1.2 shock wave in argon propagating into ambient nitrogen
 
 \end_inset
 
-
+Top: 
 \begin_inset Formula $x-t$
 \end_inset
 
@@ -373,6 +384,7 @@ x-t diagram for M=1.2 shock wave in argon propagating into ambient nitrogen
 
  shock wave generated in an argon-filled shock tube propagating into ambient
  nitrogen.
+ Bottom: schematic of shock tube states and wave propagation.
  Pressure history provided by 1D discontinuous Galerkin computation.
  Circled numbers indicate gas dynamics state indices, and the circled (R)
  marks the rarefaction fan.
@@ -431,7 +443,7 @@ In a shock tube of constant cross section, this shock jump condition is
  related to the pressure ratio across the diaphragm by the shock tube equation
 \begin_inset Formula 
 \begin{equation}
-\frac{p_{4}}{p_{1}}=\frac{p_{2}}{p_{1}}\left[1-\frac{(\gamma_{4}-1)(c_{1}/c_{4})(p_{2}/p_{1}-1)}{\sqrt{2\gamma_{1}(2\gamma_{1}+(\gamma_{1}+1)(p_{2}/p_{1}-1)}}\right]^{\frac{2\gamma_{4}}{\gamma_{4}-1}}
+\frac{p_{4}}{p_{1}}=\frac{p_{2}}{p_{1}}\left[1-\frac{(\gamma_{4}-1)(c_{1}/c_{4})(p_{2}/p_{1}-1)}{\sqrt{2\gamma_{1}[2\gamma_{1}+(\gamma_{1}+1)(p_{2}/p_{1}-1)]}}\right]^{\frac{2\gamma_{4}}{\gamma_{4}-1}}
 \end{equation}
 
 \end_inset
@@ -567,6 +579,32 @@ literal "true"
 .
 \end_layout
 
+\begin_layout Standard
+Recent work by Wadas 
+\emph on
+et al.
+
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Wadas2023"
+literal "false"
+
+\end_inset
+
+ extended the notion of formation number to the production of vortex rings
+ at interfaces subject to shock acceleration.
+ Rather than the sinusoidal or Gaussian perturbations typically used in
+ studies of the Richtmyer-Meshkov instability, Wadas chose to adopt a cylindrica
+l divot perturbation to provide a better analogy with historic studies of
+ vortex ring formation.
+ The effective formation number was found to be enhanced by compression
+ effects, although the vortex ring roll-up and circulation saturation closely
+ followed the classical analogue.
+ 
+\end_layout
+
 \begin_layout Subsection
 Compressibility effects during formation
 \end_layout
@@ -645,7 +683,8 @@ literal "false"
 , and systems of standing shock waves and expansion fans at the shock tube
  exit.
  These effects were first systematically explored by Brouillette and Hébert
- using schlieren photography across a range of shock tube Mach numbers 
+ using schlieren photography across a range of shock tube discharge Mach
+ numbers 
 \begin_inset Formula $1.0<M<2.0$
 \end_inset
 
@@ -748,7 +787,7 @@ literal "false"
 
 \begin_layout Standard
 Unfortunately, despite the proliferation of studies exploring the effects
- of formation Mach number, no focused study has been performed on vortex
+ of discharge Mach number, no focused study has been performed on vortex
  ring formation in the case of differing shock tube versus ambient gas compositi
 ons.
  As previously noted, this work is motivated largely by vortex ring formation
