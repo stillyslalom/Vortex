@@ -196,14 +196,36 @@ Motivation and introduction
 A great deal of effort has been levied in assessing the statistical properties
  of variable-density mixing layers driven by the Richtmyer-Meshkov and Rayleigh-
 Taylor instabilities in the pursuit of compression efficiency for inertial
- confinement fusion (ICF).
+ confinement fusion (ICF
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Abbrev"
+symbol "ICF"
+description "Inertial confinement fusion"
+literal "false"
+
+\end_inset
+
+).
  In such applications, the predominant contributions to the fat tails of
  the mixedness distribution are the result of singular engineering features
  which cannot be boiled away via Fourier decomposition or other convenient
  means.
- For example, the fill tube implosion defect manifests as a mushroom-headed
- jet of cold, opaque material protruding into (and impeding the assembly
- of) the central hot spot as seen in Figure 
+ For example, the micron-scale glass tube used to inject fuel into an ICF
+ capsule as pictured in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fill-tube-diagram"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ has been recognized as a major source of fusion yield degradation.
+ During the implosion, the fill tube becomes a mushroom-headed jet of cold,
+ opaque material protruding into (and impeding the assembly of) the central
+ hot spot as seen in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Fill-tube-implosion"
@@ -213,7 +235,7 @@ noprefix "false"
 
 \end_inset
 
-; likewise the annuli produced by the vaporized remnants of the capsule
+; likewise for the annuli produced by the vaporized remnants of the capsule
  support tent.
  As a matter of design focus, it may be better to characterize these kurtogenic
  phenomena in isolation rather than allowing them to pollute an otherwise
@@ -246,6 +268,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fill-tube-diagram"
+
+\end_inset
+
 
 \end_layout
 
@@ -470,7 +498,7 @@ noprefix "false"
  and after shock compression in multifluid cases with baroclinic vorticity
  deposition on the interface between the ring and its surroundings.
  It includes experiments on the behavior of vortex rings generated at the
- open end of a shock tube captured with high-speed Schlieren imaging, experiment
+ open end of a shock tube captured with high-speed schlieren imaging, experiment
 s on the propagation and interaction of a vortex ring with a planar shock
  wave, and computations of vortex-interface-shock interactions.
  
@@ -638,7 +666,17 @@ name "fig:ICF_schematic_Zylstra"
 
 \begin_layout Standard
 The first operational ICF facility, known as Nova, was built at Lawrence
- Livermore National Laboratory (LLNL) in 1984.
+ Livermore National Laboratory (LLNL
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Abbrev"
+symbol "LLNL"
+description "Lawrence Livermore National Laboratory"
+literal "false"
+
+\end_inset
+
+) in 1984.
  The facility employed 10 laser beams, each delivering 5 kJ of energy at
  the fundamental harmonic, which decreased to 2 kJ after third-harmonic
  conversion.
@@ -668,7 +706,17 @@ literal "false"
 
 \begin_layout Standard
 In response to the limitations of Nova, a follow-on concept, the National
- Ignition Facility (NIF) was designed in the 1990s, also at LLNL.
+ Ignition Facility (NIF
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Abbrev"
+symbol "NIF"
+description "National Ignition Facility"
+literal "false"
+
+\end_inset
+
+) was designed in the 1990s, also at LLNL.
  NIF utilized similar laser technology to Nova but on a much larger scale,
  featuring 192 beams, each delivering approximately 10 kJ of energy at the
  third harmonic.
@@ -754,8 +802,8 @@ The central portion of the mixing region is the most statistically regular
  at the small spatial scales involved in these processes remains a significant
  challenge for researchers in the field.
  Consequently, ongoing efforts in both experimental and computational domains
- aim to refine the understanding of the hydrodynamic instabilities and their
- impact on capsule performance.
+ aim to refine the understanding of these hydrodynamic instabilities and
+ their impact on capsule performance.
 \end_layout
 
 \begin_layout Section
@@ -809,6 +857,56 @@ where
 \end_inset
 
  drive the evolution and breakdown of the resulting vorticity.
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$\\vec{u}$"
+description "Velocity vector"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$\\vec{\\omega}$"
+description "Vorticity vector"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$\\rho$"
+description "Bulk density"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$p$"
+description "Pressure"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$\\mathbb{\\tau}$"
+description "Viscous stress tensor"
+literal "true"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -871,16 +969,56 @@ where the sinusoidal perturbation's amplitude and wavenumber are given by
 \begin_inset Formula $\eta_{0}$
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$\\eta$"
+description "Perturbation amplitude"
+literal "true"
+
+\end_inset
+
  and 
 \begin_inset Formula $k$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$k$"
+description "Perturbation wavenumber"
+literal "true"
+
 \end_inset
 
 , the shock velocity jump by 
 \begin_inset Formula $\varDelta\!V$
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$\\Delta V$"
+description "Shock velocity jump"
+literal "true"
+
+\end_inset
+
 , and the interfacial Atwood number by 
 \begin_inset Formula $A\equiv(\rho_{2}-\rho_{1})/(\rho_{2}+\rho_{1})$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$A$"
+description "Atwood number"
+literal "true"
+
 \end_inset
 
 .
@@ -912,6 +1050,26 @@ post-shock values of
 \begin_inset Formula $^{+}$
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$^-$"
+description "Pre-shock state"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$^+$"
+description "Post-shock state"
+literal "true"
+
+\end_inset
+
  indicating pre- and post-shock conditions 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -922,10 +1080,10 @@ literal "false"
 
 .
  In Meshkov's experiments, the initial shape of the interfacial perturbations
- was enforced by a thin nitrocellulose membrane , but the fragmentation
- of this membrane saps the strength of the shock wave and disturbs the post-shoc
-k evolution of the interface.
- Additionally, the presence of a solid membrane presents severe difficulties
+ was enforced by a thin nitrocellulose membrane, but the fragmentation of
+ this membrane disturbs the post-shock evolution of the interface and may
+ sap the strength of the shock wave.
+ Additionally, the presence of membrane fragments presents severe difficulties
  for quantitative flow visualization techniques.
  As a result, subsequent workers have adopted a variety of membrane-free
  interfaces involving oscillating pistons, retractable corrugated sheets,
@@ -934,7 +1092,17 @@ k evolution of the interface.
 etc.
 
 \emph default
- 
+ One such twice-interface is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Balakumar-reshock"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, with simultaneous application of multiple modern flow diagnostics.
 \end_layout
 
 \begin_layout Standard
@@ -981,6 +1149,13 @@ Pre- and post-reshock
 LatexCommand citep
 key "Balakumar2012"
 literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Balakumar-reshock"
 
 \end_inset
 
@@ -1085,7 +1260,7 @@ noprefix "false"
 .
  This leaves several terms which must be closed by the assumption of a turbulent
  kinetic energy density 
-\begin_inset Formula $k$
+\begin_inset Formula $\kappa$
 \end_inset
 
 , turbulent turnover rate 
@@ -1255,7 +1430,8 @@ name "fig:Thornber_RMI_vortex"
 \begin_layout Standard
 In a similar vein, Kokkinakis 
 \emph on
-et al
+et al.
+
 \emph default
  
 \begin_inset CommandInset citation
@@ -1271,7 +1447,17 @@ literal "false"
 \begin_inset Formula $M=1.25$
 \end_inset
 
-) shock wave with an air-SF₆ interface.
+)
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$M$"
+description "Mach number"
+literal "true"
+
+\end_inset
+
+ shock wave with an air-SF₆ interface.
  They found that the two-dimensional nature of vortical structures reduced
  turbulent kinetic energy dissipation compared to three-dimensional isotropic
  turbulence.
@@ -1401,6 +1587,13 @@ status open
 \begin_layout Plain Layout
 Vortex ring geometry in (a) Cartesian and (b) axisymmetric cylindrical coordinat
 es
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vortex-ring-geometry"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1419,17 +1612,57 @@ al
 \begin_inset Formula $\theta$
 \end_inset
 
--direction often neglected except when investigating vortex swirl or instability.
+-direction often neglected as depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-ring-geometry"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ except when investigating vortex swirl or instability.
  The principal ring radius is indicated by 
 \begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$R$"
+description "Principal radius"
+literal "true"
+
 \end_inset
 
 , while the radius of the core is given by 
 \begin_inset Formula $a$
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$a$"
+description "Core radius"
+literal "true"
+
+\end_inset
+
 , and the core slenderness ratio by 
 \begin_inset Formula $\alpha=a/R$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$\\alpha$"
+description "Core slenderness ratio"
+literal "true"
+
 \end_inset
 
 .
@@ -1516,16 +1749,33 @@ Analytical solutions are available for the limiting cases, but intermediate
 \begin_inset Formula $\alpha$
 \end_inset
 
- require numerical solution of an integral equation
+ require numerical solution of an integral equation for the streamfunction
+ 
+\begin_inset Formula $\psi$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$\\psi$"
+description "Streamfunction"
+literal "true"
+
+\end_inset
+
+:
 \begin_inset Formula 
 \begin{align}
-\psi(r,z) & =-\frac{1}{2}Ur^{2}+\frac{\Omega}{2\pi}\iint_{A}G(r,\hat{r},z-\hat{z})\dd{\hat{r}}\dd{\hat{z}}\\
-\qq{where}G & =\frac{1}{2}r\hat{r}^{2}\int_{-\pi}^{\pi}\frac{\cos\hat{\lambda}\dd{\hat{\lambda}}}{[r^{2}+\hat{r}^{2}-2r\hat{r}\cos\hat{\lambda}+(z-\hat{z})^{2}]^{1/2}}
+\psi(r,z) & =-\frac{1}{2}Ur^{2}+\frac{\Omega}{2\pi}\iint_{A}G(r,\tilde{r},z-\tilde{z})\dd{\tilde{r}}\dd{\tilde{z}}\\
+\qq{where}G & =\frac{1}{2}r\tilde{r}^{2}\int_{-\pi}^{\pi}\frac{\cos\tilde{\theta}\dd{\tilde{\theta}}}{[r^{2}+\tilde{\theta}^{2}-2r\tilde{r}\cos\tilde{\theta}+(z-\tilde{z})^{2}]^{1/2}}
 \end{align}
 
 \end_inset
 
-giving a unique vortex core boundary curve 
+where tildes indicate auxiliary variables of integration over a cylindrical
+ domain.
+ This procedures gives a unique vortex core boundary curve 
 \begin_inset Formula $\partial A$
 \end_inset
 
@@ -1547,6 +1797,16 @@ noprefix "false"
 \begin_inset Formula $U$
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$U$"
+description "Vortex propagation velocity"
+literal "true"
+
+\end_inset
+
  for a prescribed 
 \begin_inset Formula $\alpha$
 \end_inset
@@ -1560,7 +1820,21 @@ U=\frac{\Gamma}{4\pi R}\left[\ln\frac{8}{\alpha}-\frac{1}{4}+\alpha^{2}\left(-\f
 
 \end_inset
 
-with core circulation following Stokes' theorem:
+with core circulation 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$\\Gamma$"
+description "Circulation"
+literal "true"
+
+\end_inset
+
+ following Stokes' theorem:
 \begin_inset Formula 
 \begin{equation}
 \Gamma=\oint\vec{u}\vdot\dd{\vec{s}}=\iint\vec{\omega}\vdot\hat{n}\dd{A}
@@ -1585,6 +1859,16 @@ U=\frac{\Gamma}{4\pi R}\left[\ln\frac{8}{\alpha}-\frac{1}{2}+\phi\right]\label{e
 
 where 
 \begin_inset Formula $\phi$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$\\phi$"
+description "Vorticity distribution factor"
+literal "true"
+
 \end_inset
 
  varies according to the assumed distribution of vorticity within the ring
@@ -1969,6 +2253,26 @@ z_{c} & =\frac{1}{\Gamma}\iint\omega z\dd{r}\dd{z}\label{eq:z_vortex_center}
 
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$R_2^2$"
+description "Second moment of vorticity"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$z_c$"
+description "Vortex centroid $z$-location"
+literal "true"
+
+\end_inset
+
 From Archer 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -2022,6 +2326,26 @@ literal "false"
 
 .
  Briefly,
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$u_r$"
+description "Radial velocity"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$u_z$"
+description "Axial velocity"
+literal "true"
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{align}
 u_{r} & =\frac{\Gamma R}{4\pi}\frac{z-z_{c}}{B}(I_{1}-AI_{2})\\
@@ -2218,9 +2542,19 @@ noprefix "false"
 
 \end_inset
 
- is an open-ended piston which impulsively attains a constant piston velocity
- 
+ is a fluid-filled, open-ended cylinder driven at one end by a piston which
+ impulsively attains a constant piston velocity 
 \begin_inset Formula $U_{p}$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$U_{p}$"
+description "Piston velocity"
+literal "true"
+
 \end_inset
 
  along some prescribed stroke length 
@@ -2238,20 +2572,44 @@ noprefix "false"
 \begin_inset Formula $D_{p}$
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$D_p$"
+description "Piston orifice diameter"
+literal "true"
+
+\end_inset
+
 .
  For incompressible vortex rings, peak circulation is attained at a universal
  formation number 
 \begin_inset Formula $N=L/D_{p}\approx4$
 \end_inset
 
- as described by Gharib, Mohseni, 
-\emph on
-et al
-\emph default
- 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$N$"
+description "Formation number $L/D_p$"
+literal "true"
+
+\end_inset
+
+ as described by Gharib 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "Gharib1998,mohseni1998"
+key "Gharib1998"
+literal "false"
+
+\end_inset
+
+ and Mohseni 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mohseni1998"
 literal "false"
 
 \end_inset
@@ -2270,6 +2628,16 @@ al vortex sheet has been confirmed by experiments and computations to be
  This effect can be mitigated to some degree by the adoption of a chamfered
  outer lip of angle 
 \begin_inset Formula $\beta$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$\\beta$"
+description "Orifice lip chamfer angle"
+literal "true"
+
 \end_inset
 
 .
@@ -2315,6 +2683,16 @@ noprefix "false"
  vortex core region, increasing the effective size of the core at a rate
  of 
 \begin_inset Formula $\dv{a}{t}\sim\sqrt{\nu/t}$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$\\nu$"
+description "Kinematic viscosity "
+literal "true"
+
 \end_inset
 
  and thus enlarging the entrainment bubble.
@@ -2463,6 +2841,16 @@ literal "false"
  At sufficiently high Reynolds number, sudden `bursting' of the vortex ring
  is observed, producing a slow, high-volume ring of much lower 
 \begin_inset Formula $Re$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$Re$"
+description "Reynolds number"
+literal "true"
+
 \end_inset
 
 .

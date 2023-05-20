@@ -198,7 +198,7 @@ Overview of experiments:
 
 \begin_layout Standard
 Initial investigations of the compressible vortex ring formation process
- were carried out on several testbed platforms using high-speed Schlieren
+ were carried out on several testbed platforms using high-speed schlieren
  imaging to guide and validate the design of a vortex ring generator.
  Following the installation and qualification of the vortex ring generator
  in the Wisconsin Shock Tube, the interaction between an argon vortex ring
@@ -229,7 +229,7 @@ Vortex ring generation
 \end_layout
 
 \begin_layout Subsection
-Testbed design
+Miniature shock tube testbed design
 \end_layout
 
 \begin_layout Standard
@@ -288,11 +288,21 @@ name "fig:Vortex-ring-generator-evo"
 \end_layout
 
 \begin_layout Standard
-The design process proceeded in three iterations, starting with proof of
- concept based on galvanized steel Schedule 40 plumbing connectors purchased
- from a local hardware store, moving to a low-pressure testbed mimicking
- the dimensions of the shock tube, and culminating in a high-strength apparatus
- permanently installed in the shock tube.
+The design process proceeded in three iterations as depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Vortex-ring-generator-evo"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, starting with proof of concept based on galvanized steel Schedule 40 plumbing
+ connectors purchased from a local hardware store, moving to a low-pressure
+ testbed mimicking the dimensions of the shock tube, and culminating in
+ a high-strength miniature shock tube permanently installed in the base
+ of the Wisconsin Shock Tube.
 \end_layout
 
 \begin_layout Standard
@@ -376,6 +386,13 @@ status open
 (a) Mounted laser cross forming optics for diaphragm rupture.
  (b) Ruptured diapragm mounted on vortex ring generator driven section inlet
  flange.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:laser-cross"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -411,6 +428,27 @@ Pulsed lasers allow for inexpensive production of high-energy-density conditions
 \end_inset
 
  shape directed at the vortex ring generator diaphragm.
+ The final optical assembly is depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:laser-cross"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+a, with a ruptured diaphragm resulting from its use shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:laser-cross"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+b.
 \end_layout
 
 \begin_layout Section
@@ -479,6 +517,13 @@ literal "false"
 \end_inset
 
 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Thurber-acetone-thermo"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -509,10 +554,24 @@ literal "false"
 \end_inset
 
 .
- For non-saturating excitation, Thurber gives the fluorescence signal as
+ For non-saturating excitation, Thurber gives the fluorescence signal
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$S_f$"
+description "Fluorescence signal"
+literal "true"
+
+\end_inset
+
+ emitted by a collection volume 
+\begin_inset Formula $V_{c}$
+\end_inset
+
+ as
 \begin_inset Formula 
 \begin{equation}
-S_{f}(p,T)=\eta_{\mathrm{opt}}\frac{E}{hc/\lambda}n_{\mathrm{abs}}(p,T)\sigma(T)\Phi(p,T)\dd{V_{c}}
+S_{f}(p,T)=\eta_{\mathrm{opt}}\frac{E}{hc/\lambda}n_{\mathrm{abs}}(p,T)\sigma(T)\Phi(p,T)V_{c}
 \end{equation}
 
 \end_inset
@@ -525,16 +584,22 @@ where
 \begin_inset Formula $E$
 \end_inset
 
- is the incident laser fluence into the differential collection volume 
-\begin_inset Formula $\dd{V_{c}}$
-\end_inset
-
-, 
+ is the incident laser fluence into the collection volume, 
 \begin_inset Formula $hc/\lambda$
 \end_inset
 
  is the energy per photon at the excitation wavelength 
 \begin_inset Formula $\lambda$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$\\lambda$"
+description "Wavelength"
+literal "true"
+
 \end_inset
 
 , 
@@ -549,8 +614,40 @@ where
 \begin_inset Formula $\Phi(p,T)$
 \end_inset
 
- are the absorption cross section and fluorescence quantum yield (FQY) of
+ 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$\\sigma$"
+description "Absorption cross section"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$\\Phi$"
+description "Fluorescence quantum yield"
+literal "true"
+
+\end_inset
+
+are the absorption cross section and fluorescence quantum yield (FQY) of
  acetone at the thermodynamic state within the collection volume.
+ Thurber's measurements of the dependence of relative signal intensity and
+ FQY on pressure and temperature are shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Thurber-acetone-thermo"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
  The absorption cross section and FQY also exhibit dependence on 
 \begin_inset Formula $\lambda$
 \end_inset
@@ -596,9 +693,10 @@ noprefix "false"
  significantly along the beam path, an iterative temperature correction
  procedure is required as described by Herzog 
 \emph on
-et al
-\emph default
+et al.
  
+\emph default
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Herzog2019iterative"
@@ -621,7 +719,7 @@ Particle image velocimetry
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -691,9 +789,10 @@ literal "false"
 , and a complete overview of the background, equipment, techniques, and
  post-processing required for PIV measurements is presented by Raffel 
 \emph on
-et al
-\emph default
+et al.
  
+\emph default
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Raffel2007a"
@@ -817,9 +916,10 @@ All shock-vortex interaction experiments were conducted in the Wisconsin
  The basic configuration of the facility for the present work is similar
  to its original layout as described by Anderson 
 \emph on
-et al
-\emph default
+et al.
  
+\emph default
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Anderson2000"
@@ -829,122 +929,6 @@ literal "false"
 
 , so the following discussion of the apparatus will focus on features particular
  to these experiments.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename gfx/diagrams/WISTL_wiring.svg
-	lyxscale 20
-	width 6.5in
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Pressure measurement and data acquisition wiring connections in the Wisconsin
- Shock Tube
-\end_layout
-
-\end_inset
-
-Block diagram depicting pressure measurement and data acquisition wiring
- connections in the Wisconsin Shock Tube.
- Minor elements are omitted or condensed, including pressure transducer
- signal conditioning as well as relay wiring for electronically-actuated
- valves located throughout the system.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:WISTL-wiring"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename gfx/diagrams/WISTL_tubing.svg
-	lyxscale 20
-	width 5.25in
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Gas delivery and exhaust systems in the Wisconsin Shock Tube
-\end_layout
-
-\end_inset
-
-Block diagram depicting gas delivery and exhaust systems in the Wisconsin
- Shock Tube.
- Minor elements are omitted or condensed, including check valves and individual
- pneumatic and solenoid valves located within manifolds.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:WISTL-plumbing"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
@@ -977,6 +961,13 @@ status open
 
 \begin_layout Plain Layout
 Schlieren imaging apparatus
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schlieren-imaging-apparatus"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -993,6 +984,18 @@ Schlieren imaging apparatus
 Schlieren images of the formation and development of vortex rings from the
  open end of a shock tube were acquired by a Phantom v1211 high-speed camera
  operating at 49,000 frames per second.
+ The arrangement of the imaging optics and the vortex ring apparatus is
+ given in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Schlieren-imaging-apparatus"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
  Illumination of the imaging region was produced by temporarily over-driving
  an air-cooled Luminus CBT-120-G light-emitting diode to deliver higher
  fluence than what would be allowed by steady-state thermal operating limits
@@ -1013,7 +1016,7 @@ literal "false"
  cm spherical lenses placed parallel to the imaging region.
  Optical streaks (
 \emph on
-Schlieren
+schlieren
 \emph default
 ) were produced by a knife-edge placed at the focal point of the second
  spherical lens prior to collection by a 50 mm 
@@ -1021,6 +1024,7 @@ Schlieren
 \end_inset
 
  Nikon lens.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -1171,9 +1175,9 @@ High-speed PLIF/single-shot PIV
 For the final experimental campaign, the second harmonic output of the pulse-bur
 st laser was discarded into a beam dump by a dichroic mirror, leaving only
  the fourth harmonic.
- The resulting 266 nm light was combined with the 532 nm output of a dual-cavity
- Ekspla NL303-D Nd:YAG laser using another dichroic mirror, then shaped
- into a diverging laser sheet as previously described.
+ The resulting 266 nm light was superimposed with the 532 nm output of a
+ dual-cavity Ekspla NL303-D Nd:YAG laser using another dichroic mirror,
+ then shaped into a diverging laser sheet as previously described.
  This configuration permitted only one PIV image pair to be acquired per
  experiment, but with a much smaller inter-frame time (
 \begin_inset Formula $\SI{3}{\micro\second}$
@@ -1373,6 +1377,118 @@ noprefix "false"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/diagrams/WISTL_wiring.svg
+	lyxscale 20
+	width 6.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Pressure measurement and data acquisition wiring connections in the Wisconsin
+ Shock Tube
+\end_layout
+
+\end_inset
+
+Block diagram depicting pressure measurement and data acquisition wiring
+ connections in the Wisconsin Shock Tube.
+ Minor elements are omitted or condensed, including pressure transducer
+ signal conditioning as well as relay wiring for electronically-actuated
+ valves located throughout the system.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:WISTL-wiring"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/diagrams/WISTL_tubing.svg
+	lyxscale 20
+	width 5.25in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Gas delivery and exhaust systems in the Wisconsin Shock Tube
+\end_layout
+
+\end_inset
+
+Block diagram depicting gas delivery and exhaust systems in the Wisconsin
+ Shock Tube.
+ Minor elements are omitted or condensed, including check valves and individual
+ pneumatic and solenoid valves located within manifolds.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:WISTL-plumbing"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph

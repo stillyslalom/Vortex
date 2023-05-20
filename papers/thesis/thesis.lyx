@@ -27,6 +27,7 @@
 \makeoddhead{chapter}{}{}{\thepage}
 \makeevenfoot{chapter}{}{}{}
 \makeoddfoot{chapter}{}{}{}
+\setcounter{secnumdepth}{2}% alternative A
 
 \usepackage{ifthen}
 \renewenvironment{figure}[1][]{%
@@ -309,6 +310,16 @@ Nomenclature
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset nomencl_print
+LatexCommand printnomenclature
+set_width "auto"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -460,7 +471,7 @@ Shadowgraphy relies on beam-steering caused by local variation in the refractive
 \end_inset
 
  to produce light and dark bands in an otherwise uniform intensity field,
- while Schlieren uses a knife edge obstruction placed at the focal point
+ while schlieren uses a knife edge obstruction placed at the focal point
  of a converging lens to cut off some fraction of the light rays proportional
  to 
 \begin_inset Formula $\pdv{n}{x_{j}}$
@@ -468,11 +479,11 @@ Shadowgraphy relies on beam-steering caused by local variation in the refractive
 
 , producing a relief-shaded image of the gradients perpendicular to the
  knife edge.
- All Schlieren images include shadowgraphic fringes, which makes it difficult
+ All schlieren images include shadowgraphic fringes, which makes it difficult
  to extract quantitative estimates of the refractive index gradients from
  such images, so their use is mostly restricted to qualitative descriptions
  and basic geometric measurements of prominent flow features.
- Nevertheless, the simplicity of the Schlieren optical apparatus remains
+ Nevertheless, the simplicity of the schlieren optical apparatus remains
  attractive in cases when such measurements are sufficient, as was the case
  for the vortex ring generator design validation process.
 \end_layout

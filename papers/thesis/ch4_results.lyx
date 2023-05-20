@@ -212,7 +212,7 @@ noprefix "false"
 
 \end_inset
 
- to design and validate a vortex ring generator using high-speed Schlieren
+ to design and validate a vortex ring generator using high-speed schlieren
  imaging.
  The cylinder diameter 
 \begin_inset Formula $D_{p}$
@@ -269,9 +269,17 @@ noprefix "false"
  The next four frames show the early near-laminar propagation of the ring,
  with the vortex core filaments separating slightly from one another as
  the ring begins to develop azimuthal bending waves.
- These Widnall-type waves are increasingly apparent in the last four frames,
- along with a series of weak Kelvin-Helmholtz type waves in the trailing
- jet region below the vortex.
+ These Widnall-type waves 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Widnall1974"
+literal "false"
+
+\end_inset
+
+ are increasingly apparent in the last four frames, along with a series
+ of weak Kelvin-Helmholtz type waves in the trailing jet region below the
+ vortex.
  At later times (not depicted), the ring becomes fully turbulent, decelerating
  sharply due to rapid entrainment of ambient fluid.
 \end_layout
@@ -458,7 +466,7 @@ Modeling
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -511,7 +519,7 @@ rface-shock interaction of an argon vortex ring formed by
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -657,7 +665,7 @@ Results
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -703,7 +711,7 @@ Vortex trajectory (top), velocity (center), and circulation (bottom) during
 .
  The dotted lines in the circulation plots denote the predicted post-shock
  circulation 
-\begin_inset Formula $\Gamma_{v}$
+\begin_inset Formula $\Gamma_{p}$
 \end_inset
 
 .
@@ -737,8 +745,21 @@ RzTrona
  instability or the turbulent wake shed from the vortex ring, resulting
  in overprediction of the vortex velocity and underprediction of its size.
  However, the vortex formation and shock-vortex interactions were well-captured,
- with circulation from shock-deposited vorticity agreeing surprisingly well
- with the bubble model described by Eq.
+ with circulation from shock-deposited vorticity 
+\begin_inset Formula $\Delta\Gamma$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$\\Delta\\Gamma$"
+description "Shock-deposited circulation"
+literal "true"
+
+\end_inset
+
+ agreeing surprisingly well with the bubble model described by Eq.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -749,10 +770,14 @@ noprefix "false"
 
 \end_inset
 
- with the addition an ellipticity correction term, giving 
+ with the addition of an ellipticity correction term 
+\begin_inset Formula $H/D$
+\end_inset
+
+
 \begin_inset Formula 
 \begin{equation}
-\Gamma_{v}\approx\Gamma_{\mathrm{PB}}H/D\label{eq:Gamma_vortex_shock}
+\Delta\Gamma\approx\Gamma_{\mathrm{PB}}H/D\label{eq:Gamma_vortex_shock}
 \end{equation}
 
 \end_inset
@@ -1213,7 +1238,17 @@ Following the simultaneous high-speed PLIF/PIV campaign described previously,
  Evacuation and fill control of the MST was transitioned from several in-line
  ball and needle valves to a unified gas supply manifold, and computer-controlle
 d solenoid valves replaced a system of check valves, allowing for full evacuatio
-n of the MST driver prior to gas fill.
+n of the MST
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Abbrev"
+symbol "MST"
+description "Miniature shock tube"
+literal "true"
+
+\end_inset
+
+ driver prior to gas fill.
 \end_layout
 
 \begin_layout Standard
@@ -1445,7 +1480,8 @@ target "https://github.com/stillyslalom/TrixiShockTube.jl"
 \begin_layout Standard
 Based on the vortex ring formation measurements of Arakeri 
 \emph on
-et al 
+et al.
+ 
 \emph default
 
 \begin_inset CommandInset citation
@@ -1457,11 +1493,11 @@ literal "false"
 
 , vortex ring pinch-off was estimated to occur at the instant when the discharge
  velocity 
-\begin_inset Formula $u_{p}$
+\begin_inset Formula $U_{p}$
 \end_inset
 
  fell to less than 
-\begin_inset Formula $0.7\max(u_{p})$
+\begin_inset Formula $0.7\max(U_{p})$
 \end_inset
 
 .
@@ -1494,6 +1530,26 @@ Vortex ring generator conditions for initial condition study.
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Vortex-ring-generator-conditions"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$Re_D$"
+description "Discharge Reynolds number"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$Re$"
+description "Circulation Reynolds number"
+literal "true"
 
 \end_inset
 
@@ -1556,7 +1612,7 @@ Ring gas
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $L/D$
+\begin_inset Formula $L/D_{p}$
 \end_inset
 
 
@@ -1617,7 +1673,7 @@ Acetone
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $W_{s}L$
+\begin_inset Formula $W_{i}L$
 \end_inset
 
  
@@ -4778,7 +4834,17 @@ noprefix "false"
 \begin_inset Formula $(x_{c},z_{c})$
 \end_inset
 
- is based on the local minimum within the high-intensity region corresponding
+ 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$x_c$"
+description "Vortex centroid $x$-location"
+literal "true"
+
+\end_inset
+
+is based on the local minimum within the high-intensity region corresponding
  to each core.
  The ring diameter is calculated as 
 \begin_inset Formula $D=\sqrt{(x_{c,r}-x_{c,l})^{2}+(z_{c,r}-z_{c,l})^{2}}$
@@ -5172,6 +5238,16 @@ name "tab:Shock-jump-conditions"
 \end_inset
 
 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Fluids"
+symbol "$T$"
+description "Temperature"
+literal "true"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5246,7 +5322,7 @@ Region
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $c_{s}$
+\begin_inset Formula $c$
 \end_inset
 
  [m/s]
@@ -5763,9 +5839,18 @@ n for
 
  diagrams rather than matching the vortex-centered coordinate system used
  elsewhere in this work.
- Note that PT9 (the second-to-last pressure transducer) was excluded from
- all pressure trace calculations due to occasional crosstalk with other
- channels which produced premature shock detections.
+ Note that PT9 (the second-to-last pressure transducer)
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Abbrev"
+symbol "PT"
+description "Pressure transducer"
+literal "false"
+
+\end_inset
+
+ was excluded from all pressure trace calculations due to occasional crosstalk
+ with other channels which produced premature shock detections.
  Although the measured reshock pressure matches a 1D gas dynamics prediction
  fairly well (1.48 
 \emph on
@@ -5942,7 +6027,7 @@ Typical vortex core trajectories before and after shock interaction for
 Typical vortex core trajectories before and after shock interaction for
  each test condition.
  Solid lines are least-squares curve fits to 
-\begin_inset Formula $z(t)=\nicefrac{u_{0}}{k}(1-\exp(-kt))$
+\begin_inset Formula $z(t)=\nicefrac{u_{0}}{k}(1-\exp(-\zeta t))$
 \end_inset
 
 .
@@ -6005,13 +6090,23 @@ noprefix "false"
 , including solid lines determined by least-squares fits to
 \begin_inset Formula 
 \begin{equation}
-z(t)=\frac{u_{0}}{k}\left[1-\exp(-kt)\right]
+z_{c}(t)=\frac{u_{0}}{\zeta}\left[1-\exp(-\zeta t)\right]
 \end{equation}
 
 \end_inset
 
 where 
-\begin_inset Formula $k$
+\begin_inset Formula $\zeta$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$\\zeta$"
+description "Ring deceleration coefficient"
+literal "true"
+
 \end_inset
 
  is a ring deceleration coefficient and 
@@ -6022,7 +6117,7 @@ where
  exponentially as
 \begin_inset Formula 
 \begin{equation}
-z^{\prime}(t)=u_{0}\exp(-kt)
+z_{c}^{\prime}(t)=u_{0}\exp(-\zeta t)
 \end{equation}
 
 \end_inset
@@ -6320,6 +6415,16 @@ literal "false"
 \begin_inset Formula $(\vec{u}\cross\vec{\omega}=T\grad S)$
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Vortex"
+symbol "$S$"
+description "Entropy"
+literal "true"
+
+\end_inset
+
  to relate the entropy gradient to the vorticity, Truesdell found that 
 \begin_inset Formula 
 \begin{equation}
@@ -6499,12 +6604,12 @@ noprefix "false"
 
 \end_inset
 
-) and calculating the circulation jump at the TSI imaging time 
-\begin_inset Formula $t_{TSI}$
+) and calculating the circulation jump at the PIV imaging time 
+\begin_inset Formula $t_{\mathrm{{PIV}}}$
 \end_inset
 
  as 
-\begin_inset Formula $\Delta\Gamma=\Gamma_{+}-\tilde{\Gamma}_{-}(t_{TSI})$
+\begin_inset Formula $\Delta\Gamma=\Gamma_{+}-\tilde{\Gamma}_{-}(t_{\mathrm{PIV}})$
 \end_inset
 
 .
