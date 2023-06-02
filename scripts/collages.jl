@@ -6,6 +6,7 @@ using JLD2
 using LaTeXStrings
 using Printf
 using Unitful
+using VideoIO
 
 update_theme!(Theme(fonts = (; regular = "New Roman", bold = "New Roman Bold")))
 ##
@@ -90,7 +91,7 @@ for i in 1:2, j in 1:2
     zz = PIV["y"]
     ω = Vortex.vorticity(PIV["u"], PIV["v"], 1e-3*step(xx), 1e-3*step(zz))
     ∫ₗ = runs[i,j].∫ₗ
-    ∫ᵣ = runs[i,j].∫ᵣ
+    ∫ᵣ = runs[i,j].∫ᵣ 
 
     R = mean((ustrip.(u"mm", [∫ᵣ.R, - ∫ₗ.R])))
     xc = (core["leftcore"][1] + core["rightcore"][1]) / 2
@@ -112,3 +113,15 @@ Colorbar(f[1:2, 3], colormap=:balance, colorrange = (-1, 1), label=L"\omega / 10
 
 save(plotsdir("collages", "vorticity.svg"), f)
 f
+
+## Montage of one frame from each PLIF video
+cineframes = map(enumerate(eachrow(runlist))) do (i, m)
+    phantom_bgsub(m)[:,:,m.i_TSI]
+end
+##
+cineframes_adj = map(cineframes) do cf
+    imadjust(cf; qmax=0.9995) .|> N0f8
+end
+##  
+VideoIO.save(plotsdir("collages", "phantom_bgsub.mp4"), cineframes_adj, framerate=100)
+VideoIO.save(plotsdir("collages", "phantom_bgsub_slow.mp4"), cineframes_adj, framerate=20)
