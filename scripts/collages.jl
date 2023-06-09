@@ -115,13 +115,30 @@ save(plotsdir("collages", "vorticity.svg"), f)
 f
 
 ## Montage of one frame from each PLIF video
-cineframes = map(enumerate(eachrow(runlist))) do (i, m)
-    phantom_bgsub(m)[:,:,m.i_TSI]
+savevids = false
+if savevids
+    cineframes = map(enumerate(eachrow(runlist))) do (i, m)
+        phantom_bgsub(m)[:,:,m.i_TSI]
+    end
+    ##
+    cineframes_adj = map(cineframes) do cf
+        imadjust(cf; qmax=0.9995) .|> N0f8
+    end
+    ##  
+    VideoIO.save(plotsdir("collages", "phantom_bgsub.mp4"), cineframes_adj, framerate=100)
+    VideoIO.save(plotsdir("collages", "phantom_bgsub_slow.mp4"), cineframes_adj, framerate=20)
 end
-##
-cineframes_adj = map(cineframes) do cf
-    imadjust(cf; qmax=0.9995) .|> N0f8
+
+## Collage of each set of PIV vorticity fields sorted by post-shock time
+testconds = Dict("N2" => 20.5, "Ar" => 20.5, "CF4" => 25.5, "SF6" => 25.5)
+shockruns = filter(runlist) do r
+    !ismissing(r.ptrace_path) && r.MST_gas ∈ keys(testconds) && r.MST_psig == testconds[r.MST_gas]
 end
-##  
-VideoIO.save(plotsdir("collages", "phantom_bgsub.mp4"), cineframes_adj, framerate=100)
-VideoIO.save(plotsdir("collages", "phantom_bgsub_slow.mp4"), cineframes_adj, framerate=20)
+
+shockruns.t_rel_TSI = shockruns.t_TSI - shockruns.t_SVI
+preshocks = filter(r -> r.t_rel_TSI < 0, shockruns)
+filter!(r -> r.t_rel_TSI > 0 && r.PIV_quality == 2, shockruns)
+
+sort!(shockruns, :t_rel_TSI)
+shockgroups = groupby(shockruns, :MST_gas)
+

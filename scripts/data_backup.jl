@@ -1,3 +1,5 @@
+using DrWatson
+@quickactivate "Vortex"
 # use Robocopy to back up all data to the shock drive
 backuploc = raw"S:\users\shocktube\Alex\data\vortex_ring\thesis"
 
