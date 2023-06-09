@@ -469,7 +469,7 @@ status open
 \begin_inset Graphics
 	filename gfx/external/Thurber_S_f_vs_temperature.png
 	lyxscale 60
-	height 5.5cm
+	height 6.6cm
 
 \end_inset
 
@@ -477,7 +477,7 @@ status open
 \begin_inset Graphics
 	filename gfx/external/Thurber_FQY_vs_pressure.png
 	lyxscale 60
-	height 5cm
+	height 6cm
 
 \end_inset
 
@@ -772,8 +772,8 @@ e separation
 \end_inset
 
 , particle image velocimetry (PIV) relies on windowed spatial correlation
- estimates of average particle displacement to determine the velocity components
- within some planar region of a flow.
+ estimates of average particle displacement to determine the in-plane velocity
+ components within some planar region of a flow.
  Advanced variants of PIV involving two or more cameras allow for measurement
  of out-of-plane displacements, but these variants are challenged by the
  presence of refractive index gradients present in variable-density flows.
@@ -1032,177 +1032,6 @@ Simultaneous high-speed PLIF/PIV
 \end_layout
 
 \begin_layout Standard
-Illumination was provided by a pulse-burst laser system built by Professor
- David Rothamer.
- The laser was configured to fire at a repetition rate of 
-\begin_inset Formula $\SI{20}{kHz}$
-\end_inset
-
- throughout the 
-\begin_inset Formula $\SI{10}{ms}$
-\end_inset
-
- duration of the experiment.
- The fundamental 
-\begin_inset Formula $\SI{1064}{nm}$
-\end_inset
-
- laser emission was seeded by a diode-pumped Nd:YVO
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-
- oscillator laser and intensified by two twice-through Nd:YAG amplifier
- stages before undergoing frequency-doubling and -quadrupling by nonlinear
- crystals to produce a co-propagating 532 and 
-\begin_inset Formula $\SI{266}{nm}$
-\end_inset
-
- laser pulse with average energies of 90 and 39 mJ per pulse at each respective
- wavelength.
- The laser beam was focused by a converging spherical and diverging cylindrical
- lens to produce a laser sheet whose nominal width was 12 cm at its waist
- in the center of the imaging window.
- The Mie-scattered TiO₂ particle image was captured by a Photron Fastcam
- SA-Z camera.
- The laser-induced fluorescence signal was recorded by a Phantom v1211 high-spee
-d camera operating at 20,000 frames per second.
- The camera was equipped with a 50 mm 
-\begin_inset Formula $f/1.2$
-\end_inset
-
- Nikon lens, with a Schott BG39 band-pass ultraviolet transmission filter
- and a band-stop filter centered at 
-\begin_inset Formula $530$
-\end_inset
-
- nm to reduce transmission of 
-\begin_inset Formula $532$
-\end_inset
-
- nm light scattered from the PIV tracer particles.
- The cameras were oriented as depicted in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:High-speed-laser-camera-config"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, and both cameras were synchronized with the laser oscillator, producing
- image sequences with 
-\begin_inset Formula $\SI{50}{\micro\second}$
-\end_inset
-
- inter-frame separation.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/diagrams/lasers_cameras.svg
-	lyxscale 15
-	width 9.5cm
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Graphics
-	filename gfx/diagrams/thesis_campaign_camera_arrangement.svg
-	lyxscale 15
-	width 6cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-High-speed laser & camera layout
-\end_layout
-
-\end_inset
-
-High-speed laser & camera layout.
- The imaging window's centerline is 28 cm from the vortex ring generator
- outlet.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:High-speed-laser-camera-config"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-High-speed PLIF/single-shot PIV
-\end_layout
-
-\begin_layout Standard
-For the final experimental campaign, the second harmonic output of the pulse-bur
-st laser was discarded into a beam dump by a dichroic mirror, leaving only
- the fourth harmonic.
- The resulting 266 nm light was superimposed with the 532 nm output of a
- dual-cavity Ekspla NL303-D Nd:YAG laser using another dichroic mirror,
- then shaped into a diverging laser sheet as previously described.
- This configuration permitted only one PIV image pair to be acquired per
- experiment, but with a much smaller inter-frame time (
-\begin_inset Formula $\SI{3}{\micro\second}$
-\end_inset
-
-) which sharply reduced the number of particle correlations lost to out-of-plane
- motion.
- The PIV images were acquired by a TSI 630094 camera with a 29 MP (
-\begin_inset Formula $6600\times4400$
-\end_inset
-
- pixel) interline transfer CCD sensor equipped with a 105 mm 
-\begin_inset Formula $f/11$
-\end_inset
-
- Nikon lens.
- The PLIF imaging configuration was unchanged from the previous set of experimen
-ts.
-\end_layout
-
-\begin_layout Section
-Procedure
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1337,9 +1166,14 @@ status open
 
 \end_inset
 
-(b) Laser and camera timing diagram overlaid with shock detection times
- extracted from experimental pressure traces.
-\end_layout
+(b) Laser and camera timing diagram including vortex ring propagation across
+ visualization window (W4).
+ Green and purple circles mark detection times extracted from experimental
+ pressure traces.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MST-diagram-and-timing"
 
 \end_inset
 
@@ -1349,6 +1183,216 @@ status open
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/diagrams/prelim_campaign_camera_arrangement.svg
+	lyxscale 15
+	width 6cm
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename gfx/diagrams/thesis_campaign_camera_arrangement.svg
+	lyxscale 15
+	width 6cm
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Shock-vortex interaction laser & camera layout
+\end_layout
+
+\end_inset
+
+Laser & camera layout for simultaneous high-speed PLIF/PIV (left) and high-speed
+ PLIF/single-shot PIV (right).
+ The imaging window's centerline is 28 cm from the vortex ring generator
+ outlet.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:High-speed-laser-camera-config"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Illumination was provided by a pulse-burst laser system built by Professor
+ David Rothamer.
+ The laser was configured to fire at a repetition rate of 
+\begin_inset Formula $\SI{20}{kHz}$
+\end_inset
+
+ throughout the 
+\begin_inset Formula $\SI{10}{ms}$
+\end_inset
+
+ duration of the experiment.
+ The fundamental 
+\begin_inset Formula $\SI{1064}{nm}$
+\end_inset
+
+ laser emission was seeded by a diode-pumped Nd:YVO
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+
+ oscillator laser and intensified by two twice-through Nd:YAG amplifier
+ stages before undergoing frequency-doubling and -quadrupling by nonlinear
+ crystals to produce a co-propagating 532 and 
+\begin_inset Formula $\SI{266}{nm}$
+\end_inset
+
+ laser pulse with average energies of 90 and 39 mJ per pulse at each respective
+ wavelength.
+ The laser beam was focused by a converging spherical and diverging cylindrical
+ lens to produce a laser sheet whose nominal width was 12 cm at its waist
+ in the center of the imaging window.
+ The Mie-scattered TiO₂ particle image was captured by a Photron Fastcam
+ SA-Z camera.
+ The laser-induced fluorescence signal was recorded by a Phantom v1211 high-spee
+d camera operating at 20,000 frames per second.
+ The camera was equipped with a 50 mm 
+\begin_inset Formula $f/1.2$
+\end_inset
+
+ Nikon lens, with a Schott BG39 band-pass ultraviolet transmission filter
+ and a band-stop filter centered at 
+\begin_inset Formula $530$
+\end_inset
+
+ nm to reduce transmission of 
+\begin_inset Formula $532$
+\end_inset
+
+ nm light scattered from the PIV tracer particles.
+ The visualization laser entry window was aligned with the centerline of
+ the MST (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MST-diagram-and-timing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+a) to allow the imaging plane to coincide with the propagation axis of the
+ vortex.
+ The cameras were oriented as depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:High-speed-laser-camera-config"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and both cameras were synchronized with the laser oscillator, producing
+ image sequences with 
+\begin_inset Formula $\SI{50}{\micro\second}$
+\end_inset
+
+ inter-frame separation throughout the imaging interval noted in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MST-diagram-and-timing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+b.
+ 
+\end_layout
+
+\begin_layout Subsection
+High-speed PLIF/single-shot PIV
+\end_layout
+
+\begin_layout Standard
+For the final experimental campaign, the second harmonic output of the pulse-bur
+st laser was discarded into a beam dump by a dichroic mirror, leaving only
+ the fourth harmonic.
+ The resulting 266 nm light was superimposed with the 532 nm output of a
+ dual-cavity Ekspla NL303-D Nd:YAG laser using another dichroic mirror,
+ then shaped into a diverging laser sheet as previously described.
+ This configuration permitted only one PIV image pair to be acquired per
+ experiment, but with a much smaller inter-frame time (
+\begin_inset Formula $\SI{3}{\micro\second}$
+\end_inset
+
+) which sharply reduced the number of particle correlations lost to out-of-plane
+ motion.
+ The PIV images were acquired by a TSI 630094 camera with a 29 MP (
+\begin_inset Formula $6600\times4400$
+\end_inset
+
+ pixel) interline transfer CCD sensor equipped with a 105 mm 
+\begin_inset Formula $f/11$
+\end_inset
+
+ Nikon lens.
+ The PLIF imaging configuration was unchanged from the previous set of experimen
+ts.
+\end_layout
+
+\begin_layout Section
+Procedure
 \end_layout
 
 \begin_layout Standard
@@ -1492,59 +1536,33 @@ name "fig:WISTL-plumbing"
 \end_layout
 
 \begin_layout Paragraph
-Main diaphragm replacement
+Main diaphragm replacement:
 \end_layout
 
 \begin_layout Standard
-The main shock tube driver section flange bolts were removed using a pneumatic
- impact wrench, after which the driver was lifted clear of the ruptured
- diaphragm by a gantry crane.
- The ruptured 18 gauge steel diaphragm was then removed and replaced with
- a fresh diaphragm.
- The driver section was lowered onto the diaphragm mounting ring, and the
- flange bolts were re-tightened.
- The boost tanks were filled to 1500 psig (10 MPa) and the fast acting valves
- were exercised to verify full range of motion.
+The ruptured 18 gauge steel diaphragm was removed and replaced with a fresh
+ diaphragm, after which the flange bolts were re-fastened with a pneumatic
+ impact wrench.
+ The boost tanks were filled to 10 MPa and the fast acting valves were exercised
+ to verify full range of motion.
 \end_layout
 
 \begin_layout Paragraph
 Vortex ring generator diaphragm replacement and realignment of optical diagnosti
-cs
+cs:
 \end_layout
 
 \begin_layout Standard
-The side access flange was removed with an impact wrench, allowing physical
- access to the test section.
- After manually removing large steel diaphragm fragments, a portable vacuum
- was used to remove dust and small fragments.
- The visualization window and the laser entry port were cleaned with lens
- paper and lens cleaning solution.
- The alignment of the visualization laser sheet was verified by firing the
- PIV laser in continuous-pulse mode onto a pre-marked alignment card, with
- adjustments made as necessary.
- The side access flange was then replaced and secured with the impact wrench.
-\end_layout
-
-\begin_layout Standard
-The miniature shock tube (MST) driver and diaphragm assembly were removed,
- the infrared rupture laser was re-aligned, and the MST mounting flange
- was temporarily covered with a vacuum-rated plug.
- The main shock tube was then evacuated to approximately 1 psia (about 7
- kPa) to remove air and other contaminants.
- The MST diaphragm flange and the rupture laser entry port were dismounted,
- the remnants of the MST tape diaphragm were removed, and the rupture laser
- window was cleaned with isopropanol.
- A fresh 
+After cleaning and realigning optical components to remove residue from
+ the previous experiment and correct displacement due to seismic vibrations
+ produced by the shock wave, the miniature shock tube (MST) diaphragm was
+ replaced with a fresh 
 \begin_inset Formula $3.8\times3.8$
 \end_inset
 
- cm section of mylar diaphragm tape was then applied to the diaphragm flange.
- The laser entry port and the diaphragm flange were re-fastened, and the
- driven section of the shock tube was filled nitrogen at 100 standard liters
- per minute (SLPM).
- Once the driven section reached atmospheric pressure, the MST vacuum plug
- was removed and replaced with the MST driver assembly, and the MST driver
- and driven section gas lines were re-connected.
+ cm section of mylar diaphragm tape.
+ The main shock tube was evacuated to 7 kPa, then filled with nitrogen to
+ atmospheric pressure.
 \end_layout
 
 \begin_layout Paragraph
@@ -1552,9 +1570,9 @@ Shock-vortex interaction
 \end_layout
 
 \begin_layout Standard
-The shock tube driver was filled to an intermediate pressure of 200 psig
- (1.5 MPa) to avoid excess stress on the diaphragm due to delays during PIV
- seed injection, which took a variable amount of time to reach uniformity.
+The shock tube driver was filled to an intermediate pressure of 1.5 MPa to
+ avoid excess stress on the diaphragm due to delays during PIV seed injection,
+ which took a variable amount of time to reach uniformity.
  Nitrogen seeded with 
 \begin_inset Formula $\diameter\approx300$
 \end_inset
@@ -1566,17 +1584,28 @@ The shock tube driver was filled to an intermediate pressure of 200 psig
  particles was injected into the test section at 30 SLPM, while excess unseeded
  gas was vented from the shock tube to an external vent line to maintain
  equilibrium with atmospheric pressure.
+ These components and gas transfer lines are depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:WISTL-plumbing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
  The PIV laser was fired in continuous-pulse mode to verify sufficient seed
  density.
  Once density was sufficient, the nitrogen flow rate was reduced to 10 SLPM,
- and the main driver was filled to 300 psig (2.2 MPa), approximately 85%
- of the diaphragm rupture pressure.
+ and the main driver was filled to 2.2 MPa, approximately 85% of the diaphragm
+ rupture pressure.
 \end_layout
 
 \begin_layout Standard
-The MST driver was evacuated to approximately 1 psia and then filled to
- test pressure, typically 20-25 psig (240-275 kPa) with vortex ring gas
- (N₂, Ar, CF₄, or SF₆).
+The MST driver was evacuated to approximately 7 kPa and then filled with
+ vortex ring gas (N₂, Ar, CF₄, or SF₆) to test pressure (typically 240-275
+ kPa).
  This gas was then introduced into the MST driven section at 3 SLPM for
  60 seconds, with evacuation of excess gas via the annular slot at the upper
  end of the driver.

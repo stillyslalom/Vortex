@@ -27,7 +27,8 @@
 \makeoddhead{chapter}{}{}{\thepage}
 \makeevenfoot{chapter}{}{}{}
 \makeoddfoot{chapter}{}{}{}
-\setcounter{secnumdepth}{2}% alternative A
+
+\setsecnumdepth{subsection}
 
 \usepackage{ifthen}
 \renewenvironment{figure}[1][]{%
@@ -228,7 +229,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+%
 \backslash
 listoftodos
 \end_layout
@@ -245,25 +246,146 @@ listoftodos
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Abstract
+\begin_layout Abstract
+The initial development and shock acceleration of inhomogeneous compressible
+ vortex rings is experimentally investigated in a vertical shock tube.
+ Vortex rings are created by discharging gas (either N₂, Ar, CF₄, or SF₆)
+ into ambient N₂ from the open end of a small, upwards-firing shock tube
+ mounted in the end wall of a large, downwards-firing shock tube.
+ Separation between the two gases is maintained by continuously evacuating
+ excess gas from a slot encircling the open end of the small shock tube.
 \end_layout
 
+\begin_layout Abstract
+The initial development of the vortex rings across a broad range of ring
+ formation parameters is investigated using high-speed planar laser-induced
+ fluorescence (PLIF) and particle image velocimetry (PIV).
+ Ring formation conditions are controlled by varying the driver pressure
+ ratio 
+\begin_inset Formula $p_{4}/p_{1}$
+\end_inset
+
+, producing rings with circulation-based Reynolds numbers between 
+\begin_inset Formula $1\times10^{5}$
+\end_inset
+
+ and 
+\begin_inset Formula $3\times10^{6}$
+\end_inset
+
+.
+ The early-time growth of the rings is found to be strongly dependent on
+ the Reynolds number and weakly dependent on the Atwood number.
+\end_layout
+
+\begin_layout Abstract
+A subset of the ring formation parameters is selected for further investigation
+ following shock acceleration by a 
+\begin_inset Formula $M=2.05$
+\end_inset
+
+ planar shock wave.
+ Ring trajectories and the evolution of geometric parameters are compared
+ to their pre-shock states.
+ Ring circulation is found to increase significantly for the high-Atwood
+ cases due to baroclinic deposition of vorticity, but is found to counterintuiti
+vely decrease for the low-Atwood cases.
+ Vorticity deposition due to shock curvature effects around vortex cores
+ is directly observed experimentally for the first time.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Acknowledgments
+\end_layout
+
+\begin_layout Standard
+First, I would like to express my deep appreciation for the support and
+ guidance offered by my advisor, Professor Riccardo Bonazza.
+ He indulged my harebrained idea of hitting vortex rings with shock waves
+ and found the necessary resources to make my experiments possible.
+ He also tolerated the various tangentially-related projects that may not
+ have contributed directly to my thesis, but supported my desire to improve
+ the quality of undergraduate experimental aerodynamics instruction.
+ His trust and generosity have made these years in Madison a blessing.
+\end_layout
+
+\begin_layout Standard
+Similarly invaluable were the time and resources volunteered by Professor
+ David Rothamer, whose deep expertise in laser-based flow diagnostics vastly
+ improved the quality of the data I collected.
+ His sharp eyes never failed to discover weaknesses in proposed approaches,
+ allowing many pitfalls to be avoided entirely.
+ Dr.
+ Jason Oakley was also a great help in providing a deep reservoir of knowledge
+ about the operation of the shock tube and related facilities, and always
+ standing ready with helpful suggestions for data collection and interpretation.
+\end_layout
+
+\begin_layout Standard
+I would also like to thank Dr.
+ Chris Weber at LLNL for exposing me to the frontier of hydrodynamics research
+ for inertial confinement fusion, and Dr.
+ Andy Cook for his endless assistance in debugging and improving my 
+\noun on
+Miranda
+\noun default
+ simulations.
+ Their support provided the basis for a fruitful collaboration with LLNL,
+ leading to the allocation of several full-scale experiments at the National
+ Ignition Facility in the coming years.
+\end_layout
+
+\begin_layout Standard
+Among my peers and colleagues in the shock tube lab, I must first thank
+ Dr.
+ Chris Noble for his friendship, and for being so British that it sometimes
+ hurts.
+ Kudos are also due to Dr.
+ Dan Reese for showing both of us the ropes of practical shock tube experiments,
+ to Dr.
+ Josh Herzog for standing in as an invaluable surrogate of Professor Rothamer,
+ and to Ray McConnell for his inquisitiveness and can-do attitude.
+ The shock tube lab requires many hands, and its high-tempo operation would
+ not have been possible during my thesis campaign without Brian's tireless
+ efforts, in addition to earlier help from other undergraduate aides including
+ Dewmi, Gunnar, Ben, and Tim.
+\end_layout
+
+\begin_layout Standard
+Most importantly, I'd like to thank my friends and family for keeping me
+ anchored and having my back through years of scientific trials and tribulations.
+ To my Madison friends, Mom and Dad, Maddie and Libby, and my wonderful
+ fiancée Katie - please know that I could not have done it without your
+ love and support.
+\end_layout
+
+\begin_layout Standard
+Last but not least, this document would be incomplete without mention of
+ my dog Ruby, who will never read these words, but whose energy and affection
+ supported me immensely throughout the production of this work.
+ 
+\begin_inset Newpage newpage
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
+\begin_inset ERT
+status collapsed
 
 \begin_layout Plain Layout
-Acknowledgments
+
+
+\backslash
+begin{KeepFromToc}
 \end_layout
 
 \end_inset
@@ -281,6 +403,22 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{KeepFromToc}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset FloatList figure
 
 \end_inset
@@ -290,19 +428,6 @@ LatexCommand tableofcontents
 
 \begin_layout Standard
 \begin_inset FloatList table
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Nomenclature
-\end_layout
 
 \end_inset
 
@@ -387,14 +512,28 @@ filename "ch5_conclusions.lyx"
 
 \begin_layout Chapter*
 \start_of_appendix
-Appendix 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Chapter*
+\start_of_appendix
+Appendix
 \end_layout
 
 \begin_layout Section*
 Schlieren imaging
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
 As a ray of light propagates through transparent optical media, its path
  may be altered by refractive index gradients corresponding to density or
  species concentration gradients.
@@ -486,6 +625,11 @@ Shadowgraphy relies on beam-steering caused by local variation in the refractive
  Nevertheless, the simplicity of the schlieren optical apparatus remains
  attractive in cases when such measurements are sufficient, as was the case
  for the vortex ring generator design validation process.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -719,7 +863,7 @@ Fill out entirety of Schlieren configuration table
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "C:/Users/alexa/Documents/Bibtex/library"
-options "aiaa"
+options "amsplain"
 
 \end_inset
 

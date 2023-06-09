@@ -193,59 +193,188 @@ Conclusions & future work
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Redo conclusions
+This dissertation describes the generation and characterization of inhomogeneous
+ gaseous vortex rings as well as the behavior of such rings upon acceleration
+ by a planar shock wave.
+ Generating these rings necessitated the development of a vortex ring generator
+ with precisely repeatable discharge characteristics and timing.
+ The design of the generator allows for separation to be maintained between
+ the vortex ring gas and the ambient gas up until the time of discharge,
+ with the use of tracer species within the vortex ring gas for planar laser-indu
+ced fluorescence (PLIF) measurements.
 \end_layout
 
+\begin_layout Standard
+Simultaneous high-speed PLIF & particle image velocimetry (PIV) measurements
+ were acquired for the first time for any vortex ring propagation experiment,
+ as well as for the first time for any shock-vortex interaction experiment.
+ Experiments on shock-vortex ring interactions were conducted at a significantly
+ higher Mach number (
+\begin_inset Formula $M=2.05$
 \end_inset
 
+) than any previous experiment.
+ The experiments spanned a broad range of vortex ring properties, with pre-shock
+ vortex Reynolds numbers varying from 
+\begin_inset Formula $3\times10^{5}$
+\end_inset
 
+ to 
+\begin_inset Formula $2\times10^{6}$
+\end_inset
+
+ and Atwood numbers between 0.06 and 0.66.
 \end_layout
 
 \begin_layout Standard
-A vortex ring generator was designed to release a well-controlled vortex
- ring with a formation number of approximately 2.
- The generator allows seeding of the driven gas with acetone for laser-induced
- fluorescence, but a leak during experiments in the shock tube resulted
- in undesirable variations in the gas composition of the resultant vortex
- ring.
- Improvements in the vortex ring generator filling and operating procedure
- are necessary to prevent recurrence of this issue in future experiments.
+The PLIF image sequences were analyzed to determine the evolution of vortex
+ ring geometrical parameters and propagation velocity.
+ The PIV images were processed to extract velocity and vorticity fields
+ in the vicinity of the vortex rings.
+ These fields were further processed to calculate integral quantities characteri
+stic to vortex rings, including the circulation and core radius.
+ These results are summarized below:
 \end_layout
 
-\begin_layout Standard
-The particle image velocimetry data was likewise contaminated by weak image
- correlations due to a relatively large inter-frame timing of 50 
-\begin_inset Formula $\si{\micro\second}$
+\begin_layout Itemize
+The nondimensional ring diameter 
+\begin_inset Formula $D/D_{p}$
+\end_inset
+
+ is found to depend strongly on Reynolds number at early nondimensional
+ times 
+\begin_inset Formula $tu_{p}/D_{p}<10$
+\end_inset
+
+, with similar ring growth rates after that time.
+ A weaker early-time dependence on ring Atwood number is observed.
+\end_layout
+
+\begin_layout Itemize
+The discrepancy between the ring core propagation velocity 
+\begin_inset Formula $U$
+\end_inset
+
+ measured from PLIF images and the predicted value of 
+\begin_inset Formula $U$
+\end_inset
+
+ based on circulation and ring geometrical parameters extracted from PIV
+ images is examined.
+ An empirical Atwood-number dependent vorticity distribution factor 
+\begin_inset Formula $\phi$
+\end_inset
+
+ is produced which minimizes the average discrepancy.
+\end_layout
+
+\begin_layout Itemize
+The pre- and post-shock vortex ring leading edge translational velocity
+ histories are extracted from PLIF image sequences, with the velocity jump
+ in the frame of bulk fluid motion found to depend strongly on Atwood number.
+\end_layout
+
+\begin_layout Itemize
+The pre-shock vortex circulation is calculated both by integration of vorticity
+ calculated from PIV images and by rearranging and solving the velocity-geometry
+-circulation-Atwood relations mentioned previously.
+ A significant unresolved discrepancy is observed between these two alternate
+ means of calculation.
+\end_layout
+
+\begin_layout Itemize
+The shock-induced circulation jump is calculated using direct integral measureme
+nt of post-shock vorticity and both pre-shock circulation estimates.
+ A strong Atwood number dependence is observed using both approaches, with
+ a counterintuitive finding of negative circulation production for 
+\begin_inset Formula $A=0.06$
+\end_inset
+
+ and 
+\begin_inset Formula $0.20$
 \end_inset
 
 .
- It may be possible to modify the pulse-burst laser to operate in a staggered-fr
-ame output mode which would allow for smaller inter-pulse intervals of 10-20
  
-\begin_inset Formula $\si{\micro\second}$
-\end_inset
+\end_layout
 
-, but this remains to be seen.
- If such modification is not possible, further experiments will rely on
- a conventional PIV imaging setup with a dual-cavity laser and a specialized
- framing camera.
+\begin_layout Itemize
+Several possible mechanisms of vorticity reduction are explored, with the
+ likeliest culprit determined to be opposite-sign vorticity production due
+ to shock curvature caused by velocity gradients near the vortex core.
+\end_layout
+
+\begin_layout Itemize
+The post-shock evolution of the vortex ring diameter is compared to the
+ pre-shock value, and qualitative agreement is found with predictions from
+ the computational literature.
+ A discontinuity between the pre-shock and post-shock diameters is observed
+ for the highest-Atwood case, with a potential explanation given by elevated
+ baroclinic vorticity deposition.
+\end_layout
+
+\begin_layout Itemize
+Preliminary 2D simulations of vortex-interface-shock interactions are analyzed
+ using the same integral measurements described for the PIV data above,
+ with the shock-deposited circulation found to agree well with predictions
+ adapted from the shock-bubble interaction literature.
 \end_layout
 
 \begin_layout Standard
-2D simulations showed promising results for the inclusion of a stratified
- gas interface in the vortex-shock interaction, with shock-deposited circulation
- close to theoretical predictions.
- These simulations neglect vortex stretching and are thus of limited predictive
- value when considering Widnall instability development, but 3D simulations
- at full resolution have a high computational cost.
- This cost might be mitigated to some degree by the use of adaptive mesh
- refinement.
- Additionally, the aliasing effects observed in 3D must be mitigated by
- careful choice of mesh topology and boundary conditions.
+Analysis of the experimental data is ongoing, with support expressed by
+ postdoctoral mentors for the continuation of the present work.
+ A funding request for vortex-interface-shock experiments is presently under
+ development at Los Alamos National Laboratory.
+\end_layout
+
+\begin_layout Standard
+Future experimental work should ideally take place in a facility with a
+ more tightly-controlled planar shock wave release mechanism.
+ The limitations imposed by the uncertainty in shock wave generation time
+ in the Wisconsin Shock Tube added significant design and operational complexity
+ to the vortex ring generator, and effectively prevented the vortex ring
+ Reynolds number from being held constant for a given set of Atwood numbers.
+ Tighter primary shock wave timing control would also allow for the study
+ of significantly lower vortex Reynolds numbers more characteristic of the
+ conditions found at the cores of inertial confinement fusion implosions.
+\end_layout
+
+\begin_layout Standard
+Because the primary shock waves in NIF implosions propagate from a heavy
+ material to a light material, better applicability to NIF conditions would
+ be provided by an experiment with a heavy vortex ring propagating in the
+ same direction as the primary shock wave.
+ Such a study would be most easily conducted in an upwards-firing shock
+ tube to retain gravity's aid in forming a stable stagnation plane.
+\end_layout
+
+\begin_layout Standard
+Great value would be provided by a dual-laser, dual-camera PIV system to
+ directly measure both pre- and post-shock circulation and thereby resolve
+ much of the uncertainty apparent in pre-shock circulation estimates for
+ the present experiments.
+ Better yet would be a high-resolution, high-speed PIV system to provide
+ direct rather than ensemble measurements of the time evolution of vortex
+ integral quantities.
+ 
+\end_layout
+
+\begin_layout Standard
+The planar laser-induced fluorescence measurements could be potentially
+ improved by seeding the ambient gas instead of the vortex ring gas.
+ This inversion would eliminate many of the unknown thermodynamic fluctuations
+ within the fluorescing regions and provide a uniform background signal
+ to allow the application of standard laser-induced fluorescence signal
+ correction techniques.
+\end_layout
+
+\begin_layout Standard
+The limited spatial resolution and 2D geometry of the calculations performed
+ for this work should be extended to fully 3-dimensional, high-resolution
+ calculations to better capture the small-scale fluctuations which drive
+ the mixing of the vortex ring with its surroundings as well as the instabilitie
+s that lead to the ring's eventual demise.
+ 
 \end_layout
 
 \end_body
