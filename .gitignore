@@ -9,7 +9,8 @@
 # /notebooks
 /_research
 /.CondaPkg
-/thesis/tex
+papers/thesis/tex
+papers/thesis/thesis.zip
 
 ################################################################################
 #                                    Julia                                     #
