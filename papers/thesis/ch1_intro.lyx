@@ -1218,8 +1218,8 @@ literal "false"
 : 
 \begin_inset Formula 
 \begin{align}
-\frac{Du^{\prime}}{Dt} & =-\frac{1}{\bar{\rho}+\rho^{\prime}}\grad{p}\label{eq:DossEuler}\\
-\frac{D(\bar{\rho}+\rho^{\prime})}{Dt} & =-(\bar{\rho}+\rho^{\prime})\div{u^{\prime}}\label{eq:Dosscontinuity}
+\frac{D\vec{u}^{\prime}}{Dt} & =-\frac{1}{\bar{\rho}+\rho^{\prime}}\grad{p}\label{eq:DossEuler}\\
+\frac{D(\bar{\rho}+\rho^{\prime})}{Dt} & =-(\bar{\rho}+\rho^{\prime})\div{\vec{u}^{\prime}}\label{eq:Dosscontinuity}
 \end{align}
 
 \end_inset
@@ -1249,12 +1249,12 @@ noprefix "false"
 \end_inset
 
  by 
-\begin_inset Formula $u^{\prime}$
+\begin_inset Formula $\vec{u}^{\prime}$
 \end_inset
 
  gives the ensemble-averaged transport equation for the velocity-density
  correlation 
-\begin_inset Formula $u^{\prime}\rho^{\prime}$
+\begin_inset Formula $\vec{u}^{\prime}\rho^{\prime}$
 \end_inset
 
 .
@@ -1608,11 +1608,16 @@ al
 \begin_inset Formula $(r,\theta,z)$
 \end_inset
 
- coordinates, with the azimuthal 
+ coordinates, with independence on 
 \begin_inset Formula $\theta$
 \end_inset
 
--direction often neglected as depicted in Figure 
+ (
+\emph on
+i.e.
+
+\emph default
+ axisymmetry) often assumed as depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Vortex-ring-geometry"
@@ -2241,8 +2246,13 @@ literal "false"
 
 \end_inset
 
- and integrating in the local neighborhood of the vortex in axisymmetric
- cylindrical coordinates,
+ and integrating in the local neighborhood of the vortex (
+\emph on
+i.e.
+
+\emph default
+ the region approximately enclosed by the streamlines between the leading
+ and trailing stagnation points) in axisymmetric cylindrical coordinates,
 \begin_inset Formula 
 \begin{align}
 \Gamma & =\iint\omega\dd{r}\dd{z}\label{eq:Gamma_vortex}\\
@@ -2407,7 +2417,7 @@ literal "false"
 \end_inset
 
 , with 
-\begin_inset Formula $\vec{u}=\curl\psi$
+\begin_inset Formula $\vec{u}=\curl\psi\hat{e}_{\theta}$
 \end_inset
 
 .

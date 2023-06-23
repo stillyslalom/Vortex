@@ -799,9 +799,10 @@ noprefix "false"
 \noun on
 Miranda 
 \noun default
-simulations were unable to model the development of the Widnall instability
- or the turbulent wake shed from the vortex ring, resulting in overprediction
- of the vortex velocity and underprediction of its size.
+simulations were unable to capture the development of the Widnall instability
+ or the turbulent wake shed from the vortex ring due to the inherently 3D
+ nature of those phenomena, resulting in overprediction of the vortex velocity
+ and underprediction of its size.
  However, the vortex formation and shock-vortex interactions were well-captured,
  with circulation from shock-deposited vorticity 
 \begin_inset Formula $\Delta\Gamma$

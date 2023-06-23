@@ -215,13 +215,36 @@ Initial investigations of the compressible vortex ring formation process
 
  inter-frame time interval were found to be too large for extraction of
  valid PIV displacement vectors.
- To improve the quality of velocity data, a second experimental campaign
+ 
+\end_layout
+
+\begin_layout Standard
+To improve the quality of velocity data, a second experimental campaign
  retained the high-speed PLIF diagnostic while capturing a single PIV image
  pair at various post-shock times with a dedicated dual-head laser and high-reso
 lution dual-frame camera.
  The second campaign incorporated a study of Atwood number effects by forming
  vortex rings from nitrogen, argon, carbon tetrafluoride, and sulfur hexafluorid
 e (N₂, Ar, CF₄, and SF₆).
+\end_layout
+
+\begin_layout Standard
+The present experiments were conducted at a significantly higher Mach number
+ (
+\begin_inset Formula $M=2.0-2.05$
+\end_inset
+
+) than any previous shock-vortex ring interaction experiment.
+ The experiments spanned a broad range of vortex ring properties, with pre-shock
+ vortex Reynolds numbers varying from 
+\begin_inset Formula $3\times10^{5}$
+\end_inset
+
+ to 
+\begin_inset Formula $2\times10^{6}$
+\end_inset
+
+ and Atwood numbers between 0.06 and 0.66.
 \end_layout
 
 \begin_layout Section
