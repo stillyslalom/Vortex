@@ -408,7 +408,7 @@ xlims!(axs[1, 1], nothing, 9.5)
 xlims!(axs[2, 1], nothing, 24)
 xlims!(axs[2, 2], nothing, 24)
 
-save(plotsdir("PLIF_core_trajectories", "core_diameter.svg"), f)
+savefigs && save(plotsdir("PLIF_core_trajectories", "core_diameter.svg"), f)
 
 f
 ## Repeat same plot in normalized dimensions (D/D0), t*u_p/D0
@@ -437,7 +437,7 @@ for (gas, loc) in gas_locs
     axislegend(latexstring(gas_clean[gas], " ", L"p_4/p_1"), rowgap=0, position=:lt)
     xlims!(axs[loc...], -3, nothing)
 end
-save(plotsdir("PLIF_core_trajectories", "normalized_core_diameter.svg"), f)
+savefigs && save(plotsdir("PLIF_core_trajectories", "normalized_core_diameter.svg"), f)
 
 f
 
@@ -484,5 +484,5 @@ for k in sort(keys(PS_D_grps), by=(k -> gasorder[k.MST_gas]))
 end
 axislegend(ax, rowgap=0, position=:lt)
 
-save(plotsdir("PLIF_core_trajectories", "postshock_diameter.svg"), f)
+savefigs && save(plotsdir("PLIF_core_trajectories", "postshock_diameter.svg"), f)
 f

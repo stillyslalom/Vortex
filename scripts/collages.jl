@@ -79,7 +79,10 @@ leftjoin!(runlist, ∫s, on = :runname)
 f = Figure(resolution=(800,540))
 
 runs = select_run.(Ref(runlist), ["2023-01-23_run4" "2023-01-20_run5"; "2023-01-11_run5" "2023-01-18_run6"])
-pretty_gas = Dict("N2" => "N₂", "Ar" => "Ar", "CF4" => "CF₄", "SF6" => "SF₆")
+pretty_gas = Dict("N2" => L"N$_2$ ($A = 0.06$)", 
+                  "Ar" => L"Ar ($A = 0.2$)",
+                  "CF4" => L"CF$_4$ ($A = 0.52$)", 
+                  "SF6" => L"SF$_6$ ($A = 0.66$)")
 axs = Dict()
 for i in 1:2, j in 1:2
     local ax = Axis(f[i,j], aspect=DataAspect(), xminorticksvisible=true, yminorticksvisible=true,
