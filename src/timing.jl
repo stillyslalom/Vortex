@@ -1,8 +1,8 @@
 export read_timings, load_xt
 
 function read_timings(meta)
-    timings = CSV.read(rawdatadir(meta.Date, meta.ID, meta.timings_path), DataFrame, 
-        normalizenames=true)
+    timingspath = datadir("timing", "tsv", join((string(meta.Date), meta.ID, meta.timings_path), '_'))
+    timings = CSV.read(timingspath, DataFrame, normalizenames=true)
     timings.Channel = @. Symbol(replace(strip(timings.Channel), isspace => '_'))
     @chain timings begin
         groupby("Channel")
