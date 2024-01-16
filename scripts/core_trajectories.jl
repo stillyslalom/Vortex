@@ -11,6 +11,7 @@ using LaTeXStrings
 using DataFramesMeta
 using Interpolations
 using ImageFiltering
+using Printf
 
 # includet(srcdir("PLIF", "tracking.jl"))
 includet(srcdir("imageutils.jl"))
@@ -21,7 +22,7 @@ core_it(PLIFcore, lr, state) = collect(keys(PLIFcore[lr][state]))
 ##
 
 PLIFlist = loadmeta() do m
-    valid = !ismissing(m.cine_ID)
+    valid =  !ismissing(m.cine_ID)
     valid &= !ismissing(m.timings_path)
     valid &= !ismissing(m.registration_path)
 end
@@ -145,7 +146,7 @@ function recursive_dict_count(d)
     end
 end
 
-mapreduce(recursive_dict_count, +, PLIFcores) # 4805 core positions
+mapreduce(recursive_dict_count, +, PLIFcores) # 5013 core positions
 
 ## PLIFcores entry cleaning
 # Subsequent cores with identical values and different keys are invalid and should be removed
@@ -381,6 +382,8 @@ IC_D_grps = groupby(combine(gbIC, [:D_IC, :t_IC] => group_mean_std_diameter => :
 f = Figure(resolution=(700,600))
 gas_locs = Dict("N2" => (1, 1), "Ar" => (1, 2), "CF4" => (2, 1), "SF6" => (2, 2))
 gas_clean = Dict("N2" => L"\mathrm{N_2}", "Ar" => L"\mathrm{Ar}", "CF4" => L"\mathrm{CF_4}", "SF6" => L"\mathrm{SF_6}")
+gas_At_clean = Dict("N2" => L"\mathrm{N_2} \, (A = 0.06)", "Ar" => L"\mathrm{Ar} \, (A = 0.2)", 
+    "CF4" => L"\mathrm{CF_4} \, (A = 0.52)", "SF6" => L"\mathrm{SF_6} \, (A = 0.66)")
 axs = [Axis(f[i, j], xlabel=L"$t$ [ms]$", ylabel=L"$D$ [m]") for i in 1:2, j in 1:2]
 colorset = Dict(unique(PLIFlist.MST_psig) .=> Makie.wong_colors()[1:7])
 lineplots = Dict()
@@ -441,6 +444,52 @@ savefigs && save(plotsdir("PLIF_core_trajectories", "normalized_core_diameter.sv
 
 f
 
+## Repeat previous plot w/ matched axis extents and labeling lines by Reynolds #
+u_p = Dict(k => MST_state(k.MST_gas, k.MST_psig).u2 for k in keys(IC_D_grps))
+
+f = Figure(resolution=(700,600))
+axs = [Axis(f[i, j], xlabel=L"$t\, u_p / D_p$", ylabel=L"$D_\mathrm{ring}/D_p$") for i in 1:2, j in 1:2]
+lineplots = Dict()
+for k in sort(keys(IC_D_grps), by=(k -> k.MST_psig))
+    MST = MST_state(k.MST_gas, k.MST_psig)
+    Re = MST.u2 * (0.875u"inch" |> u"m") / (MST.shocked.nu * u"m^2/s")
+    Re_str = @sprintf("%0.1f", Re/1e5)
+    t = getfield.(IC_D_grps[k].D_IC_mean_std, :t)
+    t .*= u"s" * u_p[k]/(0.875u"inch" |> u"m")
+    μ = getfield.(IC_D_grps[k].D_IC_mean_std, :μ)
+    μ .*= u"m" / (0.875u"inch" |> u"m")
+    t[.!isfinite.(μ)] .= NaN
+    σ = clamp01nan!(getfield.(IC_D_grps[k].D_IC_mean_std, :σ))
+    σ .*= u"m" / (0.875u"inch" |> u"m")
+    length(t) < 20 && continue
+    axloc = gas_locs[k.MST_gas]
+    # band!(axs[axloc...], t, μ .- σ, μ .+ σ, color=RGBA(RGB(colorset[k.MST_psig]), 0.3))
+    # band!(axs[axloc...], t, μ .- σ, μ .+ σ, 
+    #     color = round(Int, Re / 1e5), colorrange = (1, 10), colormap=Reverse(:viridis))
+    p = lines!(axs[axloc...], t, μ, 
+        label=L"%$(Re_str)",
+        # color=colorset[k.MST_psig], linewidth=2)
+        color = round(Int, Re / 1e4), colorrange = (12, 100), colormap=Reverse(:viridis), linewidth=2)
+end
+for (gas, loc) in gas_locs
+    current_axis!(f, axs[loc...])
+    # axislegend(latexstring(gas_clean[gas], " ", L"\mathrm{Re}/10^5",), rowgap=0, position=:lt)
+    # axislegend(L"\mathrm{Re}/10^5", rowgap=0, position=:lt)
+    xlims!(axs[loc...], 0, 30)
+    ylims!(axs[loc...], 1.5, 3)
+    text!(axs[loc...], 1, 2.8, text=latexstring(gas_At_clean[gas]), color=:black, fontsize=18)
+end
+Colorbar(f[1:2, 3], colormap=Reverse(:viridis), limits=(1, 9), label=L"\mathrm{Re} / 10^5")
+savefigs && save(plotsdir("PLIF_core_trajectories", "normalized_core_diameter.svg"), f)
+axs[1].xlabelvisible[] = false
+axs[3].xlabelvisible[] = false
+axs[3].ylabelvisible[] = false
+axs[4].ylabelvisible[] = false
+
+savefigs && save(plotsdir("PLIF_core_trajectories", "core_diameter_APSDFD.svg"), f)
+
+f
+
 ## Calculate post-shock diameter normalized by pre-shock diameter
 gbPS = groupby(filter(r -> r.shockrun, PLIFlist), [:MST_gas, :MST_psig])
 PSlist = filter(r -> r.nrow >= 3, transform!(gbPS, nrow))
@@ -480,7 +529,7 @@ for k in sort(keys(PS_D_grps), by=(k -> gasorder[k.MST_gas]))
     p = lines!(ax, t, μ, 
         label=gas_clean[k.MST_gas],
         color=Makie.wong_colors()[i], linewidth=2)
-    i += 1
+    global i += 1
 end
 axislegend(ax, rowgap=0, position=:lt)
 

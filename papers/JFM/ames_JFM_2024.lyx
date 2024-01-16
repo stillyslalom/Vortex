@@ -168,7 +168,7 @@ fontsize{16pt}{0pt}
 \backslash
 selectfont
 \backslash
-textbf{Multifluid shock-vortex interactions}} 
+textbf{Inhomogeneous vortex-shock interactions}} 
 \backslash
 
 \backslash
@@ -495,7 +495,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/diagrams/generator_schematic.svg
+	filename ../gfx/prelim/diagrams/generator_schematic.svg
 	lyxscale 20
 	width 12cm
 
@@ -839,7 +839,7 @@ status open
 
 
 \begin_inset Graphics
-	filename C:/Users/alexa/Dev/Vortex/papers/gfx/prelim/diagrams/MST_diagram.png
+	filename ../gfx/prelim/diagrams/MST_diagram.png
 	lyxscale 20
 	height 7cm
 

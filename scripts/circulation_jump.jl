@@ -13,6 +13,8 @@ using PyThermo
 update_theme!(Theme(fonts = (; regular = "New Roman", bold = "New Roman Bold")))
 ##
 corefield(cores, lr, state, field) = getfield.(values(cores[lr][state]), field)
+
+savefigs = false
 ##
 
 runlist = loadmeta() do m
@@ -128,8 +130,33 @@ linkxaxes!(Ar_ax, SF6_ax)
 hidexdecorations!.((N2_ax, Ar_ax), ticks=false, grid=false, minorticks=false)
 hideydecorations!.((Ar_ax, SF6_ax), ticks=false, grid=false, minorticks=false)
 
-save(plotsdir("circulation_jump", "Gamma_IC_shock.svg"), f,)
+savefigs && save(plotsdir("circulation_jump", "Gamma_IC_shock.svg"), f,)
 f
+
+## Plot circulation vs. time for N2 and Ar
+f = Figure(resolution=100 .* (3.5, 4.2))
+for j in 1:1, i in 1:2
+    local ax = Axis(f[i, j], xlabel="time [ms]", ylabel="Γ [m²/s]", 
+        xminorticksvisible=true, yminorticksvisible=true)
+    gas, psig = shockICs[i]
+    ICs = gdf[(MST_gas = gas, MST_psig=psig, shockrun=false)]
+    shocks = gdf[(MST_gas = gas, MST_psig=psig, shockrun=true)]
+    t_init = 1e3*ICs.t_TSI
+    Γ_init = ustrip.(u"m^2/s", ICs.Γ)
+    cf = curve_fit(Γ_model, t_init, Γ_init, ones(2))
+    Γ_fits[gas] = cf.param
+    lines!(ax, 1e3*ICs.t_TSI, Γ_model.(t_init, Ref(cf.param)), color=:black, label="IC")
+    plot!(ax, 1e3*ICs.t_TSI, ustrip.(u"m^2/s", ICs.Γ), color=:black, label="IC", marker=:diamond)
+    plot!(ax, 1e3*shocks.t_TSI, ustrip.(u"m^2/s", shocks.Γ), color=:red, marker=:dtriangle, label="shock")
+    axislegend(gas, position = :lb, merge=true)
+end
+N2_ax, Ar_ax = f.content[1:2:end]
+linkxaxes!(N2_ax, Ar_ax)
+hidexdecorations!(N2_ax, ticks=false, grid=false, minorticks=false)
+
+savefigs && save(plotsdir("circulation_jump", "Gamma_IC_shock_N2Ar.svg"), f,)
+f
+
 ## Plot circulation jump (relative to pre-shock trend) versus time relative to t_SVI
 f = Figure(resolution=100 .* (7, 5))
 ax1 = Axis(f[1, 1], xlabel="post-shock time [ms]", ylabel="ΔΓ [m²/s]", 
@@ -149,7 +176,8 @@ for i in 1:2, j in 1:2
     hlines!(ax1, ustrip(u"m^2/s", mean(ΔΓ)), color=Makie.wong_colors()[idx], linestyle=:dot, label=gas)
 end
 axislegend(position = :rt, merge=true)
-save(plotsdir("circulation_jump", "Delta_Gamma_versus_IC_trend.svg"), f,)
+savefigs && save(plotsdir("circulation_jump", "Delta_Gamma_versus_IC_trend.svg"), f,)
+f
 # Plot ΔΓ distribution versus Atwood number
 # f = Figure(resolution=100 .* (7, 5))
 ax2 = Axis(f[1, 2], xlabel="Atwood number", 
@@ -166,7 +194,7 @@ for i in 1:2, j in 1:2
         label=gas, color=Makie.wong_colors()[idx], width=0.07)
 end
 linkyaxes!(ax1, ax2)
-save(plotsdir("circulation_jump", "Delta_Gamma_versus_At.svg"), f,)
+savefigs && save(plotsdir("circulation_jump", "Delta_Gamma_versus_At.svg"), f,)
 f
 
 ## Find best fitting model for initial propagation velocity
@@ -261,7 +289,7 @@ for i in 1:2, j in 1:2
     end
     axislegend(gas*"\n uₚ [m/s]", merge=true, rowgap=1)
 end
-save(plotsdir("circulation_jump", "U_predict_fit_versus_time.svg"), f)
+savefigs && save(plotsdir("circulation_jump", "U_predict_fit_versus_time.svg"), f)
 f
 
 ## Plot relative prediction error (U_predict - U_fit) / U_fit versus U_fit
@@ -285,7 +313,7 @@ for i in 1:2, j in 1:2
     xlims!(ax, nothing, ((i, j) == (1, 2) ? 120 : 100))
     axislegend(gas*"\n uₚ [m/s]", merge=true, rowgap=0, position=:rt)
 end
-save(plotsdir("circulation_jump", "predict_error_versus_U_fit.svg"), f)
+savefigs && save(plotsdir("circulation_jump", "predict_error_versus_U_fit.svg"), f)
 f
 ## Predict pre-shock circulation for shocked runs
 PSlist = filter(r -> r.shockrun, good_PIV)
@@ -339,7 +367,7 @@ for i in 1:2, j in 1:2
         label=gas, color=Makie.wong_colors()[idx], width=0.07)
 end
 linkyaxes!(ax1, ax2)
-save(plotsdir("circulation_jump", "Delta_Gamma_predicted_versus_At.svg"), f,)
+savefigs && save(plotsdir("circulation_jump", "Delta_Gamma_predicted_versus_At.svg"), f,)
 f
 
 ## Plot normalized predicted and measured circulation jump versus Atwood number
